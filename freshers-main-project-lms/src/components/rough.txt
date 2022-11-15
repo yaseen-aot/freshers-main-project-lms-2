@@ -1,0 +1,260 @@
+/* *,html,body{
+  font-family: 'Lato';
+  font-style: normal;
+}
+.App-div-first{
+  height: 100vh;
+}
+
+
+.loginmain{
+
+  height: 100%;
+
+}
+.logologin{
+  max-width: 45px;
+  max-height: 51.37px;
+}
+.logologintext{
+  font-weight: 800;
+font-size: 24px;
+color: #ED7966;
+
+}
+.login-button{
+  width: 100% ;
+  height: 39px;
+  background: #ED7966;
+border-radius: 5px;
+border: 0;
+color: #fff;
+}
+.login-input{
+  width: 100%;
+  max-height: 44px;
+}
+.errormsg{
+  color: red;
+}
+.admin-student{
+  list-style: none;
+}
+
+.Login-divider{
+  border-top: solid 1px;
+  color: #E3E3E3;
+}
+.SideBar{
+
+ 
+  /* position: fixed; */
+   /*margin: 0;
+  padding: 0;
+  width: 17%; */
+  /* width: 100%;
+  height: 100%; 
+  background-color: #ED7966;
+}
+
+.whitetext{
+  color: #fff;
+  font-family: 'Lato';
+font-style: normal;
+font-weight: 800;
+font-size: 24px;
+
+}
+.whitelogo{
+ max-width: 36px ; 
+ height: 41px;
+}
+.sidebtn{
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
+}
+.sidebuttons{
+  background-color: #ED7966 ;
+  border: none ;
+  color: #fff; */
+  /* width: 80%;
+  height: 44px; */
+/* font-weight: 500;
+font-size: 16px;
+  border-radius: 5px;
+
+}
+
+.sidebuttons:hover{
+  background-color: #EC8D7E ; 
+  
+  
+}
+.sidemd{
+  font-size: 20px;
+ 
+} */
+
+/* -------------- */
+/* 
+.div-main{
+  height: 100%;
+  width: 78%;
+  
+  
+  
+  
+
+}
+.inputsearch{
+  width: 85%;
+  border: none;
+  height: 40px;
+
+}
+.inputsearch:focus{
+  outline: none;
+}
+.mainsearch-div{
+  width: 90%;
+}
+.search-main-icon{
+
+  
+  background: #FFFFFF;
+border: 1px solid #CECECE;
+border-radius: 5px;
+
+
+}
+.search-btn{
+  justify-content: space-between;
+}
+.searchicon{
+  color: #939393;
+  height: 20.91px;
+  width: 100%;
+}
+.main-button{
+  background: #ED7966;
+border-radius: 5px;
+border: none;
+font-weight: 500;
+font-size: 16px;
+color: #fff;
+text-align: center;
+padding-inline: 20px;
+padding-block: 10px;
+}
+.student-table , .Allbooks-table , .Issuepage-table{      
+  border-bottom: solid 1px #E3E3E3;
+}
+
+.student-row,.Allbooks-row{      
+  border-bottom: solid 1px #E3E3E3;
+}
+.head-student,.head-Allbooks , .head-Issuepage{
+  font-weight: 500;
+font-size: 16px;
+color: #646464;
+flex-wrap: wrap;
+}
+.student-content,.Allbooks-content , .Issuepage-row{
+  font-weight: 500;
+font-size: 16px;
+color: #09174A;
+}
+.main-header{
+  font-weight: 600;
+font-size: 20px;
+color: #09174A;
+}
+.Student-eye{
+  font-size: 20px ;
+  color:  #7E7E7F;;
+}
+.Student-delete,.Allbooks-delete{
+  font-size: 20px ;
+  color: #D04444;;
+}
+.Student-edit,.Allbooks-edit{
+  font-size: 20px ;
+  color: #7E7E7F;;
+}
+.student-main{
+  height: 100vh;
+}
+.student-content{
+  flex-wrap: wrap;
+}
+.AllMain-main{
+  height: 100%;
+}
+.IssueMain-main{
+  height: 100vh;
+}
+
+
+
+<div className="Allbooks-table d-flex mx-md-3 mt-5 p-md-3 justify-content-between ">
+<span className="head-Allbooks col-2">Book Title</span>
+<span className="head-Allbooks col-2">Author</span>
+<span className="head-Allbooks col-1">Language</span>
+<span className="head-Allbooks col-1">Total Copies</span>
+<span className="head-Allbooks col-1">Remaining</span>
+<span className="head-Allbooks col-1">Actions</span>
+</div>
+
+
+
+<div className="Allbooks-row d-flex mx-md-3  p-md-3 justify-content-between ">
+<span className="Allbooks-content col-2">It Start With Us</span>
+<span className="Allbooks-content col-2">Colleen Hoover</span>
+<span className="Allbooks-content col-1">English</span>
+<span className="Allbooks-content col-1">5</span>
+<span className="Allbooks-content col-1">2</span>
+<span className="Allbooks-content col-1  d-flex gap-md-2 p-0 mt-1">
+<MdModeEditOutline className="Allbooks-edit"/>
+<RiDeleteBin6Line className="Allbooks-delete"/>
+</span>
+</div>
+
+
+<div className="Issuepage-table d-flex mx-md-3 mt-5 p-md-3 justify-content-between ">
+<span className="head-Issuepage col-2">Book Title</span>
+<span className="head-Issuepage col-2">Student</span>
+<span className="head-Issuepage col-1">Issue Date</span>
+<span className="head-Issuepage col-1">Due Date</span>
+<span className="head-Issuepage col-1">Fine  (Rs. 10 per day) </span>
+<span className="head-Issuepage col-1">Actions</span>
+</div>
+
+<input className="inputsearch" type="search"  placeholder="Search by book title or author "/>
+
+<input className="inputsearch" type="text"  placeholder="Search by book title or student "/>
+
+
+<Form.Control  type="search" className="inputsearch"  placeholder="Search by book title or author " /> */ 
+
+
+ <div>
+                <div className="student-table d-flex mx-md-3 mt-5 p-md-3 justify-content-between">
+                <span className="head-student ">Name</span>
+                <span className="head-student ">Email</span>
+                <span className="head-student ">Actions</span>
+                </div>
+
+
+                {studentdata.map((item)=> 
+                <div className="student-row d-flex mx-md-3  p-md-3 justify-content-between" key={item.id}>
+                <span className="student-content ">{item.name}</span>
+                <span className="student-content ">{item.email}</span>
+                <span className="student-content  d-flex gap-md-2 p-0 mt-1">
+                <MdModeEditOutline className="Student-edit"/>
+                <RiDeleteBin6Line className="Student-delete"onClick={() => studentDeleteFunc(item.id)}/>
+                <AiOutlineEye className="Student-eye"/>
+                </span>
+                </div>
+                )}
+            </div>

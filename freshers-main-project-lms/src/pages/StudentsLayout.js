@@ -1,16 +1,16 @@
 import SideBar from "../components/Sidebar";
-import Studentmain from "./Studentmain";
+import Studentmain from "../components/StudentComponent";
 
 
 const Student = () => {
     return ( 
         
         <div className="student-main d-flex gap-md-4  ">
-       <div className="col-3 col-md-2">
+       <div className="sidebar-div col-3 col-md-2 sticky-top">
        <SideBar/>
        </div> 
 
-       <div className="col-9 ">
+       <div className="testnew col-9  ">
        <Studentmain/>
        </div>
        

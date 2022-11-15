@@ -3,16 +3,19 @@ import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import AllBooks from '../pages/Allbooks';
+import AllBooks from '../components/AllbooksComponent';
 
 
-const AddBookModal = () => {
+const AddBookModal = ({setShowAddBook,showAddBook}) => {
 
-    const [show, setShow] = useState(false);
+    
+  
 
-    const handleShow = () => setShow(true);
+  const handleCloseBook = () => setShowAddBook(false);
+ 
+   
 
-    const handleClose = () => setShow(false);
+    
     
 
 
@@ -22,11 +25,9 @@ const AddBookModal = () => {
 
         <Fragment>
     
-    
+        
 
-        <AllBooks handleShow ={handleShow} />
-
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showAddBook} onHide={handleCloseBook}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -50,14 +51,16 @@ const AddBookModal = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseBook}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleCloseBook}>
             Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
+
+        
 
     
     

@@ -1,10 +1,10 @@
 
 import {  useState } from 'react';
-import { Link } from 'react-router-dom';
 
-
+import '../css/Logindetails.css'
+import LoginHead from '../components/LoginHead';
 import LogValidate from '../components/LoginValidation';
-import LogoComponent from '../components/logo';
+import LogoComponent from '../components/LoginLogo';
 
 
 
@@ -12,7 +12,7 @@ import LogoComponent from '../components/logo';
 
 
 
-const Login = ({submitForm}) => {
+const Login = ({submitForm,admindetails,setobject}) => {
 
   
 
@@ -23,22 +23,23 @@ const Login = ({submitForm}) => {
         }
     )
 
-    const admindetails = {
-      email : "yasin@2003",
-      password : "12345"
-    }
+   
+      
+  
 
+    
 
     
     const[errors,setErrors] = useState({})
     
-   
+  
 
 
     const checkMatch = () => {
       console.log(values)
       if (values.email === admindetails.email && values.password === admindetails.password)
       {
+        setobject()
         console.log("Logged In")
         submitForm()
        
@@ -81,21 +82,7 @@ const Login = ({submitForm}) => {
         <div>
         
 
-            <div >
-            <p>Login </p>
-            <p>Welcome back! Please enter your details.</p>
-
-            <ul className='admin-student d-flex gap-3 m-0 px-0 pb-2' >
-            <Link to= '/AdminLogin'>
-            <li>Admin</li>
-            </Link>
-           
-            <Link to= '/StudentLogin'>
-            <li>Student</li>
-            </Link>
-           
-            </ul>
-            </div>
+        <LoginHead/>
 
             <form >
 

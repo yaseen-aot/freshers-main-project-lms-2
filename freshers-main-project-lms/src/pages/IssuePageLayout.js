@@ -1,4 +1,4 @@
-import IssuedPage from "./IssuedPage";
+import IssuedPage from "../components/IssuedPageComponent";
 import SideBar from "../components/Sidebar";
 
 const IssueMain = () => {
@@ -6,7 +6,7 @@ const IssueMain = () => {
 
         <div className="IssueMain-main d-flex gap-md-4 ">
         
-        <div>
+        <div  className="sidebar-div col-3 col-md-2 sticky-top">
             <SideBar/>
         </div>
 

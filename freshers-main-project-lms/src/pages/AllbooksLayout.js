@@ -1,17 +1,17 @@
 import SideBar from "../components/Sidebar";
-import AllBooks from "./Allbooks";
+import AllBooks from "../components/AllbooksComponent";
 
 const AllMain = () => {
     return ( 
 
-        <div className="AllMain-main d-flex">
+        <div className="AllMain-main d-flex gap-md-4 ">
         
-        <div className="col-3 col-md-2">
+        <div className="sidebar-div col-3 col-md-2 sticky-top">
             <SideBar/>
         </div>
 
 
-        <div>
+        <div className="col-9" >
         <AllBooks/>
     </div>
         
