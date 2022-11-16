@@ -34,6 +34,7 @@ const Studentmain = () => {
 
 
 
+
     return ( 
 
         <div className="div-main ">
@@ -47,7 +48,7 @@ const Studentmain = () => {
                 <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
                     <div className="mainsearch-div">
                         <input className="inputsearch" type="text"  placeholder="Search by student name or email" 
-                        onChange={studentsearchFunction}/>
+                       value={studentsearchdata} onChange={studentsearchFunction}/>
                     </div>
                     <div>
                         <AiOutlineSearch className="searchicon"/>
@@ -76,7 +77,9 @@ const Studentmain = () => {
             </div>
         
         
-            {studentdata?.map((item)=> 
+            {studentdata?.filter(data => data.name.toLowerCase()
+                .includes(studentsearchdata))
+                .map((item)=> 
             <div className="student-row text-center row py-2" key={item.id}>
 
                 <div className="col student-content ">
