@@ -1,37 +1,53 @@
 import { useState,useContext } from "react";
 import { studentContext } from "../App";
 import AddStudentModal from "../Modals/AddStudentModal";
+import DeleteModalStudent from "../Modals/DeleteModalStudent";
 import { AiOutlineSearch } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import AllBooksList from "./AllBooksList";
 
 
 
 const Studentmain = () => {
+    const [studentsearchdata,setStudentsearchdata] = useState('')
+
+
     const [studentdata,setStudentdata] = useContext(studentContext)
     const [show, setShow] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [getkeyElement,setGetkeyElement] = useState('')
 
     const handleShowStudent = () => setShow(true);
+    const handleShowDeleteStudent = () => setShowDelete(true);
 
-    const studentDeleteFunc = (deleteid) => {
-        console.log(deleteid)
-        setStudentdata (studentdata.filter((item) => deleteid != item.id   ))
+    const getkeyFromDelete = (id) => {
+        setGetkeyElement(id)
     }
+
+    const studentsearchFunction = (event) =>{
+        const value = event.target.value
+        setStudentsearchdata(value)
+       console.log( studentsearchdata)
+    }
+
 
 
     return ( 
 
         <div className="div-main ">
             <AddStudentModal show={show} setShow = {setShow}/>
+            <DeleteModalStudent showDelete={showDelete} setShowDelete ={setShowDelete} getkeyElement = {getkeyElement} />
             <p className="main-header pt-5">Students</p>
             <hr/>
 
-            <div className="search-btn d-flex flex-wrap ">
+            <div className="search-btn  d-flex flex-wrap pb-3 ">
             
                 <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
                     <div className="mainsearch-div">
-                        <input className="inputsearch" type="text"  placeholder="Search by student name or email"/>
+                        <input className="inputsearch" type="text"  placeholder="Search by student name or email" 
+                        onChange={studentsearchFunction}/>
                     </div>
                     <div>
                         <AiOutlineSearch className="searchicon"/>
@@ -45,7 +61,7 @@ const Studentmain = () => {
            
 
            
-            <div className="container text-center  mt-5 ">
+            <div className="studenttable container  text-center  pt-3 pb-5 ">
 
             <div className="student-row row py-3">
                 <div className="col head-student " >
@@ -60,7 +76,7 @@ const Studentmain = () => {
             </div>
         
         
-            {studentdata.map((item)=> 
+            {studentdata?.map((item)=> 
             <div className="student-row text-center row py-2" key={item.id}>
 
                 <div className="col student-content ">
@@ -71,16 +87,19 @@ const Studentmain = () => {
                 {item.email}
                 </div>
 
-                <div className="col student-content d-flex align-content-center">
+                <div className="col student-content d-flex justify-content-center ">
                 <MdModeEditOutline className="Student-edit"/>
-                <RiDeleteBin6Line className="Student-delete"onClick={() => studentDeleteFunc(item.id)}/>
+                <RiDeleteBin6Line className="Student-delete" onClick={() =>{ handleShowDeleteStudent() ; getkeyFromDelete(item.id)} }/>
                 <AiOutlineEye className="Student-eye"/>
                 </div>
 
+
             </div>
             )}
+
+           
         
-        </div>
+            </div>
 
         
         

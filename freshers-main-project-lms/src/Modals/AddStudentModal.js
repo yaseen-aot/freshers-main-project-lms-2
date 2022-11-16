@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 import { Fragment } from "react";
-import Studentmain from "../components/StudentComponent";
+import Studentmain from "../components/StudentContainer";
 
 const AddStudentModal = ({show,setShow}) => {
 
@@ -15,6 +15,8 @@ const AddStudentModal = ({show,setShow}) => {
     const [studentEmail,setStudentEmail] = useState('')
     const [studentPassword,setStudentPassword] = useState('')
     const [studentPasswordTwo,setStudentPasswordTwo] = useState('')
+
+    
   
 
         const handleCloseStudent = () => setShow(false);

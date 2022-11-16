@@ -26,7 +26,7 @@ const IssuedPage = () => {
 
     <div>
         
-        <div className="container  text-center mt-5 ">
+        <div className="Issuepagetable container  text-center mt-5 pt-3 pb-5">
 
             <div className="Issuepage-row row py-3">
                 <div className="col head-Issuepage">

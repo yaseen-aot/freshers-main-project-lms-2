@@ -1,5 +1,5 @@
 import SideBar from "../components/Sidebar";
-import Studentmain from "../components/StudentComponent";
+import Studentmain from "../components/StudentContainer";
 
 
 const Student = () => {
@@ -10,7 +10,7 @@ const Student = () => {
        <SideBar/>
        </div> 
 
-       <div className="testnew col-9  ">
+       <div className=" col-9  ">
        <Studentmain/>
        </div>
        

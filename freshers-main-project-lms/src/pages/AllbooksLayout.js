@@ -1,5 +1,5 @@
 import SideBar from "../components/Sidebar";
-import AllBooks from "../components/AllbooksComponent";
+import AllBooks from "../components/AllbooksContainer";
 
 const AllMain = () => {
     return ( 

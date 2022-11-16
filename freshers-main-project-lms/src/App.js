@@ -2,7 +2,7 @@ import React from 'react';
 import { createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import IssuedPage from './components/IssuedPageComponent';
+import IssuedPage from './components/IssuedPageContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -12,13 +12,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from "./pages/LoginLayout";
 import SideBar from './components/Sidebar';
-import Studentmain from './components/StudentComponent';
+import Studentmain from './components/StudentContainer';
 import Student from './pages/StudentsLayout';
 
 import AllMain from './pages/AllbooksLayout';
 import IssueMain from './pages/IssuePageLayout';
 
 export const studentContext = createContext();
+export const allBooksContext = createContext();
 
 
 
@@ -31,29 +32,33 @@ function App() {
 
   
   const [formSubmitted,setFormSubmitted] = useState(false)
-  const [studentdata,setStudentdata] = useState([
-  {
-    id : 1,
-    name: "ggg",
-    email: "fvf",
-    password : "hggg" ,
-    position : 'student'
-  },
-  {
-    id : 2,
-    name: "g33gg",
-    email: "fvf",
-    password : "hggg" ,
-    position : 'student'
-  },
-  {
-    id : 3,
-    name: "ggg",
-    email: "fvfd",
-    password : "hggsg" ,
-    position : 'studendt'
-  }
+  const [studentdata,setStudentdata] = useState([])
 
+const [bookData,setBookData] = useState([
+  {
+    bookid : 1 ,
+    title : 'rfrfref',
+    author : 'hyhjuj',
+    language : 'ede',
+    totalcopies : 4,
+    remaining : 3
+ },
+ {
+  bookid : 2 ,
+  title : 'ymuy',
+  author : 'wssw',
+  language : 'uihiu',
+  totalcopies : 9,
+  remaining : 2
+},
+{
+  bookid : 3 ,
+  title : 'ffrrry',
+  author : 'gtgtw',
+  language : 'uoooou',
+  totalcopies : 7,
+  remaining : 9
+  }
 ])
 
     
@@ -72,6 +77,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
 
   
   return (
+    <allBooksContext.Provider value={[bookData,setBookData]} >
     <studentContext.Provider value={[studentdata,setStudentdata]}>
     <div className="App ">
         <Router>
@@ -106,6 +112,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
 
     </div>
     </studentContext.Provider>
+    </allBooksContext.Provider>
   );
 }
 

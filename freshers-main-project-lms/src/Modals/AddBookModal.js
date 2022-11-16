@@ -1,21 +1,79 @@
-import React, {  useState } from 'react';
+import React, {  useState,useContext } from 'react';
+import { allBooksContext, studentContext } from '../App';
 import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import AllBooks from '../components/AllbooksComponent';
+import AllBooks from '../components/AllbooksContainer';
+import { nanoid } from 'nanoid'
+
 
 
 const AddBookModal = ({setShowAddBook,showAddBook}) => {
-
-    
-  
-
   const handleCloseBook = () => setShowAddBook(false);
+
+ const [bookData,setBookData] = useContext(allBooksContext)
+  const [bookTitle,setBookTitle] = useState('')
+  const [bookAuthor,setBookAuthor] = useState('')
+  const [bookLanguage,setBookLanguage] = useState('')
+  const [booktotalCopies,setbookTotalCopies] = useState('')
+  const [bookremainingCopies,setbookRemainingCopies] = useState('')
+
+
+
  
    
+  const BookTitleFunc = (event) => {
+    const value = event.target.value
+    setBookTitle(value)
+    console.log(bookTitle)
+  }
 
+  const BookAuthorFunc = (event) => {
+    const value = event.target.value
+    setBookAuthor(value)
+    console.log(bookAuthor)
+  }
+  
+  const BookLanguageFunc = (event) => {
+    const value = event.target.value
+    setBookLanguage(value)
+    console.log(bookLanguage)
+  }
+  const BookTotalCopiesFunc = (event) => {
+    const value = event.target.value
+    setbookTotalCopies(value)
+    console.log(booktotalCopies)
+  }
+
+  const BookRemainingCopiesFunc = (event) => {
+    const value = event.target.value
+    setbookRemainingCopies(value)
+    console.log(bookremainingCopies)
+
+  }
     
+  const handleAddAllBook = () => {
+    if(bookTitle && bookAuthor && bookLanguage && booktotalCopies && bookremainingCopies !== ''){
+      console.log("button clicked")
+      
+      const setdata = 
+      {
+        bookid : nanoid(),
+        title : bookTitle,
+        author : bookAuthor,
+        language : bookLanguage,
+        totalcopies : booktotalCopies,
+        remaining : bookremainingCopies
+      }
+      setBookData([...bookData,setdata])
+      console.log(bookData)
+    }
+    else{
+      console.log("button not clicked")
+    }
+    
+  }
     
 
 
@@ -27,35 +85,73 @@ const AddBookModal = ({setShowAddBook,showAddBook}) => {
     
         
 
-      <Modal show={showAddBook} onHide={handleCloseBook}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+      <Modal className='px-4 ' show={showAddBook} onHide={handleCloseBook}>
+        <Modal.Header className='mx-4' closeButton>
+          <Modal.Title >Add Book</Modal.Title>
+          
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='px-4'>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+
+            <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
-                autoFocus
-              />
+                type="text"
+                onChange={BookTitleFunc}
+                value = {bookTitle}
+                placeholder="Eg: Pride and Prejudice"
+                autoFocus/>
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label>Author</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={BookAuthorFunc}
+                value = {bookAuthor}
+                placeholder="Eg: Jane Austen"/>
             </Form.Group>
+
+            
+            <Form.Label>Language</Form.Label>
+            <Form.Select onChange={BookLanguageFunc} value ={bookLanguage} aria-label="Default select example">
+            <option>Select Language</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </Form.Select>
+            
+
+         <div className='d-flex justify-content-center gap-3 mt-4'> 
+            <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput3">
+                <Form.Label className='mb-1'>Total Copies</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={BookTotalCopiesFunc}
+                  value = {booktotalCopies}
+                  placeholder="5"/>
+              </Form.Group>
+
+              <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput4">
+                <Form.Label className='mb-1'>Remaining</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={BookRemainingCopiesFunc}
+                  value = {bookremainingCopies}
+                  placeholder="2"/>
+              </Form.Group>
+           
+          </div> 
+            
+           
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseBook}>
-            Close
+        <Modal.Footer className='mx-4'>
+          <Button variant="secondary" onClick={handleCloseBook }>
+            Cancel
           </Button>
-          <Button variant="primary" onClick={handleCloseBook}>
-            Save Changes
+          <Button variant="primary" onClick={()=>{handleCloseBook() ; handleAddAllBook()}}>
+            Add Book
           </Button>
         </Modal.Footer>
       </Modal>

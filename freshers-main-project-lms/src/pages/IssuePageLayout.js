@@ -1,4 +1,4 @@
-import IssuedPage from "../components/IssuedPageComponent";
+import IssuedPage from "../components/IssuedPageContainer";
 import SideBar from "../components/Sidebar";
 
 const IssueMain = () => {

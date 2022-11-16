@@ -258,3 +258,31 @@ color: #09174A;
                 </div>
                 )}
             </div>
+
+
+            onClick={() => studentDeleteFunc(item.id)}
+
+
+             {
+    id : 1,
+    name: "ggg",
+    email: "fvf",
+    password : "hggg" ,
+    position : 'student'
+  },
+  {
+    id : 2,
+    name: "g33gg",
+    email: "fvf",
+    password : "hggg" ,
+    position : 'student'
+  },
+  {
+    id : 3,
+    name: "ggg",
+    email: "fvfd",
+    password : "hggsg" ,
+    position : 'studendt'
+  }
+
+  () => { handleShowDeleteBook() ;allBookGetkey(item.bookid)}

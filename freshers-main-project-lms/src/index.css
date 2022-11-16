@@ -104,6 +104,7 @@ font-size: 16px;
 .div-main{
   height: 100%;
   width: 100%;
+  background-color: #F5F5F5;;
   
   
   
@@ -156,9 +157,9 @@ text-align: center;
 padding-inline: 20px;
 padding-block: 10px;
 }
-.student-table , .Allbooks-table , .Issuepage-table{      
+/* .student-table , .Allbooks-table , .Issuepage-table{      
   border-bottom: solid 1px #E3E3E3;
-}
+} */
 
 .student-row,.Allbooks-row,.Issuepage-row{      
   border-bottom: solid 1px #E3E3E3;
@@ -183,7 +184,9 @@ color: #09174A;
   font-size: 20px ;
   color:  #7E7E7F;;
 }
-
+.studenttable , .Allbookstable, .Issuepagetable{
+  background-color: #FFFFFF;
+}
 
 
 .Student-delete,.Allbooks-delete{
@@ -196,6 +199,7 @@ color: #09174A;
 }
 .student-main , .IssueMain-main ,.AllMain-main {
   min-height: 95vh;
+  background-color: #F5F5F5;
 }
 /* .student-content{
   flex-wrap: wrap;
