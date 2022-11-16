@@ -20,18 +20,18 @@ const SideBar = () => {
 
         
 
-          <div className='sidebtn  gap-4 ms-md-2 '>
+          <div className='sidebtn  gap-4 w-100 '>
 
               <Link to= '/issued-page' >
-              <button className='sidebuttons  d-flex gap-md-2 align-items-center' > < MdTaskAlt className='sidemd'/>  Issued Books</button>
+              <button className='sidebuttons  d-flex gap-md-2 ps-md-3 ' > < MdTaskAlt className='sidemd'/>  Issued Books</button>
               </Link>
             
               <Link to= '/all-books' >
-              <button className='sidebuttons  d-flex gap-md-2 pe-md-4  align-items-center' > < MdMenuBook className='sidemd'/>  All Books</button>
+              <button className='sidebuttons  d-flex gap-md-2 ps-md-3  ' > < MdMenuBook className='sidemd'/>  All Books</button>
               </Link>
 
               <Link to= '/students' >
-              <button className='sidebuttons  d-flex gap-md-2 pe-md-4  align-items-center' > < MdOutlinePeopleAlt className='sidemd'/>  Students</button>
+              <button className='sidebuttons  d-flex gap-md-2  ps-md-3  ' > < MdOutlinePeopleAlt className='sidemd'/>  Students</button>
               </Link>
 
           </div>

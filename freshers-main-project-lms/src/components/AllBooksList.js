@@ -1,13 +1,15 @@
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useContext, useState } from "react";
+import { useContext,  useState } from "react";
 import { allBooksContext } from "../App";
 import DeleteModalAllbooks from "../Modals/DeleteModalAllbook";
 
-const AllBooksList = () => {
+const AllBooksList = ({Allbookssearchdata}) => {
     const [bookData,setBookData] = useContext(allBooksContext)
     const [allbookkeyelement,setAllbookkeyelement] = useState('')
     const [showbookDelete, setShowbookDelete] = useState(false);
+
+  
 
     
 
@@ -27,8 +29,12 @@ const AllBooksList = () => {
 
         <div>
         <DeleteModalAllbooks showbookDelete = {showbookDelete} setShowbookDelete = {setShowbookDelete} allbookkeyelement = {allbookkeyelement}/>
-       bookData ? {bookData?.map((item) => 
+       {bookData?.filter(data => (data.title || data.author).toLowerCase()
+        .includes(Allbookssearchdata))
+        .map((item) => 
+       
         <div className="Allbooks-row row py-2" key={item.bookid}>
+        {console.log(item)}
                 <div className="col Allbooks-content">
                 {item.title}
                 </div>

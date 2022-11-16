@@ -6,15 +6,24 @@ import AddBookModal from "../Modals/AddBookModal";
 import AllBooksList from "./AllBooksList";
 
 const AllBooks = () => {
+    const [Allbookssearchdata,setAllbookssearchdata] = useState('')
     const [showAddBook, setShowAddBook] = useState(false);
 
     const ModalShowAddBook = () => setShowAddBook(true);
+
+    const allBooksSearchFunction = (event) => {
+        const value = event.target.value
+        setAllbookssearchdata(value)
+        console.log(Allbookssearchdata)
+
+    }
     
     return ( 
 
+        
 
     <div className="div-main ">
-
+        
             <AddBookModal showAddBook = {showAddBook}  setShowAddBook = {setShowAddBook} />
             <p className="main-header pt-5">All Books</p>
             <hr/>
@@ -23,7 +32,7 @@ const AllBooks = () => {
         
             <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
                 <div className="mainsearch-div">
-                <input className="inputsearch" type="text"  placeholder="Search by book title or student " />
+                <input className="inputsearch" type="text"  placeholder="Search by book title or author "  onChange={allBooksSearchFunction} value={Allbookssearchdata}/>
                 </div>
             
                 <div>
@@ -58,9 +67,9 @@ const AllBooks = () => {
                 </div>
             </div>
 
-
+            
         
-           <AllBooksList/>  
+           <AllBooksList Allbookssearchdata = {Allbookssearchdata}/>  
 
         </div>
 

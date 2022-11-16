@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState,useContext,useNavigate } from "react";
 import { studentContext } from "../App";
 import AddStudentModal from "../Modals/AddStudentModal";
 import DeleteModalStudent from "../Modals/DeleteModalStudent";
@@ -7,10 +7,13 @@ import { AiOutlineEye } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import AllBooksList from "./AllBooksList";
+import { Link } from "react-router-dom";
 
 
 
 const Studentmain = () => {
+    
+
     const [studentsearchdata,setStudentsearchdata] = useState('')
 
 
@@ -77,7 +80,7 @@ const Studentmain = () => {
             </div>
         
         
-            {studentdata?.filter(data => data.name.toLowerCase()
+            {studentdata?.filter(data => (data.name || data.email).toLowerCase()
                 .includes(studentsearchdata))
                 .map((item)=> 
             <div className="student-row text-center row py-2" key={item.id}>
@@ -93,7 +96,12 @@ const Studentmain = () => {
                 <div className="col student-content d-flex justify-content-center ">
                 <MdModeEditOutline className="Student-edit"/>
                 <RiDeleteBin6Line className="Student-delete" onClick={() =>{ handleShowDeleteStudent() ; getkeyFromDelete(item.id)} }/>
+                <Link to ="/profile">
                 <AiOutlineEye className="Student-eye"/>
+                </Link>
+                   
+               
+                
                 </div>
 
 
