@@ -6,8 +6,9 @@ import Modal from 'react-bootstrap/Modal';
 import { Fragment } from "react";
 import Studentmain from "../components/StudentContainer";
 
-const AddStudentModal = ({show,setShow}) => {
-
+const AddStudentModal = ({show,setShow,studenteditKey,studenteditName,studenteditEmail,studenteditPassword}) => {
+console.log(studenteditKey)
+ 
 
    
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -68,6 +69,10 @@ const AddStudentModal = ({show,setShow}) => {
                     setStudentdata([...studentdata,setdata])
                     console.log(studentdata)
                     setShow(false)
+                    setStudentName('')
+                    setStudentEmail('')
+                    setStudentPassword('')
+                    setStudentPasswordTwo('')
                     
 
 
@@ -96,7 +101,7 @@ const AddStudentModal = ({show,setShow}) => {
   
         <Modal show={show} onHide={handleCloseStudent}>
           <Modal.Header closeButton>
-            <Modal.Title>Add  Student</Modal.Title>
+            <Modal.Title>{studenteditKey ? 'Edit Student' : 'Add Student'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
@@ -104,7 +109,7 @@ const AddStudentModal = ({show,setShow}) => {
                 <Form.Label>Name</Form.Label>
                 <Form.Control 
                 onChange={ StudentNameFunction}
-                value = {studentName}
+                value = {studenteditKey ? studenteditName : studentName}
                   type="text"
                   placeholder="Eg: John Doe"
                   autoFocus
@@ -115,7 +120,7 @@ const AddStudentModal = ({show,setShow}) => {
               <Form.Label>Email</Form.Label>
               <Form.Control
               onChange={ StudentEmailFunction}
-              value = {studentEmail}
+              value = {studenteditKey ? studenteditEmail : studentEmail}
                 type="email"
                 placeholder="Eg: johndoe@gmail.com"
                
@@ -125,7 +130,7 @@ const AddStudentModal = ({show,setShow}) => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
               <Form.Label>Password</Form.Label>
               <Form.Control
-              value = {studentPassword}
+              value = {studenteditKey ? studenteditPassword : studentPassword } 
               onChange={ StudentPasswordFunction}
                 type="password"
                 placeholder= "••••••••"
@@ -136,7 +141,7 @@ const AddStudentModal = ({show,setShow}) => {
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-            value = {studentPasswordTwo}
+            value = {studenteditKey ? studenteditPassword : studentPasswordTwo }
             onChange={ StudentPasswordTwoFunction}
               type="password"
               placeholder="••••••••"
@@ -153,7 +158,7 @@ const AddStudentModal = ({show,setShow}) => {
               Close
             </button>
             <button  className='StudentModal-ButtonClose' onClick={handleAddStudent}>
-             Add Student
+             {studenteditKey ? 'Edit Student' : 'Add Student'}
             </button>
           </Modal.Footer>
         </Modal>

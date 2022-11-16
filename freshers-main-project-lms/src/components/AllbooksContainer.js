@@ -9,6 +9,13 @@ const AllBooks = () => {
     const [Allbookssearchdata,setAllbookssearchdata] = useState('')
     const [showAddBook, setShowAddBook] = useState(false);
 
+    const[allbooksEditKey,setAllbooksEditKey] = useState(false)
+    
+
+    const allBooksResetEdit =  () => {
+        setAllbooksEditKey(false)
+    }
+
     const ModalShowAddBook = () => setShowAddBook(true);
 
     const allBooksSearchFunction = (event) => {
@@ -24,7 +31,7 @@ const AllBooks = () => {
 
     <div className="div-main ">
         
-            <AddBookModal showAddBook = {showAddBook}  setShowAddBook = {setShowAddBook} />
+            <AddBookModal showAddBook = {showAddBook}  setShowAddBook = {setShowAddBook} allbooksEditKey = {allbooksEditKey} />
             <p className="main-header pt-5">All Books</p>
             <hr/>
 
@@ -40,7 +47,7 @@ const AllBooks = () => {
                 </div>   
             </div>
 
-            <button className="main-button mt-2"  onClick={ModalShowAddBook}> Add New Book</button>
+            <button className="main-button mt-2"  onClick={() => {ModalShowAddBook();allBooksResetEdit()}}> Add New Book</button>
         </div>
         
 
@@ -69,7 +76,10 @@ const AllBooks = () => {
 
             
         
-           <AllBooksList Allbookssearchdata = {Allbookssearchdata}/>  
+           <AllBooksList Allbookssearchdata = {Allbookssearchdata} allbooksEditKey = {allbooksEditKey}
+            setAllbooksEditKey = {setAllbooksEditKey} ModalShowAddBook = {ModalShowAddBook}/> 
+            
+            
 
         </div>
 

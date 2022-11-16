@@ -9,7 +9,9 @@ import { nanoid } from 'nanoid'
 
 
 
-const AddBookModal = ({setShowAddBook,showAddBook}) => {
+const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTitle,AllbookseditAuthor,
+  AllbookseditLanguage,AllbookseditTotalcopies,AllbookseditRemaining}) => {
+    
   const handleCloseBook = () => setShowAddBook(false);
 
  const [bookData,setBookData] = useContext(allBooksContext)
@@ -75,7 +77,7 @@ const AddBookModal = ({setShowAddBook,showAddBook}) => {
     
   }
     
-
+  console.log(allbooksEditKey)
 
     return ( 
 
@@ -87,7 +89,7 @@ const AddBookModal = ({setShowAddBook,showAddBook}) => {
 
       <Modal className='px-4 ' show={showAddBook} onHide={handleCloseBook}>
         <Modal.Header className='mx-4' closeButton>
-          <Modal.Title >Add Book</Modal.Title>
+          <Modal.Title > { allbooksEditKey ? 'Edit Book'  : 'Add Book' }</Modal.Title>
           
         </Modal.Header>
         <Modal.Body className='px-4'>
@@ -151,7 +153,7 @@ const AddBookModal = ({setShowAddBook,showAddBook}) => {
             Cancel
           </Button>
           <Button variant="primary" onClick={()=>{handleCloseBook() ; handleAddAllBook()}}>
-            Add Book
+            {allbooksEditKey ? 'Edit book' :' Add Book'}
           </Button>
         </Modal.Footer>
       </Modal>

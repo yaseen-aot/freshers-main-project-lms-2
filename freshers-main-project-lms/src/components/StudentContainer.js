@@ -22,6 +22,36 @@ const Studentmain = () => {
     const [showDelete, setShowDelete] = useState(false);
     const [getkeyElement,setGetkeyElement] = useState('')
 
+    const [studenteditKey,setStudentEditKey] = useState(false)
+    const [studenteditName,setStudenteditName] = useState('')
+    const [studenteditEmail,setStudenteditEmail] = useState('')
+    const [studenteditPassword,setStudenteditPassword] = useState('')
+
+    const studentEditFunc = () => {
+        setStudentEditKey(true)
+    }
+
+    const studentEditNameget = (data) => {
+        setStudenteditName(data)
+        console.log(studenteditName,"mm")
+    }
+
+    const studentEditEmailget = (data) => {
+        setStudenteditEmail(data)
+        console.log(studenteditEmail,"mm")
+    }
+
+    const studentEditPasswordget = (data) => {
+        setStudenteditPassword(data)
+        console.log(studenteditPassword,"mm")
+    }
+    const studentResetEditFunc = () => {
+        setStudentEditKey(false)
+    }
+
+
+
+
     const handleShowStudent = () => setShow(true);
     const handleShowDeleteStudent = () => setShowDelete(true);
 
@@ -38,10 +68,20 @@ const Studentmain = () => {
 
 
 
+
+
     return ( 
 
         <div className="div-main ">
-            <AddStudentModal show={show} setShow = {setShow}/>
+            <AddStudentModal show={show} 
+            setShow = {setShow}
+            studenteditKey = {studenteditKey}
+            studenteditName = {studenteditName}
+            studenteditEmail = {studenteditEmail}
+            studenteditPassword = {studenteditPassword}
+
+            />
+
             <DeleteModalStudent showDelete={showDelete} setShowDelete ={setShowDelete} getkeyElement = {getkeyElement} />
             <p className="main-header pt-5">Students</p>
             <hr/>
@@ -58,7 +98,7 @@ const Studentmain = () => {
                     </div>               
                 </div>
 
-                <button onClick={handleShowStudent} className="main-button mt-2"> Add New Student</button>
+                <button onClick={() => {handleShowStudent();studentResetEditFunc()} } className="main-button mt-2"> Add New Student</button>
             </div>
             
 
@@ -94,7 +134,16 @@ const Studentmain = () => {
                 </div>
 
                 <div className="col student-content d-flex justify-content-center ">
-                <MdModeEditOutline className="Student-edit"/>
+                <MdModeEditOutline className="Student-edit" onClick={()=> {
+                    handleShowStudent();
+                    studentEditFunc();
+                    studentEditNameget(item.name);
+                    studentEditEmailget(item.email);
+                    studentEditPasswordget(item.password)
+
+
+                }}/>
+
                 <RiDeleteBin6Line className="Student-delete" onClick={() =>{ handleShowDeleteStudent() ; getkeyFromDelete(item.id)} }/>
                 <Link to ="/profile">
                 <AiOutlineEye className="Student-eye"/>
