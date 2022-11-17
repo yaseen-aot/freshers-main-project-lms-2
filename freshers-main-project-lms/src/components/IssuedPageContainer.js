@@ -1,12 +1,22 @@
-
+import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import {MdOutlineAssignmentReturn} from "react-icons/md";
 import ReactTooltip from "react-tooltip";
+import IssueBookModal from "../Modals/IssueBookModal";
 
 const IssuedPage = () => {
+
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+
+
+
+
+
     return ( 
         
         <div className="div-main ">
+        <IssueBookModal show = {show} setShow = {setShow}/>
         <p className="main-header pt-5">Issued Books</p>
         <hr/>
 
@@ -20,7 +30,7 @@ const IssuedPage = () => {
                 </div>           
             </div>
 
-            <button className="main-button mt-2"> Issue Book</button>
+            <button className="main-button mt-2" onClick={handleShow}> Issue Book</button>
         </div>
             
 

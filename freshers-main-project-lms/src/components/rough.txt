@@ -327,5 +327,88 @@ color: #09174A;
 
   }
 
-  AddBookModalLabel
+  
+
+
+
+  <Modal className='px-3 ' show={showAddBook} onHide={handleCloseBook}>
+        <Modal.Header className='IssueBookModalHeader mx-4 ps-0' closeButton>
+          <Modal.Title className='IssueBookModalTitle' > Edit Book  </Modal.Title>
+          
+        </Modal.Header>
+        <Modal.Body className='px-4'>
+          <Form>
+
+            
+
+            <Form.Label className='IssueBookModalLabel'>Book</Form.Label>
+            <Form.Select  aria-label="Default select example">
+            <option>Select Book <Student></Student></option>
+            <option value="Malayalam">Malayalam</option>
+          </Form.Select>
+
+            
+            <Form.Label className='IssueBookModalLabel'>Student</Form.Label>
+            <Form.Select  aria-label="Default select example">
+            <option>Select Student <Student></Student></option>
+            <option value="Malayalam">Malayalam</option>
+          </Form.Select>
+
+          <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
+              <Form.Label className='IssueBookModalLabel'>Issue Date</Form.Label>
+              <Form.Control
+                type="Date"
+                placeholder="09-11-2022"
+                />
+            </Form.Group>
+
+            <Form.Group className="mb-3 " controlId="exampleForm.ControlInput2">
+            <Form.Label className='IssueBookModalLabel'>Due Date</Form.Label>
+            <Form.Control
+              type="Date"
+              
+              />
+          </Form.Group>
+            
+          </Form>
+        </Modal.Body>
+        <Modal.Footer className='mx-4'>
+          <button className='IssueBookCloseBtn'  >
+            Cancel
+          </button>
+          <button className='IssueBookAddBtn' >
+            Issue Book
+          </button>
+        </Modal.Footer>
+      </Modal>
     
+
+
+    array.filter(kk =>
+    
+    if( = '')
+    return kk
+
+    else ....
+
+
+
+
+           <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    
+    
+    
+    )
