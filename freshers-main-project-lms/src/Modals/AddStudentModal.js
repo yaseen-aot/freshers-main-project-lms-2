@@ -19,10 +19,10 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
     const [studentPassword,setStudentPassword] = useState('')
     const [studentPasswordTwo,setStudentPasswordTwo] = useState('')
 
-    const [studentNameEditModal,setStudentNameEditModal] = useState('')
-    const [studentEmailEditModal,setStudentEmailEditModal] = useState('')
-    const [studentPasswordEditModal,setStudentPasswordEditModal] = useState('')
-    const [studentPasswordTwoEditModal,setStudentPasswordTwoEditModal] = useState('')
+    // const [studentNameEditModal,setStudentNameEditModal] = useState('')
+    // const [studentEmailEditModal,setStudentEmailEditModal] = useState('')
+    // const [studentPasswordEditModal,setStudentPasswordEditModal] = useState('')
+    // const [studentPasswordTwoEditModal,setStudentPasswordTwoEditModal] = useState('')
 
    
 
@@ -102,10 +102,10 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
                     setStudentdata([...studentdata,setdata])
                     console.log(studentdata)
                     setShow(false)
-                    // setStudentName('')
-                    // setStudentEmail('')
-                    // setStudentPassword('')
-                    // setStudentPasswordTwo('')
+                    setStudentName('')
+                    setStudentEmail('')
+                    setStudentPassword('')
+                    setStudentPasswordTwo('')
                     
 
 
@@ -118,11 +118,17 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
                 
 
             }
+            else{
+              console.log('please fill out form')
+            }
             
 
          }
 
          const handleEditStudent = () => {
+          if(studentName && studentEmail && studentPassword && studentPasswordTwo !== ''){
+            if(studentPassword == studentPasswordTwo){
+
           console.log('edit button clicked')
           console.log(studentdata)
           console.log("hai")
@@ -142,7 +148,14 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
          
          
          
-
+          }
+          else {
+            console.log('password not match')
+          }
+        }
+          else{
+            console.log('please fill out form')
+          }
          }
          
 
@@ -214,7 +227,7 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
             <button className='StudentModal-ButtonAdd'  onClick={handleCloseStudent}>
               Close
             </button>
-            <button  className='StudentModal-ButtonClose' onClick={selectedstudent ?handleEditStudent : handleAddStudent}>
+            <button  className='StudentModal-ButtonClose' onClick={() => {handleCloseStudent();{selectedstudent ?handleEditStudent() : handleAddStudent()}}}>
              {selectedstudent ? 'Edit Student' : 'Add Student'}
             </button>
           </Modal.Footer>

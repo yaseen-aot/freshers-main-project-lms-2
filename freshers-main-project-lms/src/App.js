@@ -1,8 +1,8 @@
 import React from 'react';
 import { createContext } from 'react';
-import { BrowserRouter as Router, Route, Routes,useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
-import IssuedPage from './components/IssuedPageContainer';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -11,8 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import StudentProfile from './pages/StudentProfile';
 import Login from "./pages/LoginLayout";
-import SideBar from './components/Sidebar';
-import Studentmain from './components/StudentContainer';
+
+
 import Student from './pages/StudentsLayout';
 
 import AllMain from './pages/AllbooksLayout';
@@ -30,7 +30,7 @@ export const allBooksContext = createContext();
 
 function App() {
 
-  const { id } = useParams();
+  
 
   
   const [formSubmitted,setFormSubmitted] = useState(false)
@@ -85,7 +85,7 @@ const admindetails =  {
 }
 
 const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails))
- const getobject = () => localStorage.getItem(admindetails)
+ //const getobject = () => localStorage.getItem(admindetails)
 
   
   return (
