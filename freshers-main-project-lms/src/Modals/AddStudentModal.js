@@ -2,15 +2,13 @@ import React, { useState , useContext, useEffect } from 'react';
 import { studentContext } from '../App';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import '../css/StudentAddModal.css'
 
 import { Fragment } from "react";
 import Studentmain from "../components/StudentContainer";
 
-const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studenteditEmail,studenteditPassword}) => {
-//console.log(selectedstudent)
+const AddStudentModal = ({show,setShow,selectedstudent}) => {
 
-
- 
 
    
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -172,12 +170,12 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
   
         <Modal show={show} onHide={handleCloseStudent}>
           <Modal.Header closeButton>
-            <Modal.Title>{selectedstudent ? 'Edit Student' : 'Add Student'}</Modal.Title>
+            <Modal.Title className='studentModalTitle'>{selectedstudent ? 'Edit Student' : 'Add Student'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Name</Form.Label>
+                <Form.Label className='studentModalLabel'>Name</Form.Label>
                 <Form.Control  className='addModalName'
                 onChange={StudentNameFunction} //(event) => setStudentName(event.target.value)
                  value = {studentName || '' }
@@ -188,7 +186,7 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className='studentModalLabel'>Email</Form.Label>
               <Form.Control  className='addModalemail'
               onChange={(event) => setStudentEmail(event.target.value) }
               value = {studentEmail || ''}
@@ -199,7 +197,7 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className='studentModalLabel'>Password</Form.Label>
               <Form.Control
               value = {studentPassword || '' } 
               onChange={(event) => setStudentPassword(event.target.value) }
@@ -210,7 +208,7 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label className='studentModalLabel'>Confirm Password</Form.Label>
             <Form.Control
             value = {studentPasswordTwo || '' }
             onChange={ (event) => setStudentPasswordTwo(event.target.value) }
@@ -225,10 +223,10 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <button className='StudentModal-ButtonAdd'  onClick={handleCloseStudent}>
+            <button className='StudentModal-ButtonClose'  onClick={handleCloseStudent}>
               Close
             </button>
-            <button  className='StudentModal-ButtonClose' onClick={() => {handleCloseStudent();{selectedstudent ?handleEditStudent() : handleAddStudent()}}}>
+            <button  className='StudentModal-ButtonAdd' onClick={() => {handleCloseStudent();{selectedstudent ?handleEditStudent() : handleAddStudent()}}}>
              {selectedstudent ? 'Edit Student' : 'Add Student'}
             </button>
           </Modal.Footer>

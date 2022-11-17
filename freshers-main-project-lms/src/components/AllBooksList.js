@@ -69,7 +69,7 @@ const AllBooksList = ({Allbookssearchdata,selectedAllbooks,setSelectedAllbooks,M
 
 
 
-        <DeleteModalAllbooks showbookDelete = {showbookDelete} setShowbookDelete = {setShowbookDelete} allbookkeyelement ={allbookkeyelement } />
+        <DeleteModalAllbooks showbookDelete = {showbookDelete} setShowbookDelete = {setShowbookDelete} allbookkeyelement ={allbookkeyelement } selectedAllbooks = {selectedAllbooks}  />
 
        {bookData?.filter(data => (data.title || data.author).toLowerCase()
         .includes(Allbookssearchdata))

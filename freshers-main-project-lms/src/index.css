@@ -117,11 +117,13 @@ font-size: 16px;
   height: 40px ;
 
 }
-/* .inputsearch:focus{
+
+
+.inputsearch:focus{
   outline: none !important;
   -webkit-appearance:none;
   box-shadow: none !important;
-} */
+}
 
 
 

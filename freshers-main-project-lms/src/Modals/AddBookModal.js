@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import '../css/AllBooksAddModal.css'
 
 import { nanoid } from 'nanoid'
 
@@ -136,16 +137,16 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
     
         
 
-      <Modal className='px-4 ' show={showAddBook} onHide={handleCloseBook}>
-        <Modal.Header className='mx-4' closeButton>
-          <Modal.Title > { selectedAllbooks ? 'Edit Book'  : 'Add Book' }</Modal.Title>
+      <Modal className='px-3 ' show={showAddBook} onHide={handleCloseBook}>
+        <Modal.Header className='AddBookModalHeader mx-4 ps-0' closeButton>
+          <Modal.Title className='AddBookModalTitle' > { selectedAllbooks ? 'Edit Book'  : 'Add Book' }</Modal.Title>
           
         </Modal.Header>
         <Modal.Body className='px-4'>
           <Form>
 
             <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
-              <Form.Label>Name</Form.Label>
+              <Form.Label className='AddBookModalLabel'>Name</Form.Label>
               <Form.Control
                 type="text"
                 onChange={BookTitleFunc}
@@ -155,7 +156,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-              <Form.Label>Author</Form.Label>
+              <Form.Label className='AddBookModalLabel'>Author</Form.Label>
               <Form.Control
                 type="text"
                 onChange={BookAuthorFunc}
@@ -164,18 +165,20 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
             </Form.Group>
 
             
-            <Form.Label>Language</Form.Label>
+            <Form.Label className='AddBookModalLabel'>Language</Form.Label>
             <Form.Select onChange={BookLanguageFunc} value ={ bookLanguage || '' } aria-label="Default select example">
             <option>Select Language</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="Malayalam">Malayalam</option>
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="Tamil">Tamil</option>
+            <option value="Hindi">Hindi</option>
           </Form.Select>
             
 
          <div className='d-flex justify-content-center gap-3 mt-4'> 
             <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput3">
-                <Form.Label className='mb-1'>Total Copies</Form.Label>
+                <Form.Label className='AddBookModalLabel mb-1'>Total Copies</Form.Label>
                 <Form.Control
                   type="text"
                   onChange={BookTotalCopiesFunc}
@@ -184,7 +187,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
               </Form.Group>
 
               <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput4">
-                <Form.Label className='mb-1'>Remaining</Form.Label>
+                <Form.Label className='AddBookModalLabel mb-1'>Remaining</Form.Label>
                 <Form.Control
                   type="text"
                   onChange={BookRemainingCopiesFunc}
@@ -198,12 +201,12 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
           </Form>
         </Modal.Body>
         <Modal.Footer className='mx-4'>
-          <Button variant="secondary" onClick={handleCloseBook }>
+          <button className='AllBookCloseBtn'  onClick={handleCloseBook }>
             Cancel
-          </Button>
-          <Button variant="primary" onClick={() => {handleCloseBook();{selectedAllbooks ? handleEditAllBook() : handleAddAllBook()}}}>
+          </button>
+          <button className='AllBookAddBtn' onClick={() => {handleCloseBook();{selectedAllbooks ? handleEditAllBook() : handleAddAllBook()}}}>
             {selectedAllbooks ? 'Edit book' :' Add Book'}
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
 

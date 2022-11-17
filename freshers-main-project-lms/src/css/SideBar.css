@@ -25,7 +25,8 @@
  .sidebtn{
   display: flex;
   flex-direction: column;
-  
+  width: 95%;
+
   margin-top: 60px;
  }
  .sidebuttons{

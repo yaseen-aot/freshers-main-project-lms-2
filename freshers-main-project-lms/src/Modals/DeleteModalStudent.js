@@ -2,16 +2,17 @@ import React, { Fragment, useState,useContext } from 'react';
 import { studentContext } from "../App";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import '../css/DeleteModal.css'
 
 const DeleteModalStudent = ({showDelete,setShowDelete,getkeyElement}) => {
     const [studentdata,setStudentdata] = useContext(studentContext)
 
-  
+   
 
     const handleClose = () => setShowDelete(false);
 
     const studentDeleteFunc = (deleteid) => {
+      
         console.log(deleteid)
         setStudentdata (studentdata.filter((item) => deleteid != item.id   ))
        
@@ -30,18 +31,18 @@ const DeleteModalStudent = ({showDelete,setShowDelete,getkeyElement}) => {
         
       >
       
-          <Modal.Title className='text-center pt-4 pb-2'>Delete Student</Modal.Title>
+          <Modal.Title className='deleteModalHeader text-center pt-4 pb-2'>Delete Student</Modal.Title>
         
        
 
-        <Modal.Body className='text-center'>
-          Are you sure, you want to delete student
+        <Modal.Body className='deleteModalBody text-center'>
+         <p className='deleteModalContent'>Are you sure, you want to delete Student</p> 
         </Modal.Body>
-        <div className='d-flex justify-content-center gap-4 pb-5 pt-3'>
-        <button  onClick={handleClose}>
+        <div className=' d-flex justify-content-center gap-4 pb-5 pt-3'>
+        <button className='deleteModalClose'  onClick={handleClose}>
         Close
       </button>
-      <button   onClick={() => studentDeleteFunc(getkeyElement)}>Delete</button>
+      <button className='deleteModalDelete'   onClick={() => studentDeleteFunc(getkeyElement)}>Delete</button>
         </div>
          
     

@@ -3,10 +3,13 @@ import { useContext } from "react";
 import { allBooksContext } from "../App";
 import { Modal } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
+import '../css/DeleteModal.css'
 
 
-const DeleteModalAllbooks = ({showbookDelete,setShowbookDelete,allbookkeyelement}) => {
+const DeleteModalAllbooks = ({showbookDelete,setShowbookDelete,allbookkeyelement,selectedAllbooks}) => {
     const [bookData,setBookData] = useContext(allBooksContext)
+
+    
 
     const handleClose = () => setShowbookDelete(false);
 
@@ -14,6 +17,7 @@ const DeleteModalAllbooks = ({showbookDelete,setShowbookDelete,allbookkeyelement
         console.log(bookid)
         setBookData (bookData.filter((item) => bookid != item.bookid   ))
     }
+   
 
     return ( 
         
@@ -25,16 +29,16 @@ const DeleteModalAllbooks = ({showbookDelete,setShowbookDelete,allbookkeyelement
       show={showbookDelete}
       onHide={handleClose}>
     
-        <Modal.Title className='text-center pt-4 pb-2'>Delete Student</Modal.Title>
+        <Modal.Title className='deleteModalHeader text-center pt-4 pb-2'>Delete Book</Modal.Title>
 
-      <Modal.Body className='text-center'>
-        Are you sure, you want to delete student
+      <Modal.Body className='deleteModalBody text-center'>
+       <p className="deleteModalContent">Are you sure, you want to delete Book </p> 
       </Modal.Body>
-      <div className='d-flex justify-content-center gap-4 pb-5 pt-3'>
-      <button  onClick={handleClose}>
+      <div className=' d-flex justify-content-center gap-4 pb-5 pt-3'>
+      <button className="deleteModalClose"  onClick={handleClose}>
       Close
     </button>
-    <button  onClick={() => {bookDeleteFunc(allbookkeyelement);handleClose()}} >Delete</button>
+    <button className="deleteModalDelete"  onClick={() => {bookDeleteFunc(allbookkeyelement);handleClose()}} >Delete</button>
       </div>
        
   

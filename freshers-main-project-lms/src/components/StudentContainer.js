@@ -134,7 +134,7 @@ const Studentmain = () => {
                 {item.email}
                 </div>
 
-                <div className="col student-content d-flex justify-content-center ">
+                <div className="col student-content d-flex justify-content-center gap-md-1 ">
                 <MdModeEditOutline className="Student-edit" onClick={()=> {
                     handleShowStudent();
                     studentEditFunc(item);
@@ -147,7 +147,7 @@ const Studentmain = () => {
 
                 <RiDeleteBin6Line className="Student-delete" onClick={() =>{ handleShowDeleteStudent() ; getkeyFromDelete(item.id)} }/>
                 <Link to ="/profile">
-                <AiOutlineEye className="Student-eye"/>
+                <AiOutlineEye className="Student-eye mb-2"/>
                 </Link>
                    
                
