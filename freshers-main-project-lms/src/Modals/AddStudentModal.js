@@ -1,4 +1,4 @@
-import React, { useState , useContext } from 'react';
+import React, { useState , useContext, useEffect } from 'react';
 import { studentContext } from '../App';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -6,8 +6,10 @@ import Modal from 'react-bootstrap/Modal';
 import { Fragment } from "react";
 import Studentmain from "../components/StudentContainer";
 
-const AddStudentModal = ({show,setShow,studenteditKey,studenteditName,studenteditEmail,studenteditPassword}) => {
-console.log(studenteditKey)
+const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studenteditEmail,studenteditPassword}) => {
+//console.log(selectedstudent)
+
+
  
 
    
@@ -17,7 +19,38 @@ console.log(studenteditKey)
     const [studentPassword,setStudentPassword] = useState('')
     const [studentPasswordTwo,setStudentPasswordTwo] = useState('')
 
+    const [studentNameEditModal,setStudentNameEditModal] = useState('')
+    const [studentEmailEditModal,setStudentEmailEditModal] = useState('')
+    const [studentPasswordEditModal,setStudentPasswordEditModal] = useState('')
+    const [studentPasswordTwoEditModal,setStudentPasswordTwoEditModal] = useState('')
+
+   
+
+   // const studentNameEditFunc = (event) => {
+      // const value = event.target.value
+      // setStudentNameEditModal(value)
+      // console.log(studentNameEditModal,"jj")
+      
+    // }
     
+    // const  studentEmailEditFunc = () => {
+
+    // }
+
+    // const studentPasswordEditFunc = () => {
+
+    // }
+
+    // const studentPasswordTwoEditFunc = () => {
+
+    // }
+    
+    useEffect (()=>{
+      setStudentName(selectedstudent?.name)
+      setStudentEmail(selectedstudent?.email)
+      setStudentPassword(selectedstudent?.password)
+      setStudentPasswordTwo(selectedstudent?.password)
+    },[selectedstudent])
   
 
         const handleCloseStudent = () => setShow(false);
@@ -31,19 +64,19 @@ console.log(studenteditKey)
 
         const StudentEmailFunction = (event) =>{
             const value =  event.target.value
-            setStudentEmail(value)
+            // setStudentEmail(value)
             console.log(studentEmail)   
          }
 
          const StudentPasswordFunction = (event) =>{
             const value =  event.target.value
-            setStudentPassword(value)
+            // setStudentPassword(value)
             console.log(studentPassword) 
          }
 
          const StudentPasswordTwoFunction = (event) =>{
             const value =  event.target.value
-            setStudentPasswordTwo(value)
+            // setStudentPasswordTwo(value)
             console.log(studentPasswordTwo) 
          }
          
@@ -69,10 +102,10 @@ console.log(studenteditKey)
                     setStudentdata([...studentdata,setdata])
                     console.log(studentdata)
                     setShow(false)
-                    setStudentName('')
-                    setStudentEmail('')
-                    setStudentPassword('')
-                    setStudentPasswordTwo('')
+                    // setStudentName('')
+                    // setStudentEmail('')
+                    // setStudentPassword('')
+                    // setStudentPasswordTwo('')
                     
 
 
@@ -89,6 +122,30 @@ console.log(studenteditKey)
 
          }
 
+         const handleEditStudent = () => {
+          console.log('edit button clicked')
+          console.log(studentdata)
+          console.log("hai")
+        
+          setStudentdata(studentdata =>
+            studentdata.map(obj => {
+              if (obj.id === selectedstudent.id) {
+                return {...obj, name: studentName, email : studentEmail , password : studentPassword };
+              }
+      
+              return obj;
+             
+            }),
+           
+          );
+          console.log(studentdata)
+         
+         
+         
+
+         }
+         
+
        
 
 
@@ -101,15 +158,15 @@ console.log(studenteditKey)
   
         <Modal show={show} onHide={handleCloseStudent}>
           <Modal.Header closeButton>
-            <Modal.Title>{studenteditKey ? 'Edit Student' : 'Add Student'}</Modal.Title>
+            <Modal.Title>{selectedstudent ? 'Edit Student' : 'Add Student'}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Name</Form.Label>
-                <Form.Control 
-                onChange={ StudentNameFunction}
-                value = {studenteditKey ? studenteditName : studentName}
+                <Form.Control  className='addModalName'
+                onChange={StudentNameFunction} //(event) => setStudentName(event.target.value)
+                 value = {studentName || '' }
                   type="text"
                   placeholder="Eg: John Doe"
                   autoFocus
@@ -118,9 +175,9 @@ console.log(studenteditKey)
 
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Email</Form.Label>
-              <Form.Control
-              onChange={ StudentEmailFunction}
-              value = {studenteditKey ? studenteditEmail : studentEmail}
+              <Form.Control  className='addModalemail'
+              onChange={(event) => setStudentEmail(event.target.value) }
+              value = {studentEmail || ''}
                 type="email"
                 placeholder="Eg: johndoe@gmail.com"
                
@@ -130,8 +187,8 @@ console.log(studenteditKey)
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
               <Form.Label>Password</Form.Label>
               <Form.Control
-              value = {studenteditKey ? studenteditPassword : studentPassword } 
-              onChange={ StudentPasswordFunction}
+              value = {studentPassword || '' } 
+              onChange={(event) => setStudentPassword(event.target.value) }
                 type="password"
                 placeholder= "••••••••"
                
@@ -141,8 +198,8 @@ console.log(studenteditKey)
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
-            value = {studenteditKey ? studenteditPassword : studentPasswordTwo }
-            onChange={ StudentPasswordTwoFunction}
+            value = {studentPasswordTwo || '' }
+            onChange={ (event) => setStudentPasswordTwo(event.target.value) }
               type="password"
               placeholder="••••••••"
               
@@ -157,8 +214,8 @@ console.log(studenteditKey)
             <button className='StudentModal-ButtonAdd'  onClick={handleCloseStudent}>
               Close
             </button>
-            <button  className='StudentModal-ButtonClose' onClick={handleAddStudent}>
-             {studenteditKey ? 'Edit Student' : 'Add Student'}
+            <button  className='StudentModal-ButtonClose' onClick={selectedstudent ?handleEditStudent : handleAddStudent}>
+             {selectedstudent ? 'Edit Student' : 'Add Student'}
             </button>
           </Modal.Footer>
         </Modal>

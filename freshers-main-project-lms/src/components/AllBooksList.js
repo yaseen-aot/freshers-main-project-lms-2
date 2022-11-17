@@ -61,6 +61,12 @@ const AllBooksList = ({Allbookssearchdata,allbooksEditKey,setAllbooksEditKey,Mod
     return ( 
 
         <div>
+        <AddBookModal allbooksEditKey = {allbooksEditKey} AllbookseditTitle = {AllbookseditTitle}
+        AllbookseditAuthor = {AllbookseditAuthor}  AllbookseditLanguage = {AllbookseditLanguage}
+        AllbookseditTotalcopies = {AllbookseditTotalcopies} AllbookseditRemaining = {AllbookseditRemaining} />
+
+
+
         <DeleteModalAllbooks showbookDelete = {showbookDelete} setShowbookDelete = {setShowbookDelete} />
 
        {bookData?.filter(data => (data.title || data.author).toLowerCase()
@@ -102,9 +108,7 @@ const AllBooksList = ({Allbookssearchdata,allbooksEditKey,setAllbooksEditKey,Mod
             </div>
             
     )}
-                <AddBookModal allbooksEditKey = {allbooksEditKey} AllbookseditTitle = {AllbookseditTitle}
-                AllbookseditAuthor = {AllbookseditAuthor}  AllbookseditLanguage = {AllbookseditLanguage}
-                AllbookseditTotalcopies = {AllbookseditTotalcopies} AllbookseditRemaining = {AllbookseditRemaining} />
+              
         </div>
      );
 }

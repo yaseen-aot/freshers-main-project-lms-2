@@ -11,7 +11,7 @@ import { nanoid } from 'nanoid'
 
 const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTitle,AllbookseditAuthor,
   AllbookseditLanguage,AllbookseditTotalcopies,AllbookseditRemaining}) => {
-    
+
   const handleCloseBook = () => setShowAddBook(false);
 
  const [bookData,setBookData] = useContext(allBooksContext)
@@ -78,6 +78,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
   }
     
   console.log(allbooksEditKey)
+  console.log(AllbookseditTitle)
 
     return ( 
 
@@ -100,7 +101,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
               <Form.Control
                 type="text"
                 onChange={BookTitleFunc}
-                value = {bookTitle}
+                value = {allbooksEditKey ? AllbookseditTitle : bookTitle}
                 placeholder="Eg: Pride and Prejudice"
                 autoFocus/>
             </Form.Group>
@@ -110,13 +111,13 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
               <Form.Control
                 type="text"
                 onChange={BookAuthorFunc}
-                value = {bookAuthor}
+                value = {allbooksEditKey ? AllbookseditAuthor : bookAuthor}
                 placeholder="Eg: Jane Austen"/>
             </Form.Group>
 
             
             <Form.Label>Language</Form.Label>
-            <Form.Select onChange={BookLanguageFunc} value ={bookLanguage} aria-label="Default select example">
+            <Form.Select onChange={BookLanguageFunc} value ={allbooksEditKey ? AllbookseditLanguage  : bookLanguage} aria-label="Default select example">
             <option>Select Language</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -130,7 +131,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
                 <Form.Control
                   type="text"
                   onChange={BookTotalCopiesFunc}
-                  value = {booktotalCopies}
+                  value = {allbooksEditKey ? AllbookseditTotalcopies : booktotalCopies}
                   placeholder="5"/>
               </Form.Group>
 
@@ -139,7 +140,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
                 <Form.Control
                   type="text"
                   onChange={BookRemainingCopiesFunc}
-                  value = {bookremainingCopies}
+                  value = {allbooksEditKey ? AllbookseditRemaining : bookremainingCopies}
                   placeholder="2"/>
               </Form.Group>
            

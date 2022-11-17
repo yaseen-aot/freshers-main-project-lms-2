@@ -22,31 +22,31 @@ const Studentmain = () => {
     const [showDelete, setShowDelete] = useState(false);
     const [getkeyElement,setGetkeyElement] = useState('')
 
-    const [studenteditKey,setStudentEditKey] = useState(false)
+    const [selectedstudent,setSelectedstudent] = useState(null)
     const [studenteditName,setStudenteditName] = useState('')
     const [studenteditEmail,setStudenteditEmail] = useState('')
     const [studenteditPassword,setStudenteditPassword] = useState('')
 
-    const studentEditFunc = () => {
-        setStudentEditKey(true)
+    const studentEditFunc = (selected) => {
+        setSelectedstudent(selected)
     }
 
     const studentEditNameget = (data) => {
-        setStudenteditName(data)
+        // setStudenteditName(data)
         console.log(studenteditName,"mm")
     }
 
     const studentEditEmailget = (data) => {
-        setStudenteditEmail(data)
+        // setStudenteditEmail(data)
         console.log(studenteditEmail,"mm")
     }
 
     const studentEditPasswordget = (data) => {
-        setStudenteditPassword(data)
+        // setStudenteditPassword(data)
         console.log(studenteditPassword,"mm")
     }
     const studentResetEditFunc = () => {
-        setStudentEditKey(false)
+        setSelectedstudent(null)
     }
 
 
@@ -75,7 +75,7 @@ const Studentmain = () => {
         <div className="div-main ">
             <AddStudentModal show={show} 
             setShow = {setShow}
-            studenteditKey = {studenteditKey}
+            selectedstudent = {selectedstudent}
             studenteditName = {studenteditName}
             studenteditEmail = {studenteditEmail}
             studenteditPassword = {studenteditPassword}
@@ -136,10 +136,10 @@ const Studentmain = () => {
                 <div className="col student-content d-flex justify-content-center ">
                 <MdModeEditOutline className="Student-edit" onClick={()=> {
                     handleShowStudent();
-                    studentEditFunc();
-                    studentEditNameget(item.name);
-                    studentEditEmailget(item.email);
-                    studentEditPasswordget(item.password)
+                    studentEditFunc(item);
+                //    { studentEditNameget(item.name);
+                //     studentEditEmailget(item.email);
+                //     studentEditPasswordget(item.password)}
 
 
                 }}/>
