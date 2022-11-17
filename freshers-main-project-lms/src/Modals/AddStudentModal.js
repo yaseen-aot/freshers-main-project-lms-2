@@ -14,6 +14,7 @@ const AddStudentModal = ({show,setShow,selectedstudent,studenteditName,studented
 
    
   const [studentdata,setStudentdata] = useContext(studentContext)
+  
     const [studentName,setStudentName] = useState('')
     const [studentEmail,setStudentEmail] = useState('')
     const [studentPassword,setStudentPassword] = useState('')

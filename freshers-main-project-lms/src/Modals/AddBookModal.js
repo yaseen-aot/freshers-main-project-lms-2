@@ -1,4 +1,4 @@
-import React, {  useState,useContext } from 'react';
+import React, {  useState,useContext,useEffect } from 'react';
 import { allBooksContext } from '../App';
 import { Fragment } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -9,22 +9,28 @@ import { nanoid } from 'nanoid'
 
 
 
-const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTitle,AllbookseditAuthor,
-  AllbookseditLanguage,AllbookseditTotalcopies,AllbookseditRemaining}) => {
+const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
 
   const handleCloseBook = () => setShowAddBook(false);
 
  const [bookData,setBookData] = useContext(allBooksContext)
+
   const [bookTitle,setBookTitle] = useState('')
   const [bookAuthor,setBookAuthor] = useState('')
   const [bookLanguage,setBookLanguage] = useState('')
   const [booktotalCopies,setbookTotalCopies] = useState('')
   const [bookremainingCopies,setbookRemainingCopies] = useState('')
 
+  useEffect (()=>{
+    setBookTitle(selectedAllbooks?.title)
+    setBookAuthor(selectedAllbooks?.author)
+    setBookLanguage(selectedAllbooks?.language)
+    setbookTotalCopies(selectedAllbooks?.totalcopies)
+    setbookRemainingCopies(selectedAllbooks?.remaining)
+  },[selectedAllbooks])
 
 
- 
-   
+
   const BookTitleFunc = (event) => {
     const value = event.target.value
     setBookTitle(value)
@@ -54,7 +60,12 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
     console.log(bookremainingCopies)
 
   }
-    
+
+
+
+ 
+   
+ 
   const handleAddAllBook = () => {
     if(bookTitle && bookAuthor && bookLanguage && booktotalCopies && bookremainingCopies !== ''){
       console.log("button clicked")
@@ -76,9 +87,46 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
     }
     
   }
+///////
+  const handleEditAllBook = () => {
+   
+
+    if(bookTitle && bookAuthor && bookLanguage && booktotalCopies && bookremainingCopies !== ''){
+     
+
+    console.log('editbook button clicked')
+    console.log(bookData)
+    console.log("hai")
+ 
+  console.log(selectedAllbooks.bookid,"gggg")
+    setBookData(bookData =>
+      bookData.map(obj => {
+        console.log(obj.bookid,selectedAllbooks.bookid )
+        if (obj.bookid === selectedAllbooks.bookid) {
+          console.log('hai wins')
+          return {...obj, title: bookTitle, author : bookAuthor ,  language : bookLanguage  , totalcopies : booktotalCopies, remaining : bookremainingCopies};
+        }
+
+        return obj;
+       
+      }),
+     
+    );
+    console.log(bookData)
+   
+   
+   
     
-  console.log(allbooksEditKey)
-  console.log(AllbookseditTitle)
+    
+  }
+    else{
+      console.log('please fill out form')
+    }
+
+
+  }
+    
+  
 
     return ( 
 
@@ -90,7 +138,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
 
       <Modal className='px-4 ' show={showAddBook} onHide={handleCloseBook}>
         <Modal.Header className='mx-4' closeButton>
-          <Modal.Title > { allbooksEditKey ? 'Edit Book'  : 'Add Book' }</Modal.Title>
+          <Modal.Title > { selectedAllbooks ? 'Edit Book'  : 'Add Book' }</Modal.Title>
           
         </Modal.Header>
         <Modal.Body className='px-4'>
@@ -101,7 +149,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
               <Form.Control
                 type="text"
                 onChange={BookTitleFunc}
-                value = {allbooksEditKey ? AllbookseditTitle : bookTitle}
+                value = {bookTitle || '' }
                 placeholder="Eg: Pride and Prejudice"
                 autoFocus/>
             </Form.Group>
@@ -111,13 +159,13 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
               <Form.Control
                 type="text"
                 onChange={BookAuthorFunc}
-                value = {allbooksEditKey ? AllbookseditAuthor : bookAuthor}
+                value = {bookAuthor || '' }
                 placeholder="Eg: Jane Austen"/>
             </Form.Group>
 
             
             <Form.Label>Language</Form.Label>
-            <Form.Select onChange={BookLanguageFunc} value ={allbooksEditKey ? AllbookseditLanguage  : bookLanguage} aria-label="Default select example">
+            <Form.Select onChange={BookLanguageFunc} value ={ bookLanguage || '' } aria-label="Default select example">
             <option>Select Language</option>
             <option value="1">One</option>
             <option value="2">Two</option>
@@ -131,7 +179,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
                 <Form.Control
                   type="text"
                   onChange={BookTotalCopiesFunc}
-                  value = {allbooksEditKey ? AllbookseditTotalcopies : booktotalCopies}
+                  value = { booktotalCopies || '' }
                   placeholder="5"/>
               </Form.Group>
 
@@ -140,7 +188,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
                 <Form.Control
                   type="text"
                   onChange={BookRemainingCopiesFunc}
-                  value = {allbooksEditKey ? AllbookseditRemaining : bookremainingCopies}
+                  value = {bookremainingCopies || ''}
                   placeholder="2"/>
               </Form.Group>
            
@@ -153,8 +201,8 @@ const AddBookModal = ({setShowAddBook,showAddBook,allbooksEditKey,AllbookseditTi
           <Button variant="secondary" onClick={handleCloseBook }>
             Cancel
           </Button>
-          <Button variant="primary" onClick={()=>{handleCloseBook() ; handleAddAllBook()}}>
-            {allbooksEditKey ? 'Edit book' :' Add Book'}
+          <Button variant="primary" onClick={() => {handleCloseBook();{selectedAllbooks ? handleEditAllBook() : handleAddAllBook()}}}>
+            {selectedAllbooks ? 'Edit book' :' Add Book'}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -286,3 +286,44 @@ color: #09174A;
   }
 
   () => { handleShowDeleteBook() ;allBookGetkey(item.bookid)}
+
+  allbooksEditKey
+
+   AllbooksEditTitleget(item.title) ;
+                    AllbooksEditAuthorget(item.author);
+                    AllbooksEditLanguageget(item.language);
+                    AllbooksEditTotalcopiesget(item.totalcopies)
+                    AllbooksEditRemainingget(item.remaining)
+
+
+
+  const BookTitleFunc = (event) => {
+    const value = event.target.value
+    setBookTitle(value)
+    console.log(bookTitle)
+  }
+
+  const BookAuthorFunc = (event) => {
+    const value = event.target.value
+    setBookAuthor(value)
+    console.log(bookAuthor)
+  }
+  
+  const BookLanguageFunc = (event) => {
+    const value = event.target.value
+    setBookLanguage(value)
+    console.log(bookLanguage)
+  }
+  const BookTotalCopiesFunc = (event) => {
+    const value = event.target.value
+    setbookTotalCopies(value)
+    console.log(booktotalCopies)
+  }
+
+  const BookRemainingCopiesFunc = (event) => {
+    const value = event.target.value
+    setbookRemainingCopies(value)
+    console.log(bookremainingCopies)
+
+  }
+    

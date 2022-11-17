@@ -5,41 +5,45 @@ import { allBooksContext } from "../App";
 import DeleteModalAllbooks from "../Modals/DeleteModalAllbook";
 import AddBookModal from "../Modals/AddBookModal";
 
-const AllBooksList = ({Allbookssearchdata,allbooksEditKey,setAllbooksEditKey,ModalShowAddBook}) => {
+const AllBooksList = ({Allbookssearchdata,selectedAllbooks,setSelectedAllbooks,ModalShowAddBook}) => {
     const [bookData,setBookData] = useContext(allBooksContext)
-    const [allbookkeyelement,setAllbookkeyelement] = useState('')
+    const [allbookkeyelement,setAllbookkeyelement] = useState('') //delete id taking state
 
     const [showbookDelete, setShowbookDelete] = useState(false);
 
-    const [AllbookseditTitle,setAllbookseditTitle] = useState('')
-    const [AllbookseditAuthor,setAllbookseditAuthor] = useState('')
-    const [AllbookseditLanguage,setAllbookseditLanguage] = useState('')
-    const [AllbookseditTotalcopies,setAllbookseditTotalcopies] = useState('')
-    const [AllbookseditRemaining,setAllbookseditRemaining] = useState('')
+    // const [AllbookseditTitle,setAllbookseditTitle] = useState('')
+    // const [AllbookseditAuthor,setAllbookseditAuthor] = useState('')
+    // const [AllbookseditLanguage,setAllbookseditLanguage] = useState('')
+    // const [AllbookseditTotalcopies,setAllbookseditTotalcopies] = useState('')
+    // const [AllbookseditRemaining,setAllbookseditRemaining] = useState('')
 
-    const AllbookEditGet = () => {
-        setAllbooksEditKey(true)
+    const AllbookEditFunc = (selected) => {
+        setSelectedAllbooks(selected)
+        const value = 
+        console.log()
     }
-    const AllbooksEditTitleget = (data) => {
-        setAllbookseditTitle(data)
-        console.log(AllbookseditTitle,"ddmm")
-    }
-    const AllbooksEditAuthorget = (data) => {
-        setAllbookseditAuthor(data)
-        console.log(AllbookseditAuthor,"ddmm")
-    }
-    const AllbooksEditLanguageget = (data) => {
-        setAllbookseditLanguage(data)
-        console.log(AllbookseditLanguage,"ddmm")
-    }
-    const AllbooksEditTotalcopiesget = (data) => {
-        setAllbookseditTotalcopies(data)
-        console.log(AllbookseditTotalcopies,"ddmm")
-    }
-    const AllbooksEditRemainingget = (data) => {
-        setAllbookseditRemaining(data)
-        console.log(AllbookseditRemaining,"ddmm")
-    }
+
+
+    // const AllbooksEditTitleget = (data) => {
+    //     setAllbookseditTitle(data)
+    //     console.log(AllbookseditTitle,"ddmm")
+    // }
+    // const AllbooksEditAuthorget = (data) => {
+    //     setAllbookseditAuthor(data)
+    //     console.log(AllbookseditAuthor,"ddmm")
+    // }
+    // const AllbooksEditLanguageget = (data) => {
+    //     setAllbookseditLanguage(data)
+    //     console.log(AllbookseditLanguage,"ddmm")
+    // }
+    // const AllbooksEditTotalcopiesget = (data) => {
+    //     setAllbookseditTotalcopies(data)
+    //     console.log(AllbookseditTotalcopies,"ddmm")
+    // }
+    // const AllbooksEditRemainingget = (data) => {
+    //     setAllbookseditRemaining(data)
+    //     console.log(AllbookseditRemaining,"ddmm")
+    // }
 
 
   
@@ -61,9 +65,7 @@ const AllBooksList = ({Allbookssearchdata,allbooksEditKey,setAllbooksEditKey,Mod
     return ( 
 
         <div>
-        <AddBookModal allbooksEditKey = {allbooksEditKey} AllbookseditTitle = {AllbookseditTitle}
-        AllbookseditAuthor = {AllbookseditAuthor}  AllbookseditLanguage = {AllbookseditLanguage}
-        AllbookseditTotalcopies = {AllbookseditTotalcopies} AllbookseditRemaining = {AllbookseditRemaining} />
+        <AddBookModal selectedAllbooks = {selectedAllbooks}  />
 
 
 
@@ -94,12 +96,8 @@ const AllBooksList = ({Allbookssearchdata,allbooksEditKey,setAllbooksEditKey,Mod
                 <MdModeEditOutline className="Allbooks-edit me-md-2" 
                 onClick={()=> {
                     ModalShowAddBook()
-                    AllbookEditGet();
-                    AllbooksEditTitleget(item.title) ;
-                    AllbooksEditAuthorget(item.author);
-                    AllbooksEditLanguageget(item.language);
-                    AllbooksEditTotalcopiesget(item.totalcopies)
-                    AllbooksEditRemainingget(item.remaining)
+                    AllbookEditFunc(item);
+                   
 
                 }} />
 

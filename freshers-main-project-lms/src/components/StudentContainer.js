@@ -73,7 +73,8 @@ const Studentmain = () => {
     return ( 
 
         <div className="div-main ">
-            <AddStudentModal show={show} 
+            <AddStudentModal 
+            show={show} 
             setShow = {setShow}
             selectedstudent = {selectedstudent}
             studenteditName = {studenteditName}
