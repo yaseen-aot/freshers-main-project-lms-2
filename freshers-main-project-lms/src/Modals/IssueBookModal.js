@@ -12,10 +12,41 @@ const IssueBookModal = ({show,setShow}) => {
   const [bookData,setBookData] = useContext(allBooksContext)
 
   const [issuestate,setIssuestate] = useState([])
+  const [issueidbook,setissueidbook] = useState('')
+  const [issueidstudent,setissueidstudent] = useState('')
+  const [issuedate,setIssuedate] = useState('')
+
+
+  const IssuebookStateFunc = (event) => {
+    const val = event.target.value
+    setissueidbook(val)
+    console.log(issueidbook)
+  }
+
+  const IssuestudentStateFunc = (event) => {
+    const val = event.target.value
+    setissueidstudent(val)
+    console.log(issueidstudent)
+  }
+
+  const issueDateFunc = (event) => {
+    const val = event.target.value
+    console.log(val)
+    setIssuedate(val)
+
+  }
  
 
 
     const handleClose = () => setShow(false);
+
+    const addIssueBookFunc = () => {
+
+      const Issueid = Math.floor(Math.random() * Date.now())
+      
+
+    }
+   
 
 
 
@@ -32,14 +63,15 @@ const IssueBookModal = ({show,setShow}) => {
 
             
           
-            <Form.Label className='IssueBookModalLabel'>Book</Form.Label>
-            <Form.Select  aria-label="Default select example">
+            <Form.Label  className='IssueBookModalLabel'>Book</Form.Label>
+
+            <Form.Select onChange={IssuebookStateFunc}  aria-label="Default select example">
             
             <option>Select Book</option>
 
             {bookData.map(obj => 
               <>
-            return <option key={obj.bookid} value={obj.title}>{obj.title}</option>
+            return <option  key={obj.bookid} value={obj.bookid}>{obj.title}</option>
             </>
             )}
 
@@ -49,11 +81,12 @@ const IssueBookModal = ({show,setShow}) => {
             
 
             <Form.Label className='IssueBookModalLabel'>Student</Form.Label>
-            <Form.Select  aria-label="Default select example">
+
+            <Form.Select onChange={IssuestudentStateFunc} aria-label="Default select example">
             <option>Select Student </option>
             {studentdata.map(obj => 
               <>
-            <option key={obj.id} value="obj.name">{obj.name}</option>
+            <option key={obj.id} value={obj.id}>{obj.name}</option>
             </>
             )}
 
@@ -61,17 +94,19 @@ const IssueBookModal = ({show,setShow}) => {
 
           <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
               <Form.Label className='IssueBookModalLabel'>Issue Date</Form.Label>
+
               <Form.Control
                 type="Date"
                 placeholder="09-11-2022"
+                onChange={issueDateFunc}
                 />
             </Form.Group>
 
             <Form.Group className="mb-3 " controlId="exampleForm.ControlInput2">
             <Form.Label className='IssueBookModalLabel'>Due Date</Form.Label>
             <Form.Control
-              type="Date"
-              
+              type="text"
+              readOnly
               />
           </Form.Group>
             
