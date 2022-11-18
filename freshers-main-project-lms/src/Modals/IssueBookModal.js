@@ -2,8 +2,19 @@ import { Fragment } from "react";
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useContext } from "react";
+import { studentContext } from "../App";
+import { allBooksContext } from "../App";
 
 const IssueBookModal = ({show,setShow}) => {
+
+  const [studentdata,setStudentdata] = useContext(studentContext)
+  const [bookData,setBookData] = useContext(allBooksContext)
+
+  const [issuestate,setIssuestate] = useState([])
+ 
+
+
     const handleClose = () => setShow(false);
 
 
@@ -13,25 +24,39 @@ const IssueBookModal = ({show,setShow}) => {
 
         <Modal className='px-3 ' show={show} onHide={handleClose}>
         <Modal.Header className='IssueBookModalHeader mx-4 ps-0' closeButton>
-          <Modal.Title className='IssueBookModalTitle' > Edit Book  </Modal.Title>
+          <Modal.Title className='IssueBookModalTitle' > Issue Book  </Modal.Title>
           
         </Modal.Header>
         <Modal.Body className='px-4'>
           <Form>
 
             
-
+          
             <Form.Label className='IssueBookModalLabel'>Book</Form.Label>
             <Form.Select  aria-label="Default select example">
+            
             <option>Select Book</option>
-            <option value="Malayalam">Malayalam</option>
+
+            {bookData.map(obj => 
+              <>
+            return <option key={obj.bookid} value={obj.title}>{obj.title}</option>
+            </>
+            )}
+
           </Form.Select>
+         
 
             
+
             <Form.Label className='IssueBookModalLabel'>Student</Form.Label>
             <Form.Select  aria-label="Default select example">
             <option>Select Student </option>
-            <option value="Malayalam">Malayalam</option>
+            {studentdata.map(obj => 
+              <>
+            <option key={obj.id} value="obj.name">{obj.name}</option>
+            </>
+            )}
+
           </Form.Select>
 
           <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">

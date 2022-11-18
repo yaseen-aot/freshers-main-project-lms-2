@@ -97,14 +97,14 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
 
     console.log('editbook button clicked')
     console.log(bookData)
-    console.log("hai")
+   
  
   console.log(selectedAllbooks.bookid,"gggg")
     setBookData(bookData =>
       bookData.map(obj => {
         console.log(obj.bookid,selectedAllbooks.bookid )
         if (obj.bookid === selectedAllbooks.bookid) {
-          console.log('hai wins')
+          
           return {...obj, title: bookTitle, author : bookAuthor ,  language : bookLanguage  , totalcopies : booktotalCopies, remaining : bookremainingCopies};
         }
 

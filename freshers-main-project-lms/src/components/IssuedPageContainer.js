@@ -64,23 +64,23 @@ const IssuedPage = () => {
             <div className="Issuepage-row row py-2">
 
                 <div className="col Issuepage-content">
-                It Start With Us
+                
                 </div>
 
                 <div className="col Issuepage-content">
-                Colleen Hoover
+               
                 </div>
 
                 <div className="col Issuepage-content">
-                    English
+                   
                 </div>
 
                 <div className="col Issuepage-content">
-                    5
+                  
                 </div>
 
                 <div className="col Issuepage-content">
-                    2
+                  
                 </div>
 
                 <div className="col Issuepage-content">
