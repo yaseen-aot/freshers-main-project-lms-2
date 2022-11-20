@@ -7,8 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-
-
 import StudentProfile from './pages/StudentProfile';
 import Login from "./pages/LoginLayout";
 
@@ -18,8 +16,10 @@ import Student from './pages/StudentsLayout';
 import AllMain from './pages/AllbooksLayout';
 import IssueMain from './pages/IssuePageLayout';
 
+
 export const studentContext = createContext();
 export const allBooksContext = createContext();
+export const issuebooksContext = createContext();
 
 
 
@@ -73,6 +73,19 @@ const [bookData,setBookData] = useState([
   }
 ])
 
+const [issuestate,setIssuestate] = useState([
+{
+  Issueid : 53,
+  issuebookid : 2312444,
+  issuestudentid : 133145,
+  issuedate : "28-02-2023",
+  duedate :" 03-03-2023",
+  isreturn : false,
+  isissue : true
+
+}
+])
+
     
   const submitForm = () => {
     setFormSubmitted(true)
@@ -89,6 +102,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
 
   
   return (
+    <issuebooksContext.Provider value={ [issuestate,setIssuestate]}>
     <allBooksContext.Provider value={[bookData,setBookData]} >
     <studentContext.Provider value={[studentdata,setStudentdata]}>
     <div className="App ">
@@ -130,6 +144,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
     </div>
     </studentContext.Provider>
     </allBooksContext.Provider>
+    </issuebooksContext.Provider>
   );
 }
 

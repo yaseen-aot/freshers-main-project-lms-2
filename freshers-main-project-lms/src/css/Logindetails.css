@@ -36,3 +36,32 @@ color: #fff;
   border-top: solid 1px;
   color: #E3E3E3;
 }
+.logintext{
+  font-family: 'Lato';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+color: #09174A;
+}
+.welcometext{
+  font-family: 'Lato';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+
+color: #646464;
+}
+.studentbtn{
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  background: transparent;
+}
+.adminbtn{
+  border-right: none;
+  border-top: none;
+  border-left: none;
+  background: transparent ;
+ 
+}

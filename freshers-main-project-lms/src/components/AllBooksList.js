@@ -71,18 +71,27 @@ const AllBooksList = ({Allbookssearchdata,selectedAllbooks,setSelectedAllbooks,M
 
         <DeleteModalAllbooks showbookDelete = {showbookDelete} setShowbookDelete = {setShowbookDelete} allbookkeyelement ={allbookkeyelement } selectedAllbooks = {selectedAllbooks}  />
 
-       {bookData?.filter(data => 
+       {bookData?.filter((data) => {
+        if(data === ''){
+            return data
+        }
+        else if( data.title .toLowerCase().includes(Allbookssearchdata.toLowerCase())){
+            return data
+        }
+        else if( data.author .toLowerCase().includes(Allbookssearchdata.toLowerCase())){
+            return data
+        }
         
-        (data.title || data.author).toLowerCase()
-        .includes(Allbookssearchdata))
+       
+    })
         .map((item) => 
        
         <div className="Allbooks-row row py-2" key={item.bookid}>
         {console.log(item)}
-                <div className="col Allbooks-content">
+                <div className="col Allbooks-content flex-wrap">
                 {item.title}
                 </div>
-                <div className="col Allbooks-content">
+                <div className="col Allbooks-content flex-wrap">
                 {item.author}
                 </div>
                 <div className="col Allbooks-content">

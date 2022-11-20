@@ -1,12 +1,13 @@
 import React, {  useState,useContext,useEffect } from 'react';
 import { allBooksContext } from '../App';
 import { Fragment } from 'react';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import '../css/AllBooksAddModal.css'
 
 import { nanoid } from 'nanoid'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -62,6 +63,20 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
 
   }
 
+  const allbooksmodaltoast = () => {
+    toast.error('Sorry,please fill out form', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+  }
+
+
 
 
  
@@ -84,7 +99,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
       console.log(bookData)
     }
     else{
-      console.log("button not clicked")
+      allbooksmodaltoast()
     }
     
   }
@@ -121,7 +136,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
     
   }
     else{
-      console.log('please fill out form')
+      allbooksmodaltoast()
     }
 
 
@@ -152,6 +167,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
                 onChange={BookTitleFunc}
                 value = {bookTitle || '' }
                 placeholder="Eg: Pride and Prejudice"
+                maxLength={25}
                 autoFocus/>
             </Form.Group>
 
@@ -159,6 +175,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
               <Form.Label className='AddBookModalLabel'>Author</Form.Label>
               <Form.Control
                 type="text"
+                maxLength={25}
                 onChange={BookAuthorFunc}
                 value = {bookAuthor || '' }
                 placeholder="Eg: Jane Austen"/>
@@ -180,7 +197,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
             <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput3">
                 <Form.Label className='AddBookModalLabel mb-1'>Total Copies</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   onChange={BookTotalCopiesFunc}
                   value = { booktotalCopies || '' }
                   placeholder="5"/>
@@ -189,7 +206,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
               <Form.Group className="mb-3 w-50" controlId="exampleForm.ControlInput4">
                 <Form.Label className='AddBookModalLabel mb-1'>Remaining</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   onChange={BookRemainingCopiesFunc}
                   value = {bookremainingCopies || ''}
                   placeholder="2"/>
@@ -210,7 +227,20 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
         </Modal.Footer>
       </Modal>
 
-        
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="coloured"
+      />
+      {/* Same as */}
+      <ToastContainer />
 
     
     

@@ -1,20 +1,31 @@
 import { Fragment } from "react";
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
+import { issuebooksContext } from "../App";
+
 
 const IssueBookModal = ({show,setShow}) => {
 
+  const  [issuestate,setIssuestate] = useContext(issuebooksContext)
   const [studentdata,setStudentdata] = useContext(studentContext)
   const [bookData,setBookData] = useContext(allBooksContext)
 
-  const [issuestate,setIssuestate] = useState([])
+  const DuedateInput = useRef();
+ 
   const [issueidbook,setissueidbook] = useState('')
   const [issueidstudent,setissueidstudent] = useState('')
-  const [issuedate,setIssuedate] = useState('')
+  const [issuedateissue,setIssuedateissue] = useState('')
+  const [issueduedate,setIssueduedate] = useState('')
+  const [issuefine,setIssuefine] = useState('')
+
+  
+  const [duedatetwo,setDuedatetwo] = useState('')
+
+
 
 
   const IssuebookStateFunc = (event) => {
@@ -32,7 +43,43 @@ const IssueBookModal = ({show,setShow}) => {
   const issueDateFunc = (event) => {
     const val = event.target.value
     console.log(val)
-    setIssuedate(val)
+
+    setIssuedateissue(val)
+
+
+  }
+
+  const dueDateFunc = (event) => {
+
+    const val = event.target.value
+    setDuedatetwo(val)
+    
+    
+    const sval = val.split('-')
+    const setyear =  sval[0] 
+    const setmonth = sval[1]
+    const setday = sval[2]
+    const setval = setday + '-' + setmonth+ '-' + + setyear
+    console.log(issuedateissue,"ooii")
+    
+
+      setIssueduedate(setval)
+      console.log(issueduedate,'hooi')
+    
+  
+
+
+  //  console.log('sa')
+  //  const val = new Date(issuedateissue) 
+  //  console.log(val,'hh')
+
+  // setIssueduedate(val.getDate() + 7);
+  // console.log(issueduedate);
+  // //  const setval = val.getDate + 7
+  // //  console.log(setval,'yy')
+
+
+  //  DuedateInput.current.value = "rrr"
 
   }
  
@@ -42,11 +89,44 @@ const IssueBookModal = ({show,setShow}) => {
 
     const addIssueBookFunc = () => {
 
-      const Issueid = Math.floor(Math.random() * Date.now())
-      
+      if(issuedateissue < duedatetwo){
+
+        const Issueid = Math.floor(Math.random() * Date.now())
+        const setarray = {
+          Issueid : Issueid,
+          issuebookid : issueidbook,
+          issuestudentid : issueidstudent,
+          issuedate : issuedateissue,
+          duedate : issueduedate,
+          isreturn : false,
+          isissue : true,
+          fine:0
+        }
+       
+    
+        setIssuestate([...issuestate,setarray])
+        console.log(issuestate)
+      }
+      else{
+        alert("please enter valid date")
+      }
+
+     
+    }
+  
+    const issueFineFunc = () => {
+      let count = 0 
+
+      const duedatefind = new Date(issuedateissue).getDate()+7
+      const today = new Date()
+      console.log(duedatefind,'hh')
+      if(duedatefind < today){
+        count = count + 10
+      }
+      console.log(count,'oo')
 
     }
-   
+    issueFineFunc()
 
 
 
@@ -98,15 +178,18 @@ const IssueBookModal = ({show,setShow}) => {
               <Form.Control
                 type="Date"
                 placeholder="09-11-2022"
-                onChange={issueDateFunc}
+                // onChange={(event) => {issueDateFunc(event) ; issueFineFunc();}}
+                 onChange= {issueDateFunc }
                 />
             </Form.Group>
 
             <Form.Group className="mb-3 " controlId="exampleForm.ControlInput2">
             <Form.Label className='IssueBookModalLabel'>Due Date</Form.Label>
             <Form.Control
-              type="text"
-              readOnly
+              type="date"
+              onChange={dueDateFunc}
+              // ref={DuedateInput}
+              // readOnly
               />
           </Form.Group>
             
@@ -116,7 +199,7 @@ const IssueBookModal = ({show,setShow}) => {
           <button className='IssueBookCloseBtn' onClick={handleClose} >
             Cancel
           </button>
-          <button className='IssueBookAddBtn' >
+          <button className='IssueBookAddBtn' onClick={addIssueBookFunc} >
             Issue Book
           </button>
         </Modal.Footer>

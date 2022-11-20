@@ -4,8 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import '../css/StudentAddModal.css'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import { Fragment } from "react";
-import Studentmain from "../components/StudentContainer";
+
 
 const AddStudentModal = ({show,setShow,selectedstudent}) => {
 
@@ -17,6 +21,11 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
     const [studentEmail,setStudentEmail] = useState('')
     const [studentPassword,setStudentPassword] = useState('')
     const [studentPasswordTwo,setStudentPasswordTwo] = useState('')
+    
+
+
+   
+    
 
     // const [studentNameEditModal,setStudentNameEditModal] = useState('')
     // const [studentEmailEditModal,setStudentEmailEditModal] = useState('')
@@ -56,32 +65,59 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
 
         const StudentNameFunction = (event) =>{
            const value =  event.target.value
-           setStudentName(value)
-           console.log(studentName)
-           
+            setStudentName(value)
+            console.log(studentName)
         }
 
-        const StudentEmailFunction = (event) =>{
-            const value =  event.target.value
-            // setStudentEmail(value)
-            console.log(studentEmail)   
-         }
 
-         const StudentPasswordFunction = (event) =>{
-            const value =  event.target.value
-            // setStudentPassword(value)
-            console.log(studentPassword) 
-         }
+        const notify = () => {
+          toast.error('Sorry,please fill out form', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+        }
 
-         const StudentPasswordTwoFunction = (event) =>{
-            const value =  event.target.value
-            // setStudentPasswordTwo(value)
-            console.log(studentPasswordTwo) 
-         }
+        const studentpasswordToast = () => {
+          toast.error('password  not matching', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+        }
+
+
+        // const StudentEmailFunction = (event) =>{
+        //     const value =  event.target.value
+        //     // setStudentEmail(value)
+        //     console.log(studentEmail)   
+        //  }
+
+        //  const StudentPasswordFunction = (event) =>{
+        //     const value =  event.target.value
+        //     // setStudentPassword(value)
+        //     console.log(studentPassword) 
+        //  }
+
+        //  const StudentPasswordTwoFunction = (event) =>{
+        //     const value =  event.target.value
+        //     // setStudentPasswordTwo(value)
+        //     console.log(studentPasswordTwo) 
+        //  }
          
          const handleAddStudent = () => {
-            if(studentName && studentEmail && studentPassword && studentPasswordTwo !== ''){
-                if(studentPassword == studentPasswordTwo)
+            if(studentName && studentEmail && studentPassword && studentPasswordTwo !== '' ){
+                if(studentPassword === studentPasswordTwo)
                 {
                     console.log("button clicked") 
                     const newid = new Date().getTime()
@@ -100,6 +136,7 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
                     
                     setStudentdata([...studentdata,setdata])
                     console.log(studentdata)
+                    
                     setShow(false)
                     setStudentName('')
                     setStudentEmail('')
@@ -111,22 +148,23 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
 
                 }
                 else{
-                    console.log("password not match") 
-                    alert("password not match")
+                  studentpasswordToast()
                 }
                 
 
             }
             else{
-              console.log('please fill out form')
+             // alert('please fill out form')
+              notify()
             }
             
 
          }
 
          const handleEditStudent = () => {
-          if(studentName && studentEmail && studentPassword && studentPasswordTwo !== ''){
-            if(studentPassword == studentPasswordTwo){
+          if(studentName && studentEmail && studentPassword && studentPasswordTwo !== ''  ){
+            
+            if(studentPassword === studentPasswordTwo){
 
           console.log('edit button clicked')
           console.log(studentdata)
@@ -149,13 +187,17 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
          
           }
           else {
-            console.log('password not match')
+            studentpasswordToast()
           }
+        
         }
           else{
-            console.log('please fill out form')
+            notify()
+            
           }
          }
+
+       
          
 
        
@@ -180,9 +222,13 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
                 onChange={StudentNameFunction} //(event) => setStudentName(event.target.value)
                  value = {studentName || '' }
                   type="text"
+                  maxLength={25}
                   placeholder="Eg: John Doe"
                   autoFocus
+                  
+                 
                 />
+               
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
@@ -191,9 +237,11 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
               onChange={(event) => setStudentEmail(event.target.value) }
               value = {studentEmail || ''}
                 type="email"
+                maxLength={25}
                 placeholder="Eg: johndoe@gmail.com"
                
               />
+             
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
@@ -203,8 +251,10 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
               onChange={(event) => setStudentPassword(event.target.value) }
                 type="password"
                 placeholder= "••••••••"
+                maxLength={10}
                
               />
+              
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
@@ -214,7 +264,7 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
             onChange={ (event) => setStudentPasswordTwo(event.target.value) }
               type="password"
               placeholder="••••••••"
-              
+              maxLength={10}
             />
           </Form.Group>
 
@@ -232,6 +282,20 @@ const AddStudentModal = ({show,setShow,selectedstudent}) => {
           </Modal.Footer>
         </Modal>
      
+    <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="coloured"
+      />
+      {/* Same as */}
+      <ToastContainer />
         
         
         

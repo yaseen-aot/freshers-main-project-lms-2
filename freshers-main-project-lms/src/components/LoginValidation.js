@@ -2,11 +2,16 @@ import '../css/Logindetails.css'
 
 const LogValidate = (values) => {
 
+
 let errors = {}
+
 
 
     if(!values.email){
         errors.email = "email is required"
+    }
+    else if(!/\$+@\$+\.\$+/.test(values.email)){
+        errors.email = "email is Invalid"
     }
     if(!values.password){
         errors.password = "password is required"

@@ -1,27 +1,22 @@
-import { Link } from "react-router-dom";
-import '../css/Logindetails.css'
+
+// import '../css/Logindetails.css'
+// import Login from "../pages/LoginLayout";
+// import { useState } from "react";
 
 
-const LoginHead = () => {
-    return ( 
+// const LoginHead = () => {
 
-        <div >
-            <p>Login </p>
-            <p>Welcome back! Please enter your details.</p>
+   
 
-            <ul className='admin-student d-flex gap-3 m-0 px-0 pb-2' >
-            <Link to= '/AdminLogin'>
-            <li>Admin</li>
-            </Link>
-        
-            <Link to= '/StudentLogin'>
-            <li>Student</li>
-            </Link>
-        
-            </ul>
-        </div>
+//     return ( 
+       
+       
 
-     );
-}
+//      );
+// }
  
-export default LoginHead;
+// export default LoginHead;
+
+// <Link to= '/StudentLogin'>
+          
+// </Link>

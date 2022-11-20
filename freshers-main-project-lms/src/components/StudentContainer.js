@@ -121,8 +121,19 @@ const Studentmain = () => {
             </div>
         
         
-            {studentdata?.filter(data => (data.name || data.email).toLowerCase()
-                .includes(studentsearchdata))
+            {studentdata?.filter((data) =>{
+                if(studentsearchdata === ""){
+                    return data
+                }
+                else if( data.name .toLowerCase().includes(studentsearchdata.toLowerCase())){
+                    return data
+                }
+                else if( data.email .toLowerCase().includes(studentsearchdata.toLowerCase())){
+                    return data
+                }
+
+           } )
+                
                 .map((item)=> 
             <div className="student-row text-center row py-2" key={item.id}>
 

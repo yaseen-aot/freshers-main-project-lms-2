@@ -3,8 +3,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 import {MdOutlineAssignmentReturn} from "react-icons/md";
 import ReactTooltip from "react-tooltip";
 import IssueBookModal from "../Modals/IssueBookModal";
+import { useContext } from "react";
+import { studentContext } from "../App";
+import { allBooksContext } from "../App";
+import { issuebooksContext } from "../App";
+
 
 const IssuedPage = () => {
+
+    const  [issuestate,setIssuestate] = useContext(issuebooksContext)
+    const [studentdata,setStudentdata] = useContext(studentContext)
+    const [bookData,setBookData] = useContext(allBooksContext)
+   
 
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
@@ -38,7 +48,9 @@ const IssuedPage = () => {
         
         <div className="Issuepagetable container  text-center mt-5 pt-3 pb-5">
 
-            <div className="Issuepage-row row py-3">
+      
+
+            <div className="Issuepage-row row py-3" >
                 <div className="col head-Issuepage">
                 Book Title
                 </div>
@@ -58,25 +70,28 @@ const IssuedPage = () => {
                 Actions 
                 </div>
             </div>
-        
-        
             
-            <div className="Issuepage-row row py-2">
-
-                <div className="col Issuepage-content">
+        
+        
+            { 
+                issuestate.map(issueobj => 
                 
+            <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
+
+                <div className="col Issuepage-content">
+               { issueobj.issuebookid}
                 </div>
 
                 <div className="col Issuepage-content">
-               
+                { issueobj.issuestudentid}
                 </div>
 
                 <div className="col Issuepage-content">
-                   
+                { issueobj.issuedate}
                 </div>
 
                 <div className="col Issuepage-content">
-                  
+                { issueobj.duedate}
                 </div>
 
                 <div className="col Issuepage-content">
@@ -93,6 +108,7 @@ const IssuedPage = () => {
                 </div>
 
             </div>
+     ) }
         
         </div>
 

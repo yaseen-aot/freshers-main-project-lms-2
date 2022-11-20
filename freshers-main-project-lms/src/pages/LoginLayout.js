@@ -2,9 +2,14 @@
 import {  useState } from 'react';
 
 import '../css/Logindetails.css'
-import LoginHead from '../components/LoginHead';
 import LogValidate from '../components/LoginValidation';
 import LogoComponent from '../components/LoginLogo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useContext } from "react";
+import { studentContext } from "../App";
+import { allBooksContext } from "../App";
+
 
 
 
@@ -14,7 +19,10 @@ import LogoComponent from '../components/LoginLogo';
 
 const Login = ({submitForm,admindetails,setobject}) => {
 
-  
+ 
+  const [studentdata,setStudentdata] = useContext(studentContext)
+  const [bookData,setBookData] = useContext(allBooksContext)
+ 
 
     const[values,setValues] = useState(
         {
@@ -23,15 +31,22 @@ const Login = ({submitForm,admindetails,setobject}) => {
         }
     )
 
+
    
-      
-  
-
-    
-
-    
     const[errors,setErrors] = useState({})
     
+    const[studentpage,setStudentpage] = useState(false)
+
+    const studentClick = () => {
+        setStudentpage(true)
+        console.log(studentpage)
+    }
+
+    const adminClick = () => {
+      setStudentpage(false)
+        console.log(studentpage)
+    }
+
   
 
 
@@ -41,9 +56,7 @@ const Login = ({submitForm,admindetails,setobject}) => {
       {
         setobject()
         console.log("Logged In")
-        submitForm()
-       
-      
+        submitForm()     
       }else{
         console.log("Do not match")
       }
@@ -55,15 +68,39 @@ const Login = ({submitForm,admindetails,setobject}) => {
       setValues({
           ...values,
           [e.target.name] : e.target.value}
+         
       )
+      console.log(values)
+  }
+
+  const ToastFunc = () => {
+    toast.error('oops !! cannot login', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
   }
    
     const onlogin = (e) =>{
         e.preventDefault();
         setErrors(LogValidate(values))
         checkMatch()
-          
+        ToastFunc()
+       
     }
+
+    const studentlogin = (e) => {
+      e.preventDefault();
+       console.log('success')
+        
+      
+    }
+
 
 
     return ( 
@@ -73,6 +110,8 @@ const Login = ({submitForm,admindetails,setobject}) => {
        <div className='pt-3 ps-2'>
        <LogoComponent/>
        </div>
+
+
       
      
 
@@ -82,12 +121,30 @@ const Login = ({submitForm,admindetails,setobject}) => {
         <div>
         
 
-        <LoginHead/>
+        <div className=''>
+      
+       
+            <p className='logintext'>Login </p>
+            <p className='welcometext'>Welcome back! Please enter your details.</p>
+
+            <ul className='admin-student d-flex gap-3 m-0 px-0 ' >
+            
+            <button  style={{ borderBottom: !studentpage ? '2px solid red' : 'none'}}  className='adminbtn ' onClick={adminClick}>Admin</button>
+            
+
+            <button style={{ borderBottom: studentpage ? '2px solid red' : 'none'}}  className='studentbtn' onClick={studentClick}>Student</button>
+
+            </ul>
+            
+
+            
+
+        </div>
 
             <form >
 
-<div className="Login-divider"></div>
-<div className="login-form">
+  <div className="Login-divider"></div>
+  <div className="login-form mt-2">
  
   
   
@@ -120,13 +177,31 @@ const Login = ({submitForm,admindetails,setobject}) => {
   {errors.password && <p className='errormsg'>{errors.password}</p>}
  
   <button className='login-button mt-4'
-  onClick={onlogin}
+  onClick={(e) => {studentpage ? studentlogin(e) : onlogin(e)}}
   >Login</button>
+
+  {studentpage && <p className='m-0'>Don't have an account? Register</p>}
 </div>
 </form>
 
   </div>
      </div>
+
+     <ToastContainer
+  position="top-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="colored"
+  />
+  {/* Same as */}
+<ToastContainer />
+
       </div>
      );
 }
