@@ -53,8 +53,8 @@ function App() {
 
 const [bookData,setBookData] = useState([
  
-  {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: '6',remaining : "3"},
-  {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: '6',remaining :"3"},
+  {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining : 3},
+  {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining :3},
   
 
 //   {

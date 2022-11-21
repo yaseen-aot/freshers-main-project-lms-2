@@ -20,8 +20,8 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
   const [bookTitle,setBookTitle] = useState('')
   const [bookAuthor,setBookAuthor] = useState('')
   const [bookLanguage,setBookLanguage] = useState('')
-  const [booktotalCopies,setbookTotalCopies] = useState('')
-  const [bookremainingCopies,setbookRemainingCopies] = useState('')
+  const [booktotalCopies,setbookTotalCopies] = useState()
+  const [bookremainingCopies,setbookRemainingCopies] = useState()
 
   useEffect (()=>{
     setBookTitle(selectedAllbooks?.title)
@@ -59,7 +59,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
   const BookRemainingCopiesFunc = (event) => {
     const value = event.target.value
     setbookRemainingCopies(value)
-    console.log(bookremainingCopies)
+    console.log(typeof(bookremainingCopies),"ggg")
 
   }
 
@@ -153,6 +153,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
         
 
       <Modal className='px-3 ' show={showAddBook} onHide={handleCloseBook}>
+      <IssueBookModal bookremainingCopies = {bookremainingCopies}/>
         <Modal.Header className='AddBookModalHeader mx-4 ps-0' closeButton>
           <Modal.Title className='AddBookModalTitle' > { selectedAllbooks ? 'Edit Book'  : 'Add Book' }</Modal.Title>
           

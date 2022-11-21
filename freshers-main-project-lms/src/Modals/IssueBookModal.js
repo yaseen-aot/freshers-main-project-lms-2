@@ -10,7 +10,7 @@ import IssueReturn from "./ReturnModal";
 import IssuedPage from "../components/IssuedPageContainer";
 
 
-const IssueBookModal = ({show,setShow,isreturnstate}) => {
+const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
 
   const  [issuestate,setIssuestate] = useContext(issuebooksContext)
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -132,11 +132,27 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
     issueFineFunc()
 
     const RemainingDecreaseFunc = () => {
-      console.log("ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhg")
-      if(issuestate.issuebookid === bookData.bookid){
-        bookData.remaining = bookData.remaining(current => current - 1)
-        console.log(bookData,'jhi')
-      }
+      console.log(bookData.remaining,"jnfrjekfre")
+      
+
+
+      // if(bookData.remaining > 0){
+      setBookData(bookData?.map((bookobj) => {
+        
+        console.log(bookobj.remaining,"tttt")
+       console.log(issueidbook) 
+        console.log(bookobj.bookid,"teeeeeeeeeee" )
+
+        if(bookobj?.bookid === issueidbook ){
+           return {...bookobj,remaining : bookobj.remaining - 1}
+        }
+        return bookobj;
+      
+      })
+      )
+    // }
+      
+      
 
     }
 
