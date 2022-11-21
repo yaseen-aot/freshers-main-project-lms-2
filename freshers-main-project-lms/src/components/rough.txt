@@ -412,3 +412,27 @@ color: #09174A;
     
     
     )
+
+    if(issueobj.isreturn === false ){
+      if(issueobj.isreturn === false ){
+        if(issueobj.issuebookid === bookobj.bookid){
+          if(issueobj.issuebookid === bookobj.bookid){
+            if(issueobj.issuestudentid === studentobj.id){
+              issueobj.issuestudentid ===
+              studentobj.id
+              issueobj.issuestudentid === 
+
+
+
+              <Modal.Header closeButton>
+         <Modal.Title>Modal heading</Modal.Title>
+       </Modal.Header>
+       <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+       <Modal.Footer>
+         <Button variant="secondary" onClick={handleReturnClose}>
+           Close
+         </Button>
+         <Button variant="primary" onClick={handleReturnClose}>
+           Save Changes
+         </Button>
+       </Modal.Footer>

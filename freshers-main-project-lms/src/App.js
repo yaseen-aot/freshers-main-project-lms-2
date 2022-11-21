@@ -35,55 +35,65 @@ function App() {
   
   const [formSubmitted,setFormSubmitted] = useState(false)
   const [studentdata,setStudentdata] = useState([
-    {
+    
+{id: 1669012016763, name: 'sinto pp', email: 'sinto@134', password: 'sinto', position: 'student'},
+
+
+{id: 1669012044600, name: 'gg', email: 'ddd', password: 'gg', position: 'student'}
+    // {
       
-        id : 2,
-        name: "g33gg",
-        email: "fvf",
-        password : "hggg" ,
-        position : 'student'
+    //     id : 11,
+    //     name: "g33gg",
+    //     email: "fvf",
+    //     password : "hggg" ,
+    //     position : 'student'
       
-    }
+    // }
   ])
 
 const [bookData,setBookData] = useState([
-  {
-    bookid : 1 ,
-    title : 'rfrfref',
-    author : 'hyhjuj',
-    language : 'ede',
-    totalcopies : 4,
-    remaining : 3
- },
- {
-  bookid : 2 ,
-  title : 'ymuy',
-  author : 'wssw',
-  language : 'uihiu',
-  totalcopies : 9,
-  remaining : 2
-},
-{
-  bookid : 3 ,
-  title : 'ffrrry',
-  author : 'gtgtw',
-  language : 'uoooou',
-  totalcopies : 7,
-  remaining : 9
-  }
+ 
+  {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: '6',remaining : "3"},
+  {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: '6',remaining :"3"},
+  
+
+//   {
+//     bookid : 1 ,
+//     title : 'rfrfref',
+//     author : 'hyhjuj',
+//     language : 'ede',
+//     totalcopies : 4,
+//     remaining : 3
+//  },
+//  {
+//   bookid : 2 ,
+//   title : 'ymuy',
+//   author : 'wssw',
+//   language : 'uihiu',
+//   totalcopies : 9,
+//   remaining : 2
+// },
+// {
+//   bookid : 3 ,
+//   title : 'ffrrry',
+//   author : 'gtgtw',
+//   language : 'uoooou',
+//   totalcopies : 7,
+//   remaining : 9
+//   }
 ])
 
 const [issuestate,setIssuestate] = useState([
-{
-  Issueid : 53,
-  issuebookid : 2312444,
-  issuestudentid : 133145,
-  issuedate : "28-02-2023",
-  duedate :" 03-03-2023",
-  isreturn : false,
-  isissue : true
+// {
+//   Issueid : 53,
+//   issuebookid : 2312444,
+//   issuestudentid : 133145,
+//   issuedate : "28-02-2023",
+//   duedate :" 03-03-2023",
+//   isreturn : false,
+//   isissue : true
 
-}
+// }
 ])
 
     

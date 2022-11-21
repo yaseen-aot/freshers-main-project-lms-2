@@ -21,6 +21,7 @@ const IssueBookModal = ({show,setShow}) => {
   const [issuedateissue,setIssuedateissue] = useState('')
   const [issueduedate,setIssueduedate] = useState('')
   const [issuefine,setIssuefine] = useState('')
+  const [isreturnstate,setIsreturnstate] = useState(false)
 
   
   const [duedatetwo,setDuedatetwo] = useState('')
@@ -98,7 +99,7 @@ const IssueBookModal = ({show,setShow}) => {
           issuestudentid : issueidstudent,
           issuedate : issuedateissue,
           duedate : issueduedate,
-          isreturn : false,
+          isreturn : isreturnstate,
           isissue : true,
           fine:0
         }
@@ -149,11 +150,12 @@ const IssueBookModal = ({show,setShow}) => {
             
             <option>Select Book</option>
 
-            {bookData.map(obj => 
-              <>
-            return <option  key={obj.bookid} value={obj.bookid}>{obj.title}</option>
-            </>
-            )}
+            {bookData.map(obj => {
+              return(  
+                <Fragment key={obj.bookid}>
+          <option  value={obj.bookid}>{obj.title}</option>
+            </Fragment>
+           ) })}
 
           </Form.Select>
          
@@ -164,11 +166,12 @@ const IssueBookModal = ({show,setShow}) => {
 
             <Form.Select onChange={IssuestudentStateFunc} aria-label="Default select example">
             <option>Select Student </option>
-            {studentdata.map(obj => 
-              <>
-            <option key={obj.id} value={obj.id}>{obj.name}</option>
-            </>
-            )}
+            {studentdata.map(obj => {
+              return(
+              <Fragment key={obj.id}>
+            <option  value={obj.id}>{obj.name}</option>
+            </Fragment>
+             )} )}
 
           </Form.Select>
 

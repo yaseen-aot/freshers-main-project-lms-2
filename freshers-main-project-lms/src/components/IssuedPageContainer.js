@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
+import IssueReturn from "../Modals/ReturnModal";
 
 
 const IssuedPage = () => {
@@ -14,9 +15,14 @@ const IssuedPage = () => {
     const  [issuestate,setIssuestate] = useContext(issuebooksContext)
     const [studentdata,setStudentdata] = useContext(studentContext)
     const [bookData,setBookData] = useContext(allBooksContext)
-   
 
+       
+    const [returnshow, setReturnShow] = useState(false);
     const [show, setShow] = useState(false);
+
+
+
+    const handleReturnShow = () => setReturnShow(true);
     const handleShow = () => setShow(true);
 
 
@@ -26,7 +32,9 @@ const IssuedPage = () => {
     return ( 
         
         <div className="div-main ">
+
         <IssueBookModal show = {show} setShow = {setShow}/>
+        <IssueReturn returnshow = {returnshow} setReturnShow = {setReturnShow}/>
         <p className="main-header pt-5">Issued Books</p>
         <hr/>
 
@@ -72,19 +80,36 @@ const IssuedPage = () => {
             </div>
             
         
-        
-            { 
-                issuestate.map(issueobj => 
-                
+            
+            {issuestate.map((issueobj) => {
+                if(issueobj.isreturn === false ){
+                return(
+       
             <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
+            
+            {bookData.map((bookobj) => {
+                if(issueobj.issuebookid === bookobj.bookid){
+                    return(
+                <div className="col Issuepage-content">
+               {bookobj.title}
+                </div>
+                 ) 
+                }})}
+                 
+                {studentdata.map((studentobj) => {
+                    console.log(studentobj.id,'hh')
+                    console.log(studentobj.name,"h")
+                    console.log(issueobj.issuestudentid,'ddd')
+
+                    if(  issueobj.issuestudentid == studentobj.id ){
+                       console.log('hiuh')
+                 return(
 
                 <div className="col Issuepage-content">
-               { issueobj.issuebookid}
+                {studentobj.name}
                 </div>
-
-                <div className="col Issuepage-content">
-                { issueobj.issuestudentid}
-                </div>
+                ) 
+                 } })}
 
                 <div className="col Issuepage-content">
                 { issueobj.issuedate}
@@ -99,16 +124,17 @@ const IssuedPage = () => {
                 </div>
 
                 <div className="col Issuepage-content">
-                <button className="returnbutton" data-tip data-for="returntooltip">
+                <button className="returnbutton" data-tip data-for="returntooltip" onClick={handleReturnShow}>
                 <MdOutlineAssignmentReturn className="Issuepage-return"/>
                 </button>
-                <ReactTooltip id="returntooltip" place="top" effect="solid">
+                <ReactTooltip id="returntooltip" place="top" effect="solid" >
                 Mark as returned
                 </ReactTooltip>
                 </div>
 
             </div>
-     ) }
+            
+       )   }  }  ) }
         
         </div>
 
