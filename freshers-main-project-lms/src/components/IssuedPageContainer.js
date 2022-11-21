@@ -15,15 +15,23 @@ const IssuedPage = () => {
     const  [issuestate,setIssuestate] = useContext(issuebooksContext)
     const [studentdata,setStudentdata] = useContext(studentContext)
     const [bookData,setBookData] = useContext(allBooksContext)
+    
 
-       
+    const [isreturnstate,setIsreturnstate] = useState(false)   
     const [returnshow, setReturnShow] = useState(false);
     const [show, setShow] = useState(false);
+    const [returnkey,setReturnKey] = useState('')
 
 
 
     const handleReturnShow = () => setReturnShow(true);
     const handleShow = () => setShow(true);
+
+    const returnGetkey = (returnkey) => {
+      console.log('fvreffre')
+        setReturnKey(returnkey)
+        console.log(returnkey ,'dgggggg')
+    }
 
 
 
@@ -33,8 +41,8 @@ const IssuedPage = () => {
         
         <div className="div-main ">
 
-        <IssueBookModal show = {show} setShow = {setShow}/>
-        <IssueReturn returnshow = {returnshow} setReturnShow = {setReturnShow}/>
+        <IssueBookModal show = {show} setShow = {setShow} isreturnstate = {isreturnstate}/>
+        <IssueReturn returnshow = {returnshow} setReturnShow = {setReturnShow} returnkey = {returnkey} setIsreturnstate = {setIsreturnstate}/>
         <p className="main-header pt-5">Issued Books</p>
         <hr/>
 
@@ -81,42 +89,41 @@ const IssuedPage = () => {
             
         
             
-            {issuestate.map((issueobj) => {
-                if(issueobj.isreturn === false ){
+            {issuestate?.map((issueobj) => {
+                if(issueobj?.isreturn === false ){
+                    console.log(issueobj,"hhhhh")
                 return(
        
-            <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
+            <div className="Issuepage-row row py-2" key={issueobj?.Issueid }>
             
-            {bookData.map((bookobj) => {
-                if(issueobj.issuebookid === bookobj.bookid){
+            {bookData?.map((bookobj) => {
+                if(issueobj?.issuebookid === bookobj?.bookid){
                     return(
                 <div className="col Issuepage-content">
-               {bookobj.title}
+               {bookobj?.title}
                 </div>
                  ) 
                 }})}
                  
-                {studentdata.map((studentobj) => {
-                    console.log(studentobj.id,'hh')
-                    console.log(studentobj.name,"h")
-                    console.log(issueobj.issuestudentid,'ddd')
+                {studentdata?.map((studentobj) => {
+                 
 
-                    if(  issueobj.issuestudentid == studentobj.id ){
+                    if(  issueobj?.issuestudentid == studentobj?.id ){
                        console.log('hiuh')
                  return(
 
                 <div className="col Issuepage-content">
-                {studentobj.name}
+                {studentobj?.name}
                 </div>
                 ) 
                  } })}
 
                 <div className="col Issuepage-content">
-                { issueobj.issuedate}
+                { issueobj?.issuedate}
                 </div>
 
                 <div className="col Issuepage-content">
-                { issueobj.duedate}
+                { issueobj?.duedate}
                 </div>
 
                 <div className="col Issuepage-content">
@@ -124,7 +131,7 @@ const IssuedPage = () => {
                 </div>
 
                 <div className="col Issuepage-content">
-                <button className="returnbutton" data-tip data-for="returntooltip" onClick={handleReturnShow}>
+                <button className="returnbutton" data-tip data-for="returntooltip" onClick={() => {handleReturnShow();returnGetkey(issueobj.Issueid)}}>
                 <MdOutlineAssignmentReturn className="Issuepage-return"/>
                 </button>
                 <ReactTooltip id="returntooltip" place="top" effect="solid" >

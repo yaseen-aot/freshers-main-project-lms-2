@@ -6,9 +6,11 @@ import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
+import IssueReturn from "./ReturnModal";
+import IssuedPage from "../components/IssuedPageContainer";
 
 
-const IssueBookModal = ({show,setShow}) => {
+const IssueBookModal = ({show,setShow,isreturnstate}) => {
 
   const  [issuestate,setIssuestate] = useContext(issuebooksContext)
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -21,7 +23,7 @@ const IssueBookModal = ({show,setShow}) => {
   const [issuedateissue,setIssuedateissue] = useState('')
   const [issueduedate,setIssueduedate] = useState('')
   const [issuefine,setIssuefine] = useState('')
-  const [isreturnstate,setIsreturnstate] = useState(false)
+  
 
   
   const [duedatetwo,setDuedatetwo] = useState('')
@@ -99,7 +101,7 @@ const IssueBookModal = ({show,setShow}) => {
           issuestudentid : issueidstudent,
           issuedate : issuedateissue,
           duedate : issueduedate,
-          isreturn : isreturnstate,
+          isreturn : false,
           isissue : true,
           fine:0
         }
@@ -129,12 +131,26 @@ const IssueBookModal = ({show,setShow}) => {
     }
     issueFineFunc()
 
+    const RemainingDecreaseFunc = () => {
+      console.log("ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhg")
+      if(issuestate.issuebookid === bookData.bookid){
+        bookData.remaining = bookData.remaining(current => current - 1)
+        console.log(bookData,'jhi')
+      }
 
+    }
+
+
+
+    // <IssueReturn setIsreturnstate = {setIsreturnstate}/>
 
     return ( 
         <Fragment>
-
+        
         <Modal className='px-3 ' show={show} onHide={handleClose}>
+        
+       
+        
         <Modal.Header className='IssueBookModalHeader mx-4 ps-0' closeButton>
           <Modal.Title className='IssueBookModalTitle' > Issue Book  </Modal.Title>
           
@@ -202,7 +218,7 @@ const IssueBookModal = ({show,setShow}) => {
           <button className='IssueBookCloseBtn' onClick={handleClose} >
             Cancel
           </button>
-          <button className='IssueBookAddBtn' onClick={addIssueBookFunc} >
+          <button className='IssueBookAddBtn' onClick={() => {addIssueBookFunc();RemainingDecreaseFunc()}} >
             Issue Book
           </button>
         </Modal.Footer>

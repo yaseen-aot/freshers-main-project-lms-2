@@ -2,11 +2,26 @@ import { Fragment } from "react";
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import '../css/ReturnModal.css'
+import { useContext } from "react";
+import { issuebooksContext } from "../App";
 
-const IssueReturn = ({returnshow,setReturnShow}) => {
-    
+const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate}) => {
+    const  [issuestate,setIssuestate] = useContext(issuebooksContext)
 
     const handleReturnClose = () => setReturnShow(false);
+
+    const setReturnFunc = (returnkey) => {
+        console.log("hi",returnkey)
+        let updatestate = issuestate?.map((issueobj) => {
+            if(issueobj?.Issueid === returnkey ){
+               return {...issueobj,isreturn : true}
+            }
+            return issueobj;
+        })
+        setIssuestate(updatestate)
+        
+        
+    }
    
 
 
@@ -26,7 +41,7 @@ const IssueReturn = ({returnshow,setReturnShow}) => {
         <button className='returnModalClose'  onClick={handleReturnClose}>
         No
       </button>
-      <button className='returnModalreturn' >Yes</button>
+      <button className='returnModalreturn' onClick={() => {handleReturnClose();setReturnFunc(returnkey)}}>Yes</button>
         </div>
      </Modal>
        

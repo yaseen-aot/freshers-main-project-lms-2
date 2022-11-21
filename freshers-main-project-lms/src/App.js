@@ -84,6 +84,7 @@ const [bookData,setBookData] = useState([
 ])
 
 const [issuestate,setIssuestate] = useState([
+ 
 // {
 //   Issueid : 53,
 //   issuebookid : 2312444,
@@ -130,7 +131,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
 
 
    
-    <Route path='/issued-page' element={<IssueMain/>} />
+    <Route path='/issued-books' element={<IssueMain/>} />
     <Route path='/all-books' element = {<AllMain/>}/>
     <Route path='/students' element = {<Student/>}/>
      <Route path='/profile' element = {<StudentProfile/>}/>

@@ -22,7 +22,7 @@ const SideBar = () => {
 
           <div className='sidebtn  gap-4 ms-md-1  '>
 
-              <Link to= '/issued-page' >
+              <Link to= '/issued-books' >
               <button className='sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 ' > < MdTaskAlt className='sidemd'/>  Issued Books</button>
               </Link>
             
