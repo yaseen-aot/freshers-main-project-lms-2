@@ -28,6 +28,7 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
 
   
   const [duedatetwo,setDuedatetwo] = useState('')
+  const [issuedatetwo,setIssuedatetwo] = useState('')
 
 
 
@@ -47,8 +48,16 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
   const issueDateFunc = (event) => {
     const val = event.target.value
     console.log(val)
+    setIssuedatetwo(val)
+    
+    const splitval = val.split('-')
+    const setyear =  splitval[0] 
+    const setmonth = splitval[1]
+    const setday = splitval[2]
+    const setval = setday + '-' + setmonth+ '-' + + setyear
 
-    setIssuedateissue(val)
+
+    setIssuedateissue(setval)
 
 
   }
@@ -59,12 +68,12 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
     setDuedatetwo(val)
     
     
-    const sval = val.split('-')
-    const setyear =  sval[0] 
-    const setmonth = sval[1]
-    const setday = sval[2]
+    const splitval = val.split('-')
+    const setyear =  splitval[0] 
+    const setmonth = splitval[1]
+    const setday = splitval[2]
     const setval = setday + '-' + setmonth+ '-' + + setyear
-    console.log(issuedateissue,"ooii")
+    
     
 
       setIssueduedate(setval)

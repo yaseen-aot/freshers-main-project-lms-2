@@ -5,3 +5,9 @@
     font-size: 16px;
     color: #282829;
 }
+.cardleft{
+    border-right: 1px solid;
+}
+.profiledetails{
+    background-color: #fff;
+}

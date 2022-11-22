@@ -11,7 +11,7 @@ const StudentProfile = () => {
         <div className="col-9 col-md-9">
         <Profilecard/>
 
-        <ProfileList/>
+        
         </div>
     
         </div>
@@ -19,3 +19,4 @@ const StudentProfile = () => {
 }
  
 export default StudentProfile;
+// <ProfileList/>
