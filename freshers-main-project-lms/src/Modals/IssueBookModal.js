@@ -10,7 +10,7 @@ import IssueReturn from "./ReturnModal";
 import IssuedPage from "../components/IssuedPageContainer";
 
 
-const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
+const IssueBookModal = ({show,setShow,isreturnstate}) => {
 
   const  [issuestate,setIssuestate] = useContext(issuebooksContext)
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -23,6 +23,7 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
   const [issuedateissue,setIssuedateissue] = useState('')
   const [issueduedate,setIssueduedate] = useState('')
   const [issuefine,setIssuefine] = useState('')
+  const [issueremainingget,setIssueremainingget] = useState()
   
 
   
@@ -92,7 +93,7 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
 
     const addIssueBookFunc = () => {
 
-      if(issuedateissue < duedatetwo){
+      // if(issuedateissue < duedatetwo){
 
         const Issueid = Math.floor(Math.random() * Date.now())
         const setarray = {
@@ -109,10 +110,10 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
     
         setIssuestate([...issuestate,setarray])
         console.log(issuestate)
-      }
-      else{
-        alert("please enter valid date")
-      }
+      // }
+      // else{
+      //   alert("please enter valid date")
+      // }
 
      
     }
@@ -132,16 +133,18 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
     issueFineFunc()
 
     const RemainingDecreaseFunc = () => {
-      console.log(bookData.remaining,"jnfrjekfre")
+      console.log("jnfrjekfre")
       
 
 
-      // if(bookData.remaining > 0){
+      //  if( > 0){
       setBookData(bookData?.map((bookobj) => {
         
         console.log(bookobj.remaining,"tttt")
+        
        console.log(issueidbook) 
         console.log(bookobj.bookid,"teeeeeeeeeee" )
+       
 
         if(bookobj?.bookid === issueidbook ){
            return {...bookobj,remaining : bookobj.remaining - 1}
@@ -150,7 +153,7 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
       
       })
       )
-    // }
+      // }
       
       
 
@@ -164,6 +167,7 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
         <Fragment>
         
         <Modal className='px-3 ' show={show} onHide={handleClose}>
+        <IssueReturn issueidbook = {issueidbook} />
         
        
         
@@ -183,15 +187,20 @@ const IssueBookModal = ({show,setShow,isreturnstate,bookremainingCopies}) => {
             <option>Select Book</option>
 
             {bookData.map(obj => {
+              if(obj.remaining > 0){
               return(  
                 <Fragment key={obj.bookid}>
           <option  value={obj.bookid}>{obj.title}</option>
             </Fragment>
-           ) })}
+           )
+              }
+          }
+           
+           )}
 
           </Form.Select>
          
-
+         
             
 
             <Form.Label className='IssueBookModalLabel'>Student</Form.Label>

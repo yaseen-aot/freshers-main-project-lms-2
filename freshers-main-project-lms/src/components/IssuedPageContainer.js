@@ -90,40 +90,45 @@ const IssuedPage = () => {
         
             
             {issuestate?.map((issueobj) => {
-                if(issueobj?.isreturn === false ){
+                if(issueobj.isreturn === false ){
                     console.log(issueobj,"hhhhh")
                 return(
        
-            <div className="Issuepage-row row py-2" key={issueobj?.Issueid }>
+            <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
             
             {bookData?.map((bookobj) => {
-                if(issueobj?.issuebookid === bookobj?.bookid){
+                console.log(bookobj.remaining,"huy")
+                
+                if(issueobj.issuebookid === bookobj.bookid){
+                    
+                   
                     return(
                 <div className="col Issuepage-content">
-               {bookobj?.title}
+               {bookobj.title}
                 </div>
                  ) 
+                    
                 }})}
                  
                 {studentdata?.map((studentobj) => {
                  
 
-                    if(  issueobj?.issuestudentid == studentobj?.id ){
+                    if(  issueobj.issuestudentid == studentobj.id ){
                        console.log('hiuh')
                  return(
 
                 <div className="col Issuepage-content">
-                {studentobj?.name}
+                {studentobj.name}
                 </div>
                 ) 
                  } })}
 
                 <div className="col Issuepage-content">
-                { issueobj?.issuedate}
+                { issueobj.issuedate}
                 </div>
 
                 <div className="col Issuepage-content">
-                { issueobj?.duedate}
+                { issueobj.duedate}
                 </div>
 
                 <div className="col Issuepage-content">

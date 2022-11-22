@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import '../css/AllBooksAddModal.css'
+import IssueBookModal from './IssueBookModal';
 
 import { nanoid } from 'nanoid'
 import { ToastContainer, toast } from 'react-toastify';
@@ -153,7 +154,7 @@ const AddBookModal = ({setShowAddBook,showAddBook,selectedAllbooks}) => {
         
 
       <Modal className='px-3 ' show={showAddBook} onHide={handleCloseBook}>
-      <IssueBookModal bookremainingCopies = {bookremainingCopies}/>
+      
         <Modal.Header className='AddBookModalHeader mx-4 ps-0' closeButton>
           <Modal.Title className='AddBookModalTitle' > { selectedAllbooks ? 'Edit Book'  : 'Add Book' }</Modal.Title>
           

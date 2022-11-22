@@ -4,9 +4,11 @@ import Modal from 'react-bootstrap/Modal';
 import '../css/ReturnModal.css'
 import { useContext } from "react";
 import { issuebooksContext } from "../App";
+import { allBooksContext } from "../App";
 
-const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate}) => {
+const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate,issueidbook}) => {
     const  [issuestate,setIssuestate] = useContext(issuebooksContext)
+    const [bookData,setBookData] = useContext(allBooksContext)
 
     const handleReturnClose = () => setReturnShow(false);
 
@@ -14,14 +16,43 @@ const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate}) => {
         console.log("hi",returnkey)
         let updatestate = issuestate?.map((issueobj) => {
             if(issueobj?.Issueid === returnkey ){
+              
+        let  RemainingIncrease =  bookData?.map((bookobj) => {   
+          // if(bookobj?.bookid === issueidbook ){
+                    return {...bookobj,remaining : bookobj.remaining + 1}
+                //  }
+                //  return bookobj;
+              
+               }) 
+               setBookData(RemainingIncrease)
+
+
+
                return {...issueobj,isreturn : true}
             }
             return issueobj;
         })
         setIssuestate(updatestate)
-        
-        
+
+
+      
     }
+
+    // const RemainingIncreaseFunc = () =>{
+
+    //   setBookData(bookData?.map((bookobj) => {
+        
+    //     console.log(bookobj.remaining,"tttt")
+  
+    //     if(bookobj?.bookid === issueidbook ){
+    //        return {...bookobj,remaining : bookobj.remaining + 1}
+    //     }
+    //     return bookobj;
+      
+    //   })
+    //   )
+
+    // }
    
 
 

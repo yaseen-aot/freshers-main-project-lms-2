@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
@@ -22,7 +22,49 @@ export const allBooksContext = createContext();
 export const issuebooksContext = createContext();
 
 
+// const localStorageAdmin = () => {
+//   let admindetail = localStorage.getItem('admindetails')
+//   console.log(admindetail,"yyyy")
+// }
 
+const localStorageStudent = () => {
+  let Studentarr = localStorage.getItem('studentdata')
+  console.log(Studentarr)
+
+  if(Studentarr){
+    return JSON.parse(localStorage.getItem('studentdata'))
+  }else{
+    return [];
+  }
+
+
+}
+
+const localStorageAllBooks = () => {
+  let Allbooksarr = localStorage.getItem('bookData')
+  console.log(Allbooksarr)
+
+  if(Allbooksarr){
+    return JSON.parse(localStorage.getItem('bookData'))
+  }else{
+    return [];
+  }
+
+
+}
+
+const localStorageIssueBooks = () => {
+  let Issuebooksarr = localStorage.getItem('issuestate')
+  console.log(Issuebooksarr)
+
+  if(Issuebooksarr){
+    return JSON.parse(localStorage.getItem('issuestate'))
+  }else{
+    return [];
+  }
+
+
+}
 
 
 
@@ -34,12 +76,12 @@ function App() {
 
   
   const [formSubmitted,setFormSubmitted] = useState(false)
-  const [studentdata,setStudentdata] = useState([
+  const [studentdata,setStudentdata] = useState(localStorageStudent());
     
-{id: 1669012016763, name: 'sinto pp', email: 'sinto@134', password: 'sinto', position: 'student'},
+// {id: 1669012016763, name: 'sinto pp', email: 'sinto@134', password: 'sinto', position: 'student'},
 
 
-{id: 1669012044600, name: 'gg', email: 'ddd', password: 'gg', position: 'student'}
+// {id: 1669012044600, name: 'gg', email: 'ddd', password: 'gg', position: 'student'}
     // {
       
     //     id : 11,
@@ -49,53 +91,23 @@ function App() {
     //     position : 'student'
       
     // }
-  ])
-
-const [bookData,setBookData] = useState([
- 
-  {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining : 3},
-  {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining :3},
   
 
-//   {
-//     bookid : 1 ,
-//     title : 'rfrfref',
-//     author : 'hyhjuj',
-//     language : 'ede',
-//     totalcopies : 4,
-//     remaining : 3
-//  },
-//  {
-//   bookid : 2 ,
-//   title : 'ymuy',
-//   author : 'wssw',
-//   language : 'uihiu',
-//   totalcopies : 9,
-//   remaining : 2
-// },
-// {
-//   bookid : 3 ,
-//   title : 'ffrrry',
-//   author : 'gtgtw',
-//   language : 'uoooou',
-//   totalcopies : 7,
-//   remaining : 9
-//   }
-])
-
-const [issuestate,setIssuestate] = useState([
+const [bookData,setBookData] = useState(localStorageAllBooks())
  
-// {
-//   Issueid : 53,
-//   issuebookid : 2312444,
-//   issuestudentid : 133145,
-//   issuedate : "28-02-2023",
-//   duedate :" 03-03-2023",
-//   isreturn : false,
-//   isissue : true
+  // {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining : 3},
+  // {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining :3},
+  
+const [issuestate,setIssuestate] = useState(localStorageIssueBooks())
+ 
+useEffect(() => {
+  // localStorage.setItem("Admin",JSON.stringify(admindetails))
+  localStorage.setItem("studentdata",JSON.stringify(studentdata))
+  localStorage.setItem("bookData",JSON.stringify(bookData))
+  localStorage.setItem("issuestate",JSON.stringify(issuestate))
 
-// }
-])
+}, [studentdata,bookData,issuestate]);
+
 
     
   const submitForm = () => {
@@ -108,8 +120,8 @@ const admindetails =  {
   password : "12345"
 }
 
-const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails))
- //const getobject = () => localStorage.getItem(admindetails)
+
+ 
 
   
   return (
@@ -122,7 +134,7 @@ const setobject = () => localStorage.setItem("Admin",JSON.stringify(admindetails
     <Routes>
 
     <Route exact
-     path='/' element = {!formSubmitted ? (<Login submitForm = {submitForm} setobject = {setobject}  admindetails = {admindetails}/>
+     path='/' element = {!formSubmitted ? (<Login submitForm = {submitForm}   admindetails = {admindetails}/>
     ) : (
         <IssueMain/>
     )

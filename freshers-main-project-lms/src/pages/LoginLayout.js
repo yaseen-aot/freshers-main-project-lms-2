@@ -17,7 +17,7 @@ import { allBooksContext } from "../App";
 
 
 
-const Login = ({submitForm,admindetails,setobject}) => {
+const Login = ({submitForm,admindetails}) => {
 
  
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -54,7 +54,7 @@ const Login = ({submitForm,admindetails,setobject}) => {
       console.log(values)
       if (values.email === admindetails.email && values.password === admindetails.password)
       {
-        setobject()
+        
         console.log("Logged In")
         submitForm()     
       }else{

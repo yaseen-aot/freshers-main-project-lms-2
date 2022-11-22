@@ -440,3 +440,29 @@ color: #09174A;
 
        #CECECE
        #ECECEC
+
+
+       const setReturnFunc = (returnkey) => {
+        console.log("hi",returnkey)
+        let updatestate = issuestate?.map((issueobj) => {
+            if(issueobj?.Issueid === returnkey ){
+               return {...issueobj,isreturn : true}
+            }
+            return issueobj;
+        })
+        setIssuestate(updatestate)
+        
+        
+    }
+
+
+    setBookData(bookData?.map((bookobj) => {
+        
+         
+          if(bookobj?.bookid === issueidbook ){
+             return {...bookobj,remaining : bookobj.remaining + 1}
+          }
+          return bookobj;
+        
+        })
+        )
