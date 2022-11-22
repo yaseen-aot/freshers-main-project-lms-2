@@ -104,12 +104,13 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
           duedate : issueduedate,
           isreturn : false,
           isissue : true,
-          fine:0
+          fine:0,
+        
         }
        
     
         setIssuestate([...issuestate,setarray])
-        console.log(issuestate)
+      
       // }
       // else{
       //   alert("please enter valid date")
@@ -123,27 +124,24 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
 
       const duedatefind = new Date(issuedateissue).getDate()+7
       const today = new Date()
-      console.log(duedatefind,'hh')
+      
       if(duedatefind < today){
         count = count + 10
       }
-      console.log(count,'oo')
+     
 
     }
-    issueFineFunc()
+    // issueFineFunc()
 
     const RemainingDecreaseFunc = () => {
-      console.log("jnfrjekfre")
+      
       
 
 
       //  if( > 0){
       setBookData(bookData?.map((bookobj) => {
         
-        console.log(bookobj.remaining,"tttt")
         
-       console.log(issueidbook) 
-        console.log(bookobj.bookid,"teeeeeeeeeee" )
        
 
         if(bookobj?.bookid === issueidbook ){

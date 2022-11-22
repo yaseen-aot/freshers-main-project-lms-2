@@ -8,19 +8,22 @@ import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import AllBooksList from "./AllBooksList";
 import { Link } from "react-router-dom";
+import Profilecard from "./profilecard";
 
 
 
 const Studentmain = () => {
     
 
-    const [studentsearchdata,setStudentsearchdata] = useState('')
+    
 
 
     const [studentdata,setStudentdata] = useContext(studentContext)
+    const [studentsearchdata,setStudentsearchdata] = useState('')
     const [show, setShow] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [getkeyElement,setGetkeyElement] = useState('')
+    const [getkeyoneye,setGetkeyoneye] = useState('')
 
     const [selectedstudent,setSelectedstudent] = useState(null)
     const [studenteditName,setStudenteditName] = useState('')
@@ -65,6 +68,14 @@ const Studentmain = () => {
        console.log( studentsearchdata)
     }
 
+    const studentkeyget = (id) =>{
+        
+         setGetkeyoneye(id)
+         console.log(getkeyoneye,"huh")
+        
+        
+    }
+
 
 
 
@@ -82,6 +93,8 @@ const Studentmain = () => {
             studenteditPassword = {studenteditPassword}
 
             />
+
+            
 
             <DeleteModalStudent showDelete={showDelete} setShowDelete ={setShowDelete} getkeyElement = {getkeyElement} />
             <p className="main-header pt-5">Students</p>
@@ -157,8 +170,8 @@ const Studentmain = () => {
                 }}/>
 
                 <RiDeleteBin6Line className="Student-delete" onClick={() =>{ handleShowDeleteStudent() ; getkeyFromDelete(item.id)} }/>
-                <Link to ="/profile">
-                <AiOutlineEye className="Student-eye mb-2"/>
+                <Link to={`/students/${item.id}`}>
+                <AiOutlineEye className="Student-eye mb-2" />
                 </Link>
                    
                
@@ -183,3 +196,5 @@ const Studentmain = () => {
 }
  
 export default Studentmain;
+
+// onClick={() => {studentkeyget(item.id)}}

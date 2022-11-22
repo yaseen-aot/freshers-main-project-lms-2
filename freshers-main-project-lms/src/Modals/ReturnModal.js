@@ -9,14 +9,20 @@ import { allBooksContext } from "../App";
 const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate,issueidbook}) => {
     const  [issuestate,setIssuestate] = useContext(issuebooksContext)
     const [bookData,setBookData] = useContext(allBooksContext)
+    // const [returndatestate,setReturndatestate] = useState('')
+
 
     const handleReturnClose = () => setReturnShow(false);
 
     const setReturnFunc = (returnkey) => {
+      
+
         console.log("hi",returnkey)
         let updatestate = issuestate?.map((issueobj) => {
             if(issueobj?.Issueid === returnkey ){
-              
+             
+              // setReturndatestate(newdateformat)
+           
         let  RemainingIncrease =  bookData?.map((bookobj) => {   
           // if(bookobj?.bookid === issueidbook ){
                     return {...bookobj,remaining : bookobj.remaining + 1}
@@ -25,14 +31,20 @@ const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate,issuei
               
                }) 
                setBookData(RemainingIncrease)
+               const newdate =  new Date()
+               const newdateformat = newdate.getDate()+'-'+newdate.getMonth()+'-'+ newdate.getFullYear()
+               console.log(newdateformat,'gbtt')
 
 
-
-               return {...issueobj,isreturn : true}
+               return {...issueobj,isreturn : true,isreturndate : newdateformat}
+               
             }
+            
             return issueobj;
+            
         })
         setIssuestate(updatestate)
+        console.log(issuestate,"uuuuhh")
 
 
       
@@ -85,3 +97,13 @@ const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate,issuei
 }
  
 export default IssueReturn;
+
+// const newdate =  new Date()
+// const newday = newdate.getDate()
+// const newmonth = newdate.getMonth()
+// const newyear = newdate.getFullYear()
+      
+//       console.log(newday,newmonth,newyear,"jjj")
+    
+//       console.log(  newdate.getDate()+'-'+newdate.getMonth()+'-'+ newdate.getFullYear())
+  

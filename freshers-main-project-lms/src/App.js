@@ -146,7 +146,7 @@ const admindetails =  {
     <Route path='/issued-books' element={<IssueMain/>} />
     <Route path='/all-books' element = {<AllMain/>}/>
     <Route path='/students' element = {<Student/>}/>
-     <Route path='/profile' element = {<StudentProfile/>}/>
+     <Route path='/students/:id' element = {<StudentProfile/>}/>
 
 
     
