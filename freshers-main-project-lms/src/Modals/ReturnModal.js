@@ -24,10 +24,10 @@ const IssueReturn = ({returnshow,setReturnShow,returnkey,setIsreturnstate,issuei
               // setReturndatestate(newdateformat)
            
         let  RemainingIncrease =  bookData?.map((bookobj) => {   
-          // if(bookobj?.bookid === issueidbook ){
+           if(bookobj?.bookid === issueobj?.issuebookid ){
                     return {...bookobj,remaining : bookobj.remaining + 1}
-                //  }
-                //  return bookobj;
+                  }
+                 return bookobj;
               
                }) 
                setBookData(RemainingIncrease)

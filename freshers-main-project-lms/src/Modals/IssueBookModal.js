@@ -10,7 +10,8 @@ import IssueReturn from "./ReturnModal";
 import IssuedPage from "../components/IssuedPageContainer";
 
 
-const IssueBookModal = ({show,setShow,isreturnstate}) => {
+
+const IssueBookModal = ({show,setShow}) => {
 
   const  [issuestate,setIssuestate] = useContext(issuebooksContext)
   const [studentdata,setStudentdata] = useContext(studentContext)
@@ -26,6 +27,7 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
   const [issueremainingget,setIssueremainingget] = useState()
   
 
+  
   
   const [duedatetwo,setDuedatetwo] = useState('')
   const [issuedatetwo,setIssuedatetwo] = useState('')
@@ -49,12 +51,12 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
     const val = event.target.value
     console.log(val)
     setIssuedatetwo(val)
-    
+
     const splitval = val.split('-')
     const setyear =  splitval[0] 
     const setmonth = splitval[1]
     const setday = splitval[2]
-    const setval = setday + '-' + setmonth+ '-' + + setyear
+    const setval = setmonth + '-' + setday+ '-' + + setyear
 
 
     setIssuedateissue(setval)
@@ -65,6 +67,7 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
   const dueDateFunc = (event) => {
 
     const val = event.target.value
+    console.log(val,"valuedue")
     setDuedatetwo(val)
     
     
@@ -72,7 +75,7 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
     const setyear =  splitval[0] 
     const setmonth = splitval[1]
     const setday = splitval[2]
-    const setval = setday + '-' + setmonth+ '-' + + setyear
+    const setval = setmonth + '-' + setday + '-' +  setyear
     
     
 
@@ -109,16 +112,16 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
           Issueid : Issueid,
           issuebookid : issueidbook,
           issuestudentid : issueidstudent,
-          issuedate : issuedateissue,
-          duedate : issueduedate,
+          issuedate : new Date(issuedateissue),
+          duedate : new Date(issueduedate),
           isreturn : false,
           isissue : true,
-          fine:0,
+          fine:0
         
         }
-       
-    
-        setIssuestate([...issuestate,setarray])
+      //  console.log(issueduedate,issuedateissue,"se")
+        console.log(setarray,"setarray")
+         setIssuestate([...issuestate,setarray])
       
       // }
       // else{
@@ -128,32 +131,11 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
      
     }
   
-    const issueFineFunc = () => {
-      let count = 0 
-
-      const duedatefind = new Date(issuedateissue).getDate()+7
-      const today = new Date()
-      
-      if(duedatefind < today){
-        count = count + 10
-      }
-     
-
-    }
-    // issueFineFunc()
+   
 
     const RemainingDecreaseFunc = () => {
-      
-      
-
-
-      //  if( > 0){
       setBookData(bookData?.map((bookobj) => {
-        
-        
-       
-
-        if(bookobj?.bookid === issueidbook ){
+         if(bookobj?.bookid === issueidbook ){
            return {...bookobj,remaining : bookobj.remaining - 1}
         }
         return bookobj;
@@ -168,16 +150,12 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
 
 
 
-    // <IssueReturn setIsreturnstate = {setIsreturnstate}/>
-
     return ( 
         <Fragment>
+       
         
         <Modal className='px-3 ' show={show} onHide={handleClose}>
         <IssueReturn issueidbook = {issueidbook} />
-        
-       
-        
         <Modal.Header className='IssueBookModalHeader mx-4 ps-0' closeButton>
           <Modal.Title className='IssueBookModalTitle' > Issue Book  </Modal.Title>
           
@@ -185,8 +163,6 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
         <Modal.Body className='px-4'>
           <Form>
 
-            
-          
             <Form.Label  className='IssueBookModalLabel'>Book</Form.Label>
 
             <Form.Select onChange={IssuebookStateFunc}  aria-label="Default select example">
@@ -229,7 +205,6 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
               <Form.Control
                 type="Date"
                 placeholder="09-11-2022"
-                // onChange={(event) => {issueDateFunc(event) ; issueFineFunc();}}
                  onChange= {issueDateFunc }
                 />
             </Form.Group>
@@ -255,14 +230,7 @@ const IssueBookModal = ({show,setShow,isreturnstate}) => {
           </button>
         </Modal.Footer>
       </Modal>
-        
-        
-        
-        
-        
         </Fragment>
-
-
 
      );
 }

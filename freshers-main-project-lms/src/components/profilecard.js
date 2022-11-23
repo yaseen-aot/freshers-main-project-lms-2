@@ -1,4 +1,4 @@
-import { useState,useContext } from "react";
+import { useState,useContext, useEffect } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
@@ -18,12 +18,34 @@ const Profilecard = () => {
     const { id } = useParams();
     console.log(id)
 
-    const count = 0
+    
     const  [issuestate,setIssuestate] = useContext(issuebooksContext)
     const [studentdata,setStudentdata] = useContext(studentContext)
     const [bookData,setBookData] = useContext(allBooksContext)
     
+     const [count,setcount] = useState(0)
 
+    
+    // const countFun = () => {
+        
+    //     setcountvar( count++)
+    //     console.log(countvar)
+    // }
+
+    useEffect(()=>{
+        let countvar = 0;
+        // count = bookData?.length
+        issuestate?.map(studentbook =>{
+                
+                if(studentbook?.issuestudentid === id){
+                  return countvar = countvar + 1
+                }
+        }
+            
+            )
+        setcount(countvar)
+    },[issuestate,id])
+     console.log(count,"count")
 
 
 
@@ -92,7 +114,7 @@ const Profilecard = () => {
    
     
     <div className="pt-4">
-    <p className="profileissuedbooks">Issued Books ({count})</p>
+    <p className="profileissuedbooks">Issued Books ( {count} )</p>
     
     <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
     <div className="mainsearch-div">
@@ -129,12 +151,15 @@ const Profilecard = () => {
         </div>
     {issuestate.map((issueobj) => {
 
-        console.log(id,"id")
-        console.log(issueobj.issuestudentid)
+        // console.log(id,"id")
+        // console.log(issueobj.issuestudentid)
 
         if(issueobj.issuestudentid == id ){
 
-            console.log("kerii")
+            // console.log("kerii")
+           
+            
+           
            
             
         
@@ -150,6 +175,8 @@ const Profilecard = () => {
             console.log(bookobj.bookid,'booktitle')
             console.log(issueobj.issuebookid,'hyjy')
             if(bookobj.bookid == issueobj.issuebookid){
+                
+                
                 console.log("iivdemm")
             return(
             <Fragment>
@@ -170,7 +197,7 @@ const Profilecard = () => {
             {issueobj.duedate}
             </div>
             <div className="col head-Allbooks">
-            {!issueobj.isreturn ? '-' : issueobj?.isreturndate}
+            {!issueobj.isreturn ? '-' : issueobj.isreturndate}
             </div>
             <div className="col head-Allbooks">
             20

@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
-import {MdOutlineAssignmentReturn} from "react-icons/md";
-import ReactTooltip from "react-tooltip";
+// import {MdOutlineAssignmentReturn} from "react-icons/md";
+// import ReactTooltip from "react-tooltip";
 import IssueBookModal from "../Modals/IssueBookModal";
 import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
 import IssueReturn from "../Modals/ReturnModal";
+import IssueBookList from "./IssueBookList";
 
 
 const IssuedPage = () => {
@@ -22,6 +23,8 @@ const IssuedPage = () => {
     const [show, setShow] = useState(false);
     const [returnkey,setReturnKey] = useState('')
 
+   
+
 
 
     const handleReturnShow = () => setReturnShow(true);
@@ -33,6 +36,61 @@ const IssuedPage = () => {
         console.log(returnkey ,'dgggggg')
     }
 
+    {issuestate?.map((issuemap)=>{
+    
+    const issueFineFunc = () => {
+        // const today = new Date()
+        // const todaymonth = today.getMonth() + 1
+        // const currentday = today.getDate()+"-"+ todaymonth + "-" + today.getFullYear()
+  
+        // console.log(typeof(currentday),"today")
+        // console.log(typeof(issuemap.duedate),"duedate")
+
+
+        // if(currentday > issuemap?.duedate){
+
+
+        //     const diffTime = Math.abs(currentday.getDate() - issuemap?.duedate.getDate());
+        //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        //     console.log(diffTime + " milliseconds");
+        //     console.log(diffDays + " days");
+
+       
+        }
+
+  
+        
+
+        // var parts =duedatetwo.split('-');
+// Please pay attention to the month (parts[1]); JavaScript counts months from 0:
+// January - 0, February - 1, etc.
+// var mydate = new Date(parts[0], parts[1] - 1, parts[2]); 
+// console.log(mydate.toDateString());
+
+        // const diffTime = Math.abs(date2 - date1);
+        // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        // console.log(diffTime + " milliseconds");
+        // console.log(diffDays + " days");
+        // }
+      issueFineFunc()
+    
+     })}
+
+
+    
+        // console.log(currentday,"today")
+        
+
+
+        // if(currentday > 6 ){
+
+     
+
+        // }
+        
+  
+      
+
 
 
 
@@ -41,7 +99,8 @@ const IssuedPage = () => {
         
         <div className="div-main ">
 
-        <IssueBookModal show = {show} setShow = {setShow} isreturnstate = {isreturnstate}/>
+        <IssueBookModal show = {show} setShow = {setShow} isreturnstate = {isreturnstate}  />
+
         <IssueReturn returnshow = {returnshow} setReturnShow = {setReturnShow} returnkey = {returnkey} setIsreturnstate = {setIsreturnstate}/>
         <p className="main-header pt-5">Issued Books</p>
         <hr/>
@@ -94,59 +153,13 @@ const IssuedPage = () => {
                     console.log(issueobj,"hhhhh")
                 return(
        
-            <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
+           <IssueBookList issueobj = {issueobj} 
+            returnGetkey = {returnGetkey}
+            handleReturnShow = {handleReturnShow}
+           />
             
-            {bookData?.map((bookobj) => {
-                console.log(bookobj.remaining,"huy")
-                
-                if(issueobj.issuebookid === bookobj.bookid){
-                    
-                   
-                    return(
-                <div className="col Issuepage-content">
-               {bookobj.title}
-                </div>
-                 ) 
-                    
-                }})}
-                 
-                {studentdata?.map((studentobj) => {
-                 
-
-                    if(  issueobj.issuestudentid == studentobj.id ){
-                       console.log('hiuh')
-                 return(
-
-                <div className="col Issuepage-content">
-                {studentobj.name}
-                </div>
-                ) 
-                 } })}
-
-                <div className="col Issuepage-content">
-                { issueobj.issuedate}
-                </div>
-
-                <div className="col Issuepage-content">
-                { issueobj.duedate}
-                </div>
-
-                <div className="col Issuepage-content">
-                  
-                </div>
-
-                <div className="col Issuepage-content">
-                <button className="returnbutton" data-tip data-for="returntooltip" onClick={() => {handleReturnShow();returnGetkey(issueobj.Issueid)}}>
-                <MdOutlineAssignmentReturn className="Issuepage-return"/>
-                </button>
-                <ReactTooltip id="returntooltip" place="top" effect="solid" >
-                Mark as returned
-                </ReactTooltip>
-                </div>
-
-            </div>
-            
-       )   }  }  ) }
+       )
+       }  }  ) }
         
         </div>
 
