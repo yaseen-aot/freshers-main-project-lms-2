@@ -20,17 +20,25 @@ const Profilecard = () => {
   const [bookData, setBookData] = useContext(allBooksContext);
 
   const [count, setcount] = useState(0);
+  const [remaininingCount,setRemainingCount] = useState(0)
 
 
   useEffect(() => {
     let countvar = 0;
+    let remaining = 0;
     // count = bookData?.length
     issuestate?.map((studentbook) => {
       if (studentbook?.issuestudentid === id) {
-        return (countvar = countvar + 1);
+        countvar = countvar + 1
+        if(studentbook?.isreturn === true){
+          return(remaining = remaining + 1)
+        } 
+       
       }
+
     });
     setcount(countvar);
+    setRemainingCount(remaining)
   }, [issuestate, id]);
   console.log(count, "count");
 
@@ -64,7 +72,7 @@ const Profilecard = () => {
                   </span>
                   <span className="d-flex justify-content-between pe-md-4 flex-wrap">
                     <p className="cardrightdata">Returned Books </p>
-                    <p className="cardrightvalues">4</p>
+                    <p className="cardrightvalues">{remaininingCount}</p>
                   </span>
 
                   <span className="d-flex justify-content-between flex-wrap">
