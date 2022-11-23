@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import '../css/studentprofile.css'
+import ProfileList from "./profileList";
 
 
 const Profilecard = () => {
@@ -48,6 +49,9 @@ const Profilecard = () => {
      console.log(count,"count")
 
 
+   
+
+
 
     return ( 
         
@@ -56,6 +60,7 @@ const Profilecard = () => {
 
             
     { studentdata.map((object) => {
+
        
 
 
@@ -89,7 +94,7 @@ const Profilecard = () => {
             <div className="col-3 ps-3 pt-2">
             <span className="d-flex justify-content-between pe-md-4 flex-wrap">
             <p>Total Books issued  </p>
-            <p>5</p>
+            <p>{count}</p>
             </span>
             <span className="d-flex justify-content-between pe-md-4 flex-wrap">
             <p>Returned Books    </p>
@@ -151,6 +156,8 @@ const Profilecard = () => {
         </div>
     {issuestate.map((issueobj) => {
 
+   
+
         // console.log(id,"id")
         // console.log(issueobj.issuestudentid)
 
@@ -158,51 +165,15 @@ const Profilecard = () => {
 
             // console.log("kerii")
            
-            
+          
            
-           
             
-        
-
 
         return(
 
 
 
-        <div className="Allbooks-row row py-3" key={issueobj.Issueid}>
-
-        {bookData.map((bookobj) =>{
-            console.log(bookobj.bookid,'booktitle')
-            console.log(issueobj.issuebookid,'hyjy')
-            if(bookobj.bookid == issueobj.issuebookid){
-                
-                
-                console.log("iivdemm")
-            return(
-            <Fragment>
-            <div className="col head-Allbooks">
-            {bookobj.title}
-            </div>
-            <div className="col head-Allbooks">
-            {bookobj.author}
-            </div>
-            </Fragment>
-         )}
-         })}
-         
-            <div className="col head-Allbooks">
-            {issueobj.issuedate}
-            </div>
-            <div className="col head-Allbooks">
-            {issueobj.duedate}
-            </div>
-            <div className="col head-Allbooks">
-            {!issueobj.isreturn ? '-' : issueobj.isreturndate}
-            </div>
-            <div className="col head-Allbooks">
-            20
-            </div>
-        </div>
+       <ProfileList issueobj = {issueobj}/>
 
         )}
     })}

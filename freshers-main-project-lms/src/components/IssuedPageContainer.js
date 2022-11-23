@@ -108,7 +108,7 @@ const IssuedPage = () => {
         <div className="search-btn d-flex flex-wrap ">
             <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
                 <div className="mainsearch-div">
-                    <input className="inputsearch" type="text"  placeholder="Search by book title or author "/>
+                    <input className="inputsearch" type="text"  placeholder="Search by book title or student "/>
                 </div>
                 <div>
                     <AiOutlineSearch className="searchicon"/>

@@ -112,8 +112,8 @@ const IssueBookModal = ({show,setShow}) => {
           Issueid : Issueid,
           issuebookid : issueidbook,
           issuestudentid : issueidstudent,
-          issuedate : new Date(issuedateissue),
-          duedate : new Date(issueduedate),
+          issuedate : issuedateissue,
+          duedate : issueduedate,
           isreturn : false,
           isissue : true,
           fine:0

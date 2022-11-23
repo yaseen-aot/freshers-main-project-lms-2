@@ -1,7 +1,8 @@
 import ReactTooltip from "react-tooltip";
 import {MdOutlineAssignmentReturn} from "react-icons/md";
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { allBooksContext, studentContext } from "../App";
+import Profilecard from "./profilecard";
 
 
 
@@ -14,44 +15,42 @@ const IssueBookList = ({issueobj,returnGetkey,handleReturnShow}) => {
 
     console.log(issueobj,"hen")
 
-    var currentDt = new Date(issueobj?.issuedate);
-    var mm = currentDt.getMonth() + 1;
-    var dd = currentDt.getDate();
-    var yyyy = currentDt.getFullYear();
-    const issueddate =  dd + "-"+  mm+ "-" + yyyy
+    var currentIssueDate = new Date(issueobj?.issuedate);
+    var Issuemonth = currentIssueDate.getMonth() + 1;
+    var Issuedate = currentIssueDate.getDate();
+    var Issueyear = currentIssueDate.getFullYear();
+    const issueddatedisplay =  Issuedate + "-"+  Issuemonth+ "-" + Issueyear
     // const issueddate = issueobj.issuedate.getDate()+"-"+ issueobj.issuedate.getMonth()+1 + "-" + issueobj.issuedate.getFullYear()
-    console.log(issueddate)
+    console.log(issueddatedisplay)
 
 
 
-    var dueDt = new Date(issueobj?.duedate);
+    var currentDueDate = new Date(issueobj?.duedate);
     console.log(issueobj,"issueobj")
-    var mmdue = dueDt.getMonth() + 1;
-    var dddue = dueDt.getDate();
-    var yyyydue = dueDt.getFullYear();
-    const dueddate =  dddue + "-"+  mmdue+ "-" + yyyydue
+    var Duemonth = currentDueDate.getMonth() + 1;
+    var Duedate = currentDueDate.getDate();
+    var Dueyear = currentDueDate.getFullYear();
+    const dueddatedisplay =  Duedate + "-"+  Duemonth + "-" + Dueyear
     console.log(issueobj,"ttty")
 
 
 
     useEffect(() => {
-        const today = new Date()
-        const todaymonth = today.getMonth() + 1
-        const todayDate = today.getDate()
-        const todayYear = today.getFullYear()
-        const currentday = today.getDate()+"-"+ todaymonth + "-" + today.getFullYear()
+        // const today = new Date()
+        // const todaymonth = today.getMonth() + 1
+        // const todayDate = today.getDate()
+        // const todayYear = today.getFullYear()
+        // const currentday = today.getDate()+"-"+ todaymonth + "-" + today.getFullYear()
   
         var date1 = new Date();
-        var date2 = new Date(mmdue + "-" + dddue + "-" + yyyydue)
+        var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear)
         console.log(date1,date2,"yess")
 
         if(date1 > date2 ){
 
-            
-    
-     var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
-    setDayDiff(diffDays)
-    console.log(diffDays,"ttt")
+        var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
+        setDayDiff(diffDays)
+        console.log(diffDays,"ttt")
 
     
      
@@ -60,9 +59,12 @@ const IssueBookList = ({issueobj,returnGetkey,handleReturnShow}) => {
 
     return ( 
 
-       
+        <Fragment>
+        
 
         <div className="Issuepage-row row py-2" key={issueobj.Issueid }>
+        
+       
             
         {bookData?.map((bookobj) => {
             console.log(bookobj.remaining,"huy")
@@ -92,11 +94,11 @@ const IssueBookList = ({issueobj,returnGetkey,handleReturnShow}) => {
              } })}
 
             <div className="col Issuepage-content">
-            {issueddate}
+            {issueddatedisplay}
             </div>
 
             <div className="col Issuepage-content">
-            {dueddate}
+            {dueddatedisplay}
             </div>
 
             <div className="col Issuepage-content">
@@ -111,10 +113,10 @@ const IssueBookList = ({issueobj,returnGetkey,handleReturnShow}) => {
             Mark as returned
             </ReactTooltip>
             </div>
-
+            
         </div>
 
-
+        </Fragment>
 
      );
 }

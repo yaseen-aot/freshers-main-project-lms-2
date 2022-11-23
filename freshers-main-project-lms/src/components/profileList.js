@@ -1,80 +1,91 @@
 
-// import { AiOutlineSearch } from "react-icons/ai";
-// import '../css/studentprofile.css'
+import { Fragment, useState } from 'react';
+import { useContext,useEffect } from 'react';
+import { allBooksContext } from '../App';
+import '../css/studentprofile.css'
 
-// const ProfileList = () => {
+
+const ProfileList = ({issueobj}) => {
+
+    const [bookData,setBookData] = useContext(allBooksContext)
+
+    const [profileDayDiff,setProfileDayDiff] = useState(null)
+
+
+
+
     
-//     return ( 
-
-//         <div className="pt-4">
-//         <p className="profileissuedbooks">Issued Books (5)</p>
-        
-//         <div className="search-main-icon col-md-6 col-11 d-flex justify-content-around align-items-center mt-2">
-//         <div className="mainsearch-div">
-//             <input className="inputsearch" type="search"  placeholder="Search by book title or author "/>
-//         </div>
-//         <div>
-//             <AiOutlineSearch className="searchicon"/>
-//         </div>           
-//         </div>
+    var currentDueDate = new Date(issueobj?.duedate);
+    console.log(issueobj,"issueobj")
+    var Duemonth = currentDueDate.getMonth() + 1;
+    var Duedate = currentDueDate.getDate();
+    var Dueyear = currentDueDate.getFullYear();
+    const dueddatedisplay =  Duedate + "-"+  Duemonth + "-" + Dueyear
+    console.log(issueobj,"ttty")
 
 
-        
-//         <div className="Allbookstable container  text-center mt-2 pt-3 pb-5">
+    useEffect(() => {
+        // const today = new Date()
+        // const todaymonth = today.getMonth() + 1
+        // const todayDate = today.getDate()
+        // const todayYear = today.getFullYear()
+        // const currentday = today.getDate()+"-"+ todaymonth + "-" + today.getFullYear()
+  
+        var date1 = new Date();
+        var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear)
+        console.log(date1,date2,"yess")
 
-//             <div className="Allbooks-row row py-3">
-//                 <div className="col head-Allbooks">
-//                 Book Title
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 Author
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 Issue Date
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 Due Date
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 Return Date
-//                 </div>
-//                 <div className="col head-Allbooks ">
-//                 Fine (Rs. 10 per day) 
-//                 </div>
-//             </div>
+        if(date1 > date2 ){
 
-//             <div className="Allbooks-row row py-3">
-//                 <div className="col head-Allbooks">
-//                 It Start With Us
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 Collen Hoover
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 10-11-2022 
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 18-11-2022
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 10-11-2022
-//                 </div>
-//                 <div className="col head-Allbooks">
-//                 20
-//                 </div>
-//             </div>
+        var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
+        setProfileDayDiff(diffDays)
+        console.log(profileDayDiff,"ttt")
 
+    
+     
+}},[issueobj])
 
-//             </div>
-        
+    
+    return ( 
 
-        
-        
-//         </div>
+        <div className="Allbooks-row row py-3" key={issueobj.Issueid}>
+
+        {bookData.map((bookobj) =>{
+            console.log(bookobj.bookid,'booktitle')
+            console.log(issueobj.issuebookid,'hyjy')
+            if(bookobj.bookid == issueobj.issuebookid){
+                
+                
+                console.log("iivdemm")
+            return(
+            <Fragment>
+            <div className="col head-Allbooks">
+            {bookobj.title}
+            </div>
+            <div className="col head-Allbooks">
+            {bookobj.author}
+            </div>
+            </Fragment>
+         )}
+         })}
+         
+            <div className="col head-Allbooks">
+            {issueobj.issuedate}
+            </div>
+            <div className="col head-Allbooks">
+             {dueddatedisplay}
+            </div>
+            <div className="col head-Allbooks">
+            {!issueobj.isreturn ? '-' : issueobj.isreturndate}
+            </div>
+            <div className="col head-Allbooks">
+           {profileDayDiff ? profileDayDiff * 10 : "0" }
+            </div>
+        </div>
 
 
 
-//      );
-// }
+     );
+}
  
-// export default ProfileList;
+export default ProfileList;
