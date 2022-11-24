@@ -56,21 +56,24 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
     console.log(studentName);
   };
 
-  const notify = () => {
-    toast.error("Sorry,please fill out form", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
+  const notify = (text) => {
+    toast.error(text, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+  }
 
-  const studentpasswordToast = () => {
-    toast.error("password  not matching", {
+
+
+
+  const passwordlimit = () => {
+    toast.error("password doesnt match", {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -80,7 +83,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
       progress: undefined,
       theme: "colored",
     });
-  };
+  }
 
   // const StudentEmailFunction = (event) =>{
   //     const value =  event.target.value
@@ -107,7 +110,9 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
       studentPassword &&
       studentPasswordTwo !== ""
     ) {
-      if (studentPassword === studentPasswordTwo) {
+      if (studentPassword === studentPasswordTwo  ) {
+        console.log(studentPassword.length)
+        if(studentPassword.length > 4 && studentPassword.length < 11 ){
         console.log("button clicked");
         const newid = new Date().getTime();
         console.log(newid);
@@ -130,12 +135,15 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
         setStudentEmail("");
         setStudentPassword("");
         setStudentPasswordTwo("");
+      }else{
+        notify("password should be greater than 4 characters")
+      }
       } else {
-        studentpasswordToast();
+       notify('please make sure,password is matching') 
       }
     } else {
       // alert('please fill out form')
-      notify();
+      notify("please fill out the form");
     }
   };
 
@@ -147,6 +155,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
       studentPasswordTwo !== ""
     ) {
       if (studentPassword === studentPasswordTwo) {
+        if(studentPassword.length > 4 && studentPassword.length < 11 ){
         console.log("edit button clicked");
         console.log(studentdata);
         console.log("hai");
@@ -166,11 +175,15 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
           })
         );
         console.log(studentdata);
+        handleCloseStudent();
+      }else{
+        notify("password should be greater than 4 characters")
+      }
       } else {
-        studentpasswordToast();
+        notify('please make sure,password is matching') 
       }
     } else {
-      notify();
+      notify("please fill out the form");
     }
   };
 
@@ -244,7 +257,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
           <button
             className="StudentModal-ButtonAdd"
             onClick={() => {
-              handleCloseStudent();
+              
               {
                 selectedstudent ? handleEditStudent() : handleAddStudent();
               }

@@ -48,6 +48,7 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow }) => {
   return (
     <Fragment>
       <div className="Issuepage-row row py-2" key={issueobj.Issueid}>
+    
         {bookData?.map((bookobj) => {
           console.log(bookobj.remaining, "huy");
 
@@ -69,7 +70,7 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow }) => {
 
         <div className="col Issuepage-content">{dueddatedisplay}</div>
 
-        <div className="col Issuepage-content">
+        <div className="col Issuepage-content" style={{color : dayDiff ? "red" : "" }}>
           {dayDiff ? dayDiff * 10 : "0"}
         </div>
 
@@ -90,6 +91,8 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow }) => {
           </ReactTooltip>
         </div>
       </div>
+      
+     
     </Fragment>
   );
 };

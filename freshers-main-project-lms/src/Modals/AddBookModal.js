@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../css/AllBooksAddModal.css";
 import IssueBookModal from "./IssueBookModal";
+import { useRef } from "react";
 
 import { nanoid } from "nanoid";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,6 +21,8 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
   const [bookLanguage, setBookLanguage] = useState("");
   const [booktotalCopies, setbookTotalCopies] = useState();
   const [bookremainingCopies, setbookRemainingCopies] = useState();
+  const remain = useRef();
+  const total = useRef()
 
   useEffect(() => {
     setBookTitle(selectedAllbooks?.title);
@@ -32,34 +35,34 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
   const BookTitleFunc = (event) => {
     const value = event.target.value;
     setBookTitle(value);
-    console.log(bookTitle);
+  
   };
 
   const BookAuthorFunc = (event) => {
     const value = event.target.value;
     setBookAuthor(value);
-    console.log(bookAuthor);
+  
   };
 
   const BookLanguageFunc = (event) => {
     const value = event.target.value;
     setBookLanguage(value);
-    console.log(bookLanguage);
+  
   };
   const BookTotalCopiesFunc = (event) => {
     const value = event.target.value;
     setbookTotalCopies(value);
-    console.log(booktotalCopies);
+ 
   };
 
   const BookRemainingCopiesFunc = (event) => {
     const value = event.target.value;
     setbookRemainingCopies(value);
-    console.log(typeof bookremainingCopies, "ggg");
+ 
   };
 
-  const allbooksmodaltoast = () => {
-    toast.error("Sorry,please fill out form", {
+  const allbooksnotify = (text) => {
+    toast.error(text, {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -79,6 +82,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
       booktotalCopies &&
       bookremainingCopies !== ""
     ) {
+      if(remain.current.value <= total.current.value){
       console.log("button clicked");
 
       const setdata = {
@@ -91,8 +95,18 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
       };
       setBookData([...bookData, setdata]);
       console.log(bookData);
+      handleCloseBook()
+      setBookTitle("")
+      setBookAuthor("")
+      setBookLanguage("")
+      setbookTotalCopies()
+      setbookRemainingCopies()
+    }
+    else{
+      allbooksnotify("remaining cannot be greater than total")
+    }
     } else {
-      allbooksmodaltoast();
+      allbooksnotify("Sorry,please fill out form");
     }
   };
   ///////
@@ -104,6 +118,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
       booktotalCopies &&
       bookremainingCopies !== ""
     ) {
+      if(remain.current.value <= total.current.value){
       console.log("editbook button clicked");
       console.log(bookData);
 
@@ -126,8 +141,12 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
         })
       );
       console.log(bookData);
+      handleCloseBook();
+      }else{
+        allbooksnotify("remaining cannot be greater than total")
+      }
     } else {
-      allbooksmodaltoast();
+      allbooksnotify("Sorry,please fill out form");
     }
   };
 
@@ -192,6 +211,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
                   onChange={BookTotalCopiesFunc}
                   value={booktotalCopies || ""}
                   placeholder="5"
+                  ref={total}
                 />
               </Form.Group>
 
@@ -207,6 +227,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
                   onChange={BookRemainingCopiesFunc}
                   value={bookremainingCopies || ""}
                   placeholder="2"
+                  ref={remain}
                 />
               </Form.Group>
             </div>
@@ -219,7 +240,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
           <button
             className="AllBookAddBtn"
             onClick={() => {
-              handleCloseBook();
+              
               {
                 selectedAllbooks ? handleEditAllBook() : handleAddAllBook();
               }

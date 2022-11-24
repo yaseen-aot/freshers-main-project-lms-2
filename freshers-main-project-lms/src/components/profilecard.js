@@ -13,7 +13,7 @@ import ProfileList from "./profileList";
 const Profilecard = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
+  
 
   const [issuestate, setIssuestate] = useContext(issuebooksContext);
   const [studentdata, setStudentdata] = useContext(studentContext);
@@ -21,7 +21,7 @@ const Profilecard = () => {
 
   const [count, setcount] = useState(0);
   const [remaininingCount,setRemainingCount] = useState(0)
-
+  const [profileSearch,setProfileSearch] = useState('')
 
   useEffect(() => {
     let countvar = 0;
@@ -40,7 +40,14 @@ const Profilecard = () => {
     setcount(countvar);
     setRemainingCount(remaining)
   }, [issuestate, id]);
-  console.log(count, "count");
+  
+
+
+  const profileSearchFunc = (e) => {
+    const value = e.target.value
+    setProfileSearch(value)
+    console.log(profileSearch)
+  }
 
   return (
     <Fragment>
@@ -99,7 +106,8 @@ const Profilecard = () => {
           <div className="mainsearch-div d-flex">
             <input
               className="inputsearch"
-              type="search"
+              type="text"
+              onChange={profileSearchFunc}
               placeholder="Search by book title or author "
             />
           </div>
@@ -108,7 +116,7 @@ const Profilecard = () => {
           </div>
         </div>
 
-          <div className="Allbooks-row row py-3 mt-4">
+          <div className="Allbooks-row row py-3 mt-4  ">
             <div className="col profile-table-headers">Book Title</div>
             <div className="col profile-table-headers">Author</div>
             <div className="col profile-table-headers">Issue Date</div>
@@ -119,7 +127,7 @@ const Profilecard = () => {
           {issuestate.map((issueobj) => {
             
             if (issueobj.issuestudentid == id) {
-              return <ProfileList issueobj={issueobj} />;
+              return <ProfileList issueobj={issueobj} profileSearch = {profileSearch} />;
             }
           })}
         </div>

@@ -8,7 +8,9 @@ import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
 import IssueReturn from "./ReturnModal";
 import '../css/IssueModal.css'
-import IssuedPage from "../components/IssuedPageContainer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const IssueBookModal = ({ show, setShow }) => {
   const [issuestate, setIssuestate] = useContext(issuebooksContext);
@@ -26,6 +28,19 @@ const IssueBookModal = ({ show, setShow }) => {
 
   const [duedatetwo, setDuedatetwo] = useState("");
   const [issuedatetwo, setIssuedatetwo] = useState("");
+
+  const issueBooksNotify = (text) => {
+    toast.error(text, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  };
 
   const IssuebookStateFunc = (event) => {
     const val = event.target.value;
@@ -83,6 +98,7 @@ const IssueBookModal = ({ show, setShow }) => {
 
   const addIssueBookFunc = () => {
     // if(issuedateissue < duedatetwo){
+      if(issueidbook && issueidstudent && issuedateissue && issueduedate != ""){
 
     const Issueid = Math.floor(Math.random() * Date.now());
     const setarray = {
@@ -98,7 +114,16 @@ const IssueBookModal = ({ show, setShow }) => {
     //  console.log(issueduedate,issuedateissue,"se")
     console.log(setarray, "setarray");
     setIssuestate([...issuestate, setarray]);
-
+    handleClose()
+    setissueidbook("")
+    setissueidstudent("")
+    setIssuedateissue("")
+    setIssueduedate("")
+    
+  }
+  else{
+    issueBooksNotify('please fill out the form')
+  }
     // }
     // else{
     //   alert("please enter valid date")
@@ -200,12 +225,29 @@ const IssueBookModal = ({ show, setShow }) => {
             onClick={() => {
               addIssueBookFunc();
               RemainingDecreaseFunc();
+             
             }}
           >
             Issue Book
           </button>
         </Modal.Footer>
       </Modal>
+
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="coloured"
+    />
+    {/* Same as */}
+    <ToastContainer />
+
     </Fragment>
   );
 };
