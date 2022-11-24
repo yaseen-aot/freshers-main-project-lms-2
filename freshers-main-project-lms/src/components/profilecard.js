@@ -22,6 +22,41 @@ const Profilecard = () => {
   const [count, setcount] = useState(0);
   const [remaininingCount,setRemainingCount] = useState(0)
   const [profileSearch,setProfileSearch] = useState('')
+  const [totalFineCalc,setTotalFineCalc] = useState(0)
+  
+  
+
+  
+  useEffect(() => {
+    issuestate.map((issueobj) => {
+
+    
+    var currentDueDate = new Date(issueobj?.duedate);
+    var Duemonth = currentDueDate.getMonth() + 1;
+    var Duedate = currentDueDate.getDate();
+    var Dueyear = currentDueDate.getFullYear();
+   
+    var date1 = new Date();
+    var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+    
+
+    if (date1 > date2) {
+      var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
+      var count = totalFineCalc + diffDays
+      console.log(count,"ddd")
+     return setTotalFineCalc(count);
+     
+      
+    //  totalFineCalc = totalFineCalc + diffDays ;
+      
+      
+      
+   
+    } 
+    })
+  }, []);
+  console.log(totalFineCalc,"ddddffff")
+
 
   useEffect(() => {
     let countvar = 0;
@@ -127,7 +162,11 @@ const Profilecard = () => {
           {issuestate.map((issueobj) => {
             
             if (issueobj.issuestudentid == id) {
-              return <ProfileList issueobj={issueobj} profileSearch = {profileSearch} />;
+              return <ProfileList issueobj={issueobj} profileSearch = {profileSearch} 
+              // setTotalFineCalc = {setTotalFineCalc}
+              // totalFineCalc = {totalFineCalc}
+              />;
+
             }
           })}
         </div>

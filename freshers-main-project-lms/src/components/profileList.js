@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { allBooksContext } from "../App";
 import "../css/studentprofile.css";
 
-const ProfileList = ({ issueobj,profileSearch }) => {
+const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) => {
   const [bookData, setBookData] = useContext(allBooksContext);
 
   const [profileDayDiff, setProfileDayDiff] = useState(null);
@@ -20,7 +20,8 @@ const ProfileList = ({ issueobj,profileSearch }) => {
   
 
   useEffect(() => {
-   
+    let finetotal = 0
+    let finecal = 0
 
     var date1 = new Date();
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
@@ -29,13 +30,13 @@ const ProfileList = ({ issueobj,profileSearch }) => {
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       setProfileDayDiff(diffDays);
-     
+     totalFineCalc = totalFineCalc + diffDays ;
       
-//       let finetotal = 0
-//       let finecal = 0
-//  finetotal = finetotal + profileDayDiff
-//  finecal = finetotal * 10
-//  console.log(finetotal,'jjj')
+      
+      finetotal = finetotal + diffDays
+      console.log(totalFineCalc,"r")
+      finecal = finetotal * 10
+      console.log(finetotal,'jjj')
       
     }
   }, [issueobj]);
