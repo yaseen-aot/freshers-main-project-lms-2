@@ -12,6 +12,7 @@ import Student from "./pages/StudentsLayout";
 
 import AllMain from "./pages/AllbooksLayout";
 import IssueMain from "./pages/IssuePageLayout";
+import MyBooks from "./pages/MyBooks";
 
 export const studentContext = createContext();
 export const allBooksContext = createContext();
@@ -56,7 +57,9 @@ const localStorageIssueBooks = () => {
 };
 
 function App() {
+  
   const [formSubmitted, setFormSubmitted] = useState(false);
+  // const [studentLogin,setStudentLogin] = useState(false)
   const [studentdata, setStudentdata] = useState(localStorageStudent());
 
   // {id: 1669012016763, name: 'sinto pp', email: 'sinto@134', password: 'sinto', position: 'student'},
@@ -88,8 +91,13 @@ function App() {
 
   const submitForm = () => {
     setFormSubmitted(true);
-    console.log("hhh");
   };
+
+  // const studentSubmit = () => {
+  //   setStudentLogin(true)
+  //   console.log(studentLogin)
+  // } 
+
 
   const admindetails = {
     email: "yasin@2003",
@@ -118,10 +126,13 @@ function App() {
                   }
                 />
 
+               
+
                 <Route path="/issued-books" element={<IssueMain />} />
                 <Route path="/all-books" element={<AllMain />} />
                 <Route path="/students" element={<Student />} />
                 <Route path="/students/:id" element={<StudentProfile />} />
+                <Route path="/mybooks" element = {<MyBooks/>}/>
               </Routes>
             </Router>
           </div>

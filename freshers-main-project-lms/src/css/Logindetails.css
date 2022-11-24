@@ -61,3 +61,15 @@
   border-left: none;
   background: transparent;
 }
+.registerlink{
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #646464;
+
+}
+.registerbutton{
+  text-decoration: none;
+}

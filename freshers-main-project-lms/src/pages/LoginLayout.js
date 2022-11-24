@@ -8,10 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
+import { useNavigate } from "react-router";
 
 const Login = ({ submitForm, admindetails }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
+
+  const navigate = useNavigate();
+  
 
   const [values, setValues] = useState({
     email: "",
@@ -22,9 +26,11 @@ const Login = ({ submitForm, admindetails }) => {
 
   const [studentpage, setStudentpage] = useState(false);
 
+
+
   const studentClick = () => {
     setStudentpage(true);
-    console.log(studentpage);
+   
   };
 
   const adminClick = () => {
@@ -45,12 +51,30 @@ const Login = ({ submitForm, admindetails }) => {
     }
   };
 
+  const studentMatch = () =>{
+    console.log(values)
+    studentdata.map((data) => {
+      // console.log(values.email)
+      // console.log(values.password)
+      // console.log(data.email)
+      // console.log(data.password)
+
+      if (values.email === data.email && values.password === data.password){
+       console.log("student logged")
+       navigate("/mybooks")
+      }
+      else{
+        console.log("sorry")
+      }
+    })
+  }
+
   const onLoginInput = (e) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
-    console.log(values);
+    
   };
 
   const ToastFunc = () => {
@@ -75,7 +99,11 @@ const Login = ({ submitForm, admindetails }) => {
 
   const studentlogin = (e) => {
     e.preventDefault();
-    console.log("success");
+    setErrors(LogValidate(values))
+    studentMatch()
+    
+    console.log("student btn clicked");
+
   };
 
   return (
@@ -130,7 +158,7 @@ const Login = ({ submitForm, admindetails }) => {
                   onChange={onLoginInput}
                 />
               </div>
-              {errors.email && <p className="errormsg">{errors.email}</p>}
+              {errors.email && <p className="errormsg mb-0">{errors.email}</p>}
 
               <label className="mt-3">Password</label>
               <div className="field">
@@ -143,7 +171,7 @@ const Login = ({ submitForm, admindetails }) => {
                   onChange={onLoginInput}
                 />
               </div>
-              {errors.password && <p className="errormsg">{errors.password}</p>}
+              {errors.password && <p className="errormsg mb-0">{errors.password}</p>}
 
               <button
                 className="login-button mt-4"
@@ -155,7 +183,7 @@ const Login = ({ submitForm, admindetails }) => {
               </button>
 
               {studentpage && (
-                <p className="m-0">Don't have an account? Register</p>
+                <p className="registerlink text-center m-0 pt-2 ">Don't have an account? <a className="registerbutton" href="#" style={{color : "#ED7966"}}>Register</a></p>
               )}
             </div>
           </form>
