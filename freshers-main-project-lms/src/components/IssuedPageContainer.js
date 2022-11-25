@@ -19,51 +19,87 @@ const IssuedPage = () => {
   const [returnshow, setReturnShow] = useState(false);
   const [show, setShow] = useState(false);
   const [returnkey, setReturnKey] = useState("");
+  const [issueTempArray,setIssueTempArray] = useState([])
 
   const handleReturnShow = () => setReturnShow(true);
   const handleShow = () => setShow(true);
 
   const returnGetkey = (returnkey) => {
-    console.log("fvreffre");
     setReturnKey(returnkey);
-    console.log(returnkey, "dgggggg");
   };
 
-  {
-    issuestate?.map((issuemap) => {
-      const issueFineFunc = () => {
-        // const today = new Date()
-        // const todaymonth = today.getMonth() + 1
-        // const currentday = today.getDate()+"-"+ todaymonth + "-" + today.getFullYear()
-        // console.log(typeof(currentday),"today")
-        // console.log(typeof(issuemap.duedate),"duedate")
-        // if(currentday > issuemap?.duedate){
-        //     const diffTime = Math.abs(currentday.getDate() - issuemap?.duedate.getDate());
-        //     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        //     console.log(diffTime + " milliseconds");
-        //     console.log(diffDays + " days");
-      };
 
-      // var parts =duedatetwo.split('-');
-      // Please pay attention to the month (parts[1]); JavaScript counts months from 0:
-      // January - 0, February - 1, etc.
-      // var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
-      // console.log(mydate.toDateString());
+  const issuetemp = issuestate
 
-      // const diffTime = Math.abs(date2 - date1);
-      // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      // console.log(diffTime + " milliseconds");
-      // console.log(diffDays + " days");
-      // }
-      issueFineFunc();
-    });
+
+
+
+  const issuetemparr = issuestate.map((issueobj) => {
+   
+   const temp = 
+   {
+
+    Issueid: issueobj.Issueid,
+    issuebookname : "",
+    issuestudentname : "",
+    issuedate: issueobj.issuedate,
+    duedate: issueobj.duedate,
+    isreturn: issueobj.isreturn,
+    isissue: issueobj.isissue,       
   }
 
-  // console.log(currentday,"today")
+  bookData.map((bookobj)=>{
+    if(bookobj.bookid === issueobj.issuebookid){
+      temp.issuebookname = bookobj.title
+    }
+  })
 
-  // if(currentday > 6 ){
+  
+  studentdata.map((studentobj)=>{
+    console.log(studentobj.id,"hh")
+    console.log(issueobj.issuestudentid,"ll")
+    if(studentobj.id == issueobj.issuestudentid){
+      console.log("hello")
+      temp.issuestudentname = studentobj.name
+    }
+  })
 
-  // }
+
+  // var currentIssueDate = new Date(issueobj?.issuedate);
+  // var Issuemonth = currentIssueDate.getMonth() + 1;
+  // var Issuedate = currentIssueDate.getDate();
+  // var Issueyear = currentIssueDate.getFullYear();
+  // const issueddatedisplay = Issuedate + "-" + Issuemonth + "-" + Issueyear;
+ 
+ 
+
+  // var currentDueDate = new Date(issueobj?.duedate);
+  // var Duemonth = currentDueDate.getMonth() + 1;
+  // var Duedate = currentDueDate.getDate();
+  // var Dueyear = currentDueDate.getFullYear();
+  // const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
+
+
+  
+
+
+             
+             
+            
+  return temp
+            
+   
+ })
+ console.log(issuetemparr,"abc")
+
+ 
+
+
+   
+
+
+
+
 
   return (
     <div className="div-main ">
@@ -113,14 +149,17 @@ const IssuedPage = () => {
             <div className="col head-Issuepage">Actions</div>
           </div>
 
-          {issuestate?.map((issueobj) => {
+         
+
+          {  issuestate?.map((issueobj) => {
             if (issueobj.isreturn === false) {
-              console.log(issueobj, "hhhhh");
+             
               return (
                 <IssueBookList
                   issueobj={issueobj}
                   returnGetkey={returnGetkey}
                   handleReturnShow={handleReturnShow}
+                  issuetemparr = {issuetemparr}
                 />
                 
               );

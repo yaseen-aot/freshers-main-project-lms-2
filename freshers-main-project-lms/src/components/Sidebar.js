@@ -4,10 +4,12 @@ import { MdTaskAlt } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import "../css/SideBar.css";
+import { BsPersonCircle } from "react-icons/bs";
+
 
 const SideBar = () => {
   return (
-    <div className="SideBar">
+    <div className="SideBar ">
       <div className="">
         <div className="loginhead d-flex gap-3 pt-4 ps-4 flex-wrap">
           <img className="whitelogo" src={whiteLogo} alt="logo" />
@@ -37,8 +39,18 @@ const SideBar = () => {
           </Link>
         </div>
       </div>
+
+   
     </div>
   );
 };
 
 export default SideBar;
+
+// <div className="bottomdiv d-flex  gap-md-2  pt-3 mx-3">
+// <BsPersonCircle className="align-md-self-center" size={30}/>
+//   <div className="" >
+//   <p className="m-0">Mayor Smith</p>
+//   <p className="m-0">mayorsmith@gmail.com</p>
+//   </div>
+// </div>

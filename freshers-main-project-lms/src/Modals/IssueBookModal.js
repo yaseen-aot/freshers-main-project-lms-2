@@ -109,7 +109,7 @@ const IssueBookModal = ({ show, setShow }) => {
       duedate: issueduedate,
       isreturn: false,
       isissue: true,
-      fine: 0,
+      
     };
     //  console.log(issueduedate,issuedateissue,"se")
     console.log(setarray, "setarray");
