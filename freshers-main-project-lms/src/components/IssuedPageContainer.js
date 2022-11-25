@@ -19,6 +19,7 @@ const IssuedPage = () => {
   const [returnshow, setReturnShow] = useState(false);
   const [show, setShow] = useState(false);
   const [returnkey, setReturnKey] = useState("");
+  const [issueSearchText,setIssueSearchText] = useState("")
   const [issueTempArray,setIssueTempArray] = useState([])
 
   const handleReturnShow = () => setReturnShow(true);
@@ -27,6 +28,12 @@ const IssuedPage = () => {
   const returnGetkey = (returnkey) => {
     setReturnKey(returnkey);
   };
+
+  const issueSearchTextFunc = (e) => {
+    const value = e.target.value
+    setIssueSearchText(value)
+    console.log(value)
+  }
 
 
   const issuetemp = issuestate
@@ -125,6 +132,7 @@ const IssuedPage = () => {
               className="inputsearch"
               type="text"
               placeholder="Search by book title or student "
+              onChange= {issueSearchTextFunc}
             />
           </div>
           <div>
@@ -160,6 +168,7 @@ const IssuedPage = () => {
                   returnGetkey={returnGetkey}
                   handleReturnShow={handleReturnShow}
                   issuetemparr = {issuetemparr}
+                  issueSearchText = {issueSearchText}
                 />
                 
               );

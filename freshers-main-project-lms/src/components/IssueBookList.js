@@ -4,10 +4,13 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import { allBooksContext, studentContext } from "../App";
 
 
-const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issuetemparr }) => {
+const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issueSearchText }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
   const [dayDiff, setDayDiff] = useState();
+  const [issuesearchState,setIssueSearchState] = useState('')
+  const [issueSearchStudent,setIssueSearchStudent] = useState('')
+ 
 
  
 
@@ -16,7 +19,7 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issuetemparr }
   var Issuedate = currentIssueDate.getDate();
   var Issueyear = currentIssueDate.getFullYear();
   const issueddatedisplay = Issuedate + "-" + Issuemonth + "-" + Issueyear;
- 
+  // const issueddate = issueobj.issuedate.getDate()+"-"+ issueobj.issuedate.getMonth()+1 + "-" + issueobj.issuedate.getFullYear()
  
 
   var currentDueDate = new Date(issueobj?.duedate);
@@ -38,28 +41,106 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issuetemparr }
   }, [issueobj]);
 
 
+  useEffect(()=>{
+  
+   let filterdata =  bookData ?.filter((data) => {
+      if (data === "") {
+        return data;
+      } else if (
+        data.title.toLowerCase().includes(issueSearchText.toLowerCase())
+      ) {
+        // setIssueSearchState(true)
+        return data;
+         
+      }
+    })
+
+    
+    setIssueSearchState(filterdata)
+
+    let filterstudentdata = studentdata?.filter((studentdata) => {
+      if (studentdata === "") {
+        return studentdata;
+      }
+      
+      else if (
+        studentdata.name.toLowerCase().includes(issueSearchText.toLowerCase())
+      ) {
+        return studentdata;
+      }
+    })
+
+    setIssueSearchStudent(filterstudentdata)
+
+  },[issueSearchText,bookData,studentdata])
+
+  console.log(issuesearchState,"hello")
+
 
   return (
-    issuetemparr.map
     <Fragment>
       <div className="Issuepage-row row py-2" key={issueobj.Issueid}>
     
-        {bookData?.map((bookobj) => {
+        {
+          
+         bookData?.filter((data) => {
+          if (data === "") {
+            return data;
+          }
+          else if(
+            issueSearchStudent.length > 0   
+          ){
+            return data
+          } else if (
+            data.title.toLowerCase().includes(issueSearchText.toLowerCase())
+          ) {
+            // setIssueSearchState(true)
+            return data;
+          }
+        })
+         
+         
+         
+         .map((bookobj) => {
+         
           
           if (issueobj.issuebookid === bookobj.bookid) {
+           
             return <div className="col Issuepage-content">{bookobj.title}</div>;
+           
           }
+         
         })}
 
-        {studentdata?.map((studentobj) => {
+        {studentdata?.filter((studentdata) => {
+          if (studentdata === "") {
+            return studentdata;
+          }else if(
+            issuesearchState.length > 0   
+          ){
+            return studentdata
+          }
+          
+          else if (
+            studentdata.name.toLowerCase().includes(issueSearchText.toLowerCase())
+          ) {
+            return studentdata;
+          }
+        })
+          
+          
+          
+          
+          
+          .map((studentobj) => {
+
           if (issueobj.issuestudentid == studentobj.id) {
           
             return (
+              <Fragment>
               <div className="col Issuepage-content">{studentobj.name}</div>
-            );
-          }
-        })}
 
+              
         <div className="col Issuepage-content">{issueddatedisplay}</div>
 
         <div className="col Issuepage-content">{dueddatedisplay}</div>
@@ -84,6 +165,12 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issuetemparr }
             Mark as returned
           </ReactTooltip>
         </div>
+
+        </Fragment>
+            );
+          }
+        })}
+
       </div>
       
      

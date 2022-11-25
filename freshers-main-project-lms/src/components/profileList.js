@@ -47,7 +47,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
 
 
   return (
-    <div className="Allbooks-row row py-3" key={issueobj.Issueid}>
+    <div key={issueobj.Issueid}>
       {
         bookData
         ?.filter((data) => {
@@ -67,25 +67,29 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
         
         
         .map((bookobj) => {
+         
         if (bookobj.bookid == issueobj.issuebookid) {
           return (
+            <div className="Allbooks-row row py-3" >
             <Fragment key={bookobj.bookid}>
               <div className="col profile-table-data">{bookobj.title}</div>
               <div className="col profile-table-data">{bookobj.author}</div>
+              <div className="col profile-table-data">{issueobj.issuedate}</div>
+              <div className="col profile-table-data">{dueddatedisplay}</div>
+              <div className="col profile-table-data">
+                {!issueobj.isreturn ? "-" : issueobj.isreturndate}
+              </div>
+              <div className="col profile-table-data" style={{color : profileDayDiff ? "red" : "09174A" }}>
+                {profileDayDiff ? profileDayDiff * 10 : "0"}
+                
+              </div>
             </Fragment>
+            </div>
           );
         }
       })}
 
-      <div className="col profile-table-data">{issueobj.issuedate}</div>
-      <div className="col profile-table-data">{dueddatedisplay}</div>
-      <div className="col profile-table-data">
-        {!issueobj.isreturn ? "-" : issueobj.isreturndate}
-      </div>
-      <div className="col profile-table-data" style={{color : profileDayDiff ? "red" : "09174A" }}>
-        {profileDayDiff ? profileDayDiff * 10 : "0"}
-        
-      </div>
+     
     </div>
   );
 };
