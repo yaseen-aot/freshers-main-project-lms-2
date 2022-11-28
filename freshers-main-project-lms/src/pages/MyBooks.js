@@ -1,10 +1,18 @@
+import SideBar from "../components/Sidebar";
+import Studentmain from "../components/StudentContainer";
+
+
 const MyBooks = () => {
     return ( 
-        <div>
-        
-        <p>hai i am mybooks</p>
-        
-        </div>
+        <div className="student-main d-flex gap-md-4  ">
+      <div className="sidebar-div col-3 col-md-2 sticky-top">
+        <SideBar />
+      </div>
+
+      <div className=" col-9  ">
+        <Studentmain />
+      </div>
+    </div>
      );
 }
  

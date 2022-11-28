@@ -17,6 +17,7 @@ import MyBooks from "./pages/MyBooks";
 export const studentContext = createContext();
 export const allBooksContext = createContext();
 export const issuebooksContext = createContext();
+export const sidebarCustomizeContext = createContext();
 
 // const localStorageAdmin = () => {
 //   let admindetail = localStorage.getItem('admindetails')
@@ -98,6 +99,8 @@ function App() {
   //   console.log(studentLogin)
   // } 
 
+  const [sidebarCustomize,setSidebarCustomize]= useState(false)
+
 
   const admindetails = {
     email: "yasin@2003",
@@ -105,6 +108,7 @@ function App() {
   };
 
   return (
+    <sidebarCustomizeContext.Provider value={[sidebarCustomize,setSidebarCustomize]}>
     <issuebooksContext.Provider value={[issuestate, setIssuestate]}>
       <allBooksContext.Provider value={[bookData, setBookData]}>
         <studentContext.Provider value={[studentdata, setStudentdata]}>
@@ -139,6 +143,7 @@ function App() {
         </studentContext.Provider>
       </allBooksContext.Provider>
     </issuebooksContext.Provider>
+    </sidebarCustomizeContext.Provider>
   );
 }
 

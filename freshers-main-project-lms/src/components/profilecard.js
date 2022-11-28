@@ -23,6 +23,7 @@ const Profilecard = () => {
   const [remaininingCount,setRemainingCount] = useState(0)
   const [profileSearch,setProfileSearch] = useState('')
   const [totalFineCalc,setTotalFineCalc] = useState(0)
+  const  [profilefineTotal,setProfileFineTotal] = useState('')
   
   
 
@@ -55,7 +56,7 @@ const Profilecard = () => {
     } 
     })
   }, []);
-  console.log(totalFineCalc,"ddddffff")
+ 
 
 
   useEffect(() => {
@@ -75,7 +76,47 @@ const Profilecard = () => {
     setcount(countvar);
     setRemainingCount(remaining)
   }, [issuestate, id]);
-  
+
+
+
+  useEffect(() => {
+   let count = issuestate.map((issueobj)=>{
+
+    
+    var currentDueDate = new Date(issueobj?.duedate);
+    var Duemonth = currentDueDate.getMonth() + 1;
+    var Duedate = currentDueDate.getDate();
+    var Dueyear = currentDueDate.getFullYear();
+    const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
+
+
+    let finetotal = 0
+    let finecal = 0
+
+    var date1 = new Date();
+    var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+    
+
+    if (date1 > date2) {
+      var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
+      console.log(profilefineTotal,"okayy")
+      
+    //  totalFineCalc = totalFineCalc + diffDays ;
+      
+      
+      finetotal = finetotal + diffDays
+      finecal = finetotal * 10
+      let newCount = diffDays + profilefineTotal
+      setProfileFineTotal(newCount);
+    return  diffDays;
+      
+    }
+  })
+  console.log(count,"okayyw")
+
+  }, [issuestate]);
+
+  console.log(profilefineTotal,"okay")
 
 
   const profileSearchFunc = (e) => {

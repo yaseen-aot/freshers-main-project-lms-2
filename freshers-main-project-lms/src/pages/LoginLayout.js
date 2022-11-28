@@ -8,11 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
+import { sidebarCustomizeContext } from "../App";
 import { useNavigate } from "react-router";
 
 const Login = ({ submitForm, admindetails }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
+  const [sidebarCustomize,setSidebarCustomize]= useContext(sidebarCustomizeContext)
 
   const navigate = useNavigate();
   
@@ -61,6 +63,7 @@ const Login = ({ submitForm, admindetails }) => {
 
       if (values.email === data.email && values.password === data.password){
        console.log("student logged")
+       setSidebarCustomize(true)
        navigate("/mybooks")
       }
       else{

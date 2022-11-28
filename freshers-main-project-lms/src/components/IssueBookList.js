@@ -79,7 +79,8 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issueSearchTex
 
   return (
     <Fragment>
-      <div className="Issuepage-row row py-2" key={issueobj.Issueid}>
+    
+      <div className="issue-book-list-container " key={issueobj.Issueid}>
     
         {
           
@@ -103,73 +104,74 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issueSearchTex
          
          .map((bookobj) => {
          
+          return <Fragment>
           
-          if (issueobj.issuebookid === bookobj.bookid) {
+           {
+            (issueobj.issuebookid === bookobj.bookid)&& 
+           <Fragment>
            
-            return <div className="col Issuepage-content">{bookobj.title}</div>;
-           
-          }
+            {studentdata?.filter((studentdata) => {
+              if (studentdata === "") {
+                return studentdata;
+              }else if(
+                issuesearchState.length > 0   
+              ){
+                return studentdata
+              }
+              
+              else if (
+                studentdata.name.toLowerCase().includes(issueSearchText.toLowerCase())
+              ) {
+                return studentdata;
+              }
+            })  
+            .map((studentobj) => {
+              
+              if (issueobj.issuestudentid == studentobj.id) {
+              
+                return (
+                  <Fragment>
+                  <div className="Issuepage-row row py-2">
+                  <div className="col Issuepage-content">{bookobj.title}</div>
+                  <div className="col Issuepage-content">{studentobj.name}</div>
+    
+                  
+            <div className="col Issuepage-content">{issueddatedisplay}</div>
+    
+            <div className="col Issuepage-content">{dueddatedisplay}</div>
+    
+            <div className="col Issuepage-content" style={{color : dayDiff ? "red" : "" }}>
+              {dayDiff ? dayDiff * 10 : "0"}
+            </div>
+    
+            <div className="col Issuepage-content">
+              <button
+                className="returnbutton"
+                data-tip
+                data-for="returntooltip"
+                onClick={() => {
+                  handleReturnShow();
+                  returnGetkey(issueobj.Issueid);
+                }}
+              >
+                <MdOutlineAssignmentReturn className="Issuepage-return" />
+              </button>
+              <ReactTooltip id="returntooltip" place="top" effect="solid">
+                Mark as returned
+              </ReactTooltip>
+            </div>
+            </div>
+              </Fragment>
+                );
+              }
+            })}
+           </Fragment>
+           }
+          </Fragment>
          
         })}
 
-        {studentdata?.filter((studentdata) => {
-          if (studentdata === "") {
-            return studentdata;
-          }else if(
-            issuesearchState.length > 0   
-          ){
-            return studentdata
-          }
-          
-          else if (
-            studentdata.name.toLowerCase().includes(issueSearchText.toLowerCase())
-          ) {
-            return studentdata;
-          }
-        })
-          
-          
-          
-          
-          
-          .map((studentobj) => {
-
-          if (issueobj.issuestudentid == studentobj.id) {
-          
-            return (
-              <Fragment>
-              <div className="col Issuepage-content">{studentobj.name}</div>
-
-              
-        <div className="col Issuepage-content">{issueddatedisplay}</div>
-
-        <div className="col Issuepage-content">{dueddatedisplay}</div>
-
-        <div className="col Issuepage-content" style={{color : dayDiff ? "red" : "" }}>
-          {dayDiff ? dayDiff * 10 : "0"}
-        </div>
-
-        <div className="col Issuepage-content">
-          <button
-            className="returnbutton"
-            data-tip
-            data-for="returntooltip"
-            onClick={() => {
-              handleReturnShow();
-              returnGetkey(issueobj.Issueid);
-            }}
-          >
-            <MdOutlineAssignmentReturn className="Issuepage-return" />
-          </button>
-          <ReactTooltip id="returntooltip" place="top" effect="solid">
-            Mark as returned
-          </ReactTooltip>
-        </div>
-
-        </Fragment>
-            );
-          }
-        })}
+      
 
       </div>
       

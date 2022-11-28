@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import "../css/AllBooksAddModal.css";
-import IssueBookModal from "./IssueBookModal";
 import { useRef } from "react";
 
 import { nanoid } from "nanoid";
