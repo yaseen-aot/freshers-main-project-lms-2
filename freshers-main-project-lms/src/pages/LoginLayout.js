@@ -63,8 +63,12 @@ const Login = ({ submitForm, admindetails }) => {
 
       if (values.email === data.email && values.password === data.password){
        console.log("student logged")
-       setSidebarCustomize(true)
-       navigate("/mybooks")
+       if(data.position === "student")
+       {
+        setSidebarCustomize(true)
+        navigate("/mybooks")
+       }
+     
       }
       else{
         console.log("sorry")
