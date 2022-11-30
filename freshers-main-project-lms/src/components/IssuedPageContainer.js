@@ -36,68 +36,7 @@ const IssuedPage = () => {
   }
 
 
-  const issuetemp = issuestate
-
-
-
-
-  const issuetemparr = issuestate.map((issueobj) => {
-   
-   const temp = 
-   {
-
-    Issueid: issueobj.Issueid,
-    issuebookname : "",
-    issuestudentname : "",
-    issuedate: issueobj.issuedate,
-    duedate: issueobj.duedate,
-    isreturn: issueobj.isreturn,
-    isissue: issueobj.isissue,       
-  }
-
-  bookData.map((bookobj)=>{
-    if(bookobj.bookid === issueobj.issuebookid){
-      temp.issuebookname = bookobj.title
-    }
-  })
-
-  
-  studentdata.map((studentobj)=>{
-    console.log(studentobj.id,"hh")
-    console.log(issueobj.issuestudentid,"ll")
-    if(studentobj.id == issueobj.issuestudentid){
-      console.log("hello")
-      temp.issuestudentname = studentobj.name
-    }
-  })
-
-
-  // var currentIssueDate = new Date(issueobj?.issuedate);
-  // var Issuemonth = currentIssueDate.getMonth() + 1;
-  // var Issuedate = currentIssueDate.getDate();
-  // var Issueyear = currentIssueDate.getFullYear();
-  // const issueddatedisplay = Issuedate + "-" + Issuemonth + "-" + Issueyear;
  
- 
-
-  // var currentDueDate = new Date(issueobj?.duedate);
-  // var Duemonth = currentDueDate.getMonth() + 1;
-  // var Duedate = currentDueDate.getDate();
-  // var Dueyear = currentDueDate.getFullYear();
-  // const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
-
-
-  
-
-
-             
-             
-            
-  return temp
-            
-   
- })
- console.log(issuetemparr,"abc")
 
  
 
@@ -167,7 +106,7 @@ const IssuedPage = () => {
                   issueobj={issueobj}
                   returnGetkey={returnGetkey}
                   handleReturnShow={handleReturnShow}
-                  issuetemparr = {issuetemparr}
+                 
                   issueSearchText = {issueSearchText}
                 />
                 
@@ -181,3 +120,49 @@ const IssuedPage = () => {
 };
 
 export default IssuedPage;
+
+
+// const issuetemp = issuestate
+
+
+
+
+// const issuetemparr = issuestate.map((issueobj) => {
+ 
+//  const temp = 
+//  {
+
+//   Issueid: issueobj.Issueid,
+//   issuebookname : "",
+//   issuestudentname : "",
+//   issuedate: issueobj.issuedate,
+//   duedate: issueobj.duedate,
+//   isreturn: issueobj.isreturn,
+//   isissue: issueobj.isissue,       
+// }
+
+// bookData.map((bookobj)=>{
+//   if(bookobj.bookid === issueobj.issuebookid){
+//     temp.issuebookname = bookobj.title
+//   }
+// })
+
+
+// studentdata.map((studentobj)=>{
+//   console.log(studentobj.id,"hh")
+//   console.log(issueobj.issuestudentid,"ll")
+//   if(studentobj.id == issueobj.issuestudentid){
+//     console.log("hello")
+//     temp.issuestudentname = studentobj.name
+//   }
+// })
+
+      
+// return temp
+          
+ 
+// })
+// console.log(issuetemparr,"abc")
+
+
+// issuetemparr = {issuetemparr}

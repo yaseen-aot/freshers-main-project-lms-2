@@ -133,6 +133,7 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
               language: bookLanguage,
               totalcopies: booktotalCopies,
               remaining: bookremainingCopies,
+              isissue: false,
             };
           }
 

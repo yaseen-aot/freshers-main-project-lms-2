@@ -13,6 +13,7 @@ import Student from "./pages/StudentsLayout";
 import AllMain from "./pages/AllbooksLayout";
 import IssueMain from "./pages/IssuePageLayout";
 import MyBooks from "./pages/MyBooks";
+import StudentAllBooks from "./pages/StudentAllBooks";
 
 export const studentContext = createContext();
 export const allBooksContext = createContext();
@@ -57,8 +58,14 @@ const localStorageIssueBooks = () => {
   }
 };
 
+const sidebarcustomFunc = () =>{
+ return localStorage.getItem('sidebarcustom')
+}
+
 function App() {
+
   
+  const [sidebarCustomize,setSidebarCustomize]= useState(sidebarcustomFunc())
   const [formSubmitted, setFormSubmitted] = useState(false);
   // const [studentLogin,setStudentLogin] = useState(false)
   const [studentdata, setStudentdata] = useState(localStorageStudent());
@@ -83,11 +90,23 @@ function App() {
 
   const [issuestate, setIssuestate] = useState(localStorageIssueBooks());
 
+ 
+
+  
+  const [studentidget,setStudentIdGet] = useState('')
+
+  // useEffect(() =>{
+  //   const data = window.localStorage.getItem('sidebarcustom');
+  //   if(data !== null) setSidebarCustomize(JSON.parse(data))
+  // }, [])
+
+
   useEffect(() => {
     // localStorage.setItem("Admin",JSON.stringify(admindetails))
     localStorage.setItem("studentdata", JSON.stringify(studentdata));
     localStorage.setItem("bookData", JSON.stringify(bookData));
     localStorage.setItem("issuestate", JSON.stringify(issuestate));
+  
   }, [studentdata, bookData, issuestate]);
 
   const submitForm = () => {
@@ -99,13 +118,14 @@ function App() {
   //   console.log(studentLogin)
   // } 
 
-  const [sidebarCustomize,setSidebarCustomize]= useState(false)
+  
 
 
   const admindetails = {
     email: "yasin@2003",
     password: "12345",
   };
+
 
   return (
     <sidebarCustomizeContext.Provider value={[sidebarCustomize,setSidebarCustomize]}>
@@ -123,6 +143,8 @@ function App() {
                       <Login
                         submitForm={submitForm}
                         admindetails={admindetails}
+                        setStudentIdGet = {setStudentIdGet}
+                        
                       />
                     ) : (
                       <IssueMain />
@@ -136,7 +158,8 @@ function App() {
                 <Route path="/all-books" element={<AllMain />} />
                 <Route path="/students" element={<Student />} />
                 <Route path="/students/:id" element={<StudentProfile />} />
-                <Route path="/mybooks" element = {<MyBooks/>}/>
+                <Route path="/mybooks" element = {<MyBooks studentidget = {studentidget} />}/>
+                <Route path="/student-allbooks" element = {<StudentAllBooks/>}/>
               </Routes>
             </Router>
           </div>
@@ -149,3 +172,5 @@ function App() {
 
 export default App;
 // <div className='App-div-first d-flex gap-md-5 '>
+// localStorage.setItem("sidebarcustom",JSON.stringify(sidebarCustomize))
+// sidebarCustomize

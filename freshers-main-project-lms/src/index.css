@@ -222,4 +222,13 @@ color: #09174A;
 .sidebar-div{
   height: 100%;
 }
-
+.person-sidebar{
+  width: 20% !important;
+  height: 20% !important;
+}
+.bottomdiv {
+  position: absolute;
+  top: 72;
+  color: #FFFFFF;
+  
+}

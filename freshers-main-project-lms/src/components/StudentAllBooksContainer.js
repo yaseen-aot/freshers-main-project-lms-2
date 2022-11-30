@@ -1,20 +1,9 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../css/StudentPage.css'
-import { useContext } from "react";
-import { studentContext } from "../App";
-import { allBooksContext } from "../App";
-import { issuebooksContext } from "../App";
-
-const MyBooksContainer = (studentidget) => {
-  console.log(studentidget,"idd")
-  const [studentdata, setStudentdata] = useContext(studentContext);
-  const [bookData, setBookData] = useContext(allBooksContext);
-  const [issuestate, setIssuestate] = useContext(issuebooksContext);
-
- 
 
 
+const StudentAllBooksContainer = () => {
     return ( 
         
         <div className="container-student-page ">
@@ -29,7 +18,7 @@ const MyBooksContainer = (studentidget) => {
               className="inputsearch"
               type="text"
               placeholder="Search by book title or author"
-            
+             value={""}
             />
           </div>
           <div>
@@ -39,7 +28,7 @@ const MyBooksContainer = (studentidget) => {
 
         <div className="d-flex pt-3 gap-md-2">
         <p className="sort-para mt-2 m-0 ">Sort By :</p>
-        <Dropdown className=" dropdown-mybooks d-inline  ">
+        <Dropdown className=" dropdown-student d-inline  ">
         <Dropdown.Toggle id="dropdown-autoclose-true ">
          <span className="pe-5 ps-1">Issue Date</span>
         </Dropdown.Toggle>
@@ -54,11 +43,7 @@ const MyBooksContainer = (studentidget) => {
 
  </div>
 
- <div className=" d-flex gap-md-5 mt-3  border-bottom ps-md-2">
-    <div className="mybooks-filter pb-3">Issued Books (6)</div>
-    <div className="mybooks-filter pb-3">Pending to return (4)</div>
-    <div className="mybooks-filter pb-3">Returned Books (2)</div>
- </div>
+
 
  <div className="student-form-container container  text-center mt-5 pt-3 pb-5">
  <div className="student-form-field row py-3">
@@ -70,16 +55,6 @@ const MyBooksContainer = (studentidget) => {
    <div className="col student-form-title">Fine(Rs.10 per day)</div>
  </div>
 
-
-{ studentdata.map((studentobj) => {
-
-  console.log(studentidget.studentidget,"ffe")
-  console.log(studentobj.id,"ffef")
-  if(studentidget.studentidget == studentobj.id )
-  {
-    console.log("hai equ")
-  }
-
  <div className="student-form-field row py-2" >
     <div className="col student-form-data flex-wrap">ff</div>
     <div className="col student-form-data flex-wrap">sd</div>
@@ -88,8 +63,6 @@ const MyBooksContainer = (studentidget) => {
     <div className="col student-form-data">ss</div>
     <div className="col student-form-data ">ss</div>
 </div>
-})
-}
 
 
  </div>
@@ -99,4 +72,4 @@ const MyBooksContainer = (studentidget) => {
      );
 }
  
-export default MyBooksContainer;
+export default StudentAllBooksContainer;

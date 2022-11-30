@@ -11,10 +11,11 @@ import { allBooksContext } from "../App";
 import { sidebarCustomizeContext } from "../App";
 import { useNavigate } from "react-router";
 
-const Login = ({ submitForm, admindetails }) => {
+const Login = ({ submitForm, admindetails,setStudentIdGet }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
   const [sidebarCustomize,setSidebarCustomize]= useContext(sidebarCustomizeContext)
+ 
 
   const navigate = useNavigate();
   
@@ -29,6 +30,13 @@ const Login = ({ submitForm, admindetails }) => {
   const [studentpage, setStudentpage] = useState(false);
 
 
+  // const sideBarCustomizetrue = () => {
+   
+  // }
+
+  const sideBarCustomizefalse = () => {
+    setSidebarCustomize(false)
+  }
 
   const studentClick = () => {
     setStudentpage(true);
@@ -47,6 +55,7 @@ const Login = ({ submitForm, admindetails }) => {
       values.password === admindetails.password
     ) {
       console.log("Logged In");
+      sideBarCustomizefalse()
       submitForm();
     } else {
       console.log("Do not match");
@@ -65,8 +74,16 @@ const Login = ({ submitForm, admindetails }) => {
        console.log("student logged")
        if(data.position === "student")
        {
-        setSidebarCustomize(true)
+        // sideBarCustomizetrue ()
+        // setSidebarCustomize(true)
+        localStorage.setItem("sidebarcustom",true)
+      
         navigate("/mybooks")
+        
+        setStudentIdGet(data.id)
+       console.log(data.id,"rww") 
+      
+
        }
      
       }

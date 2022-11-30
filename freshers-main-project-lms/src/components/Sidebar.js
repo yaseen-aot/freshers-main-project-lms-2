@@ -6,6 +6,8 @@ import { MdOutlinePeopleAlt } from "react-icons/md";
 import "../css/SideBar.css";
 import { useContext } from "react";
 import { sidebarCustomizeContext } from "../App";
+import { BsPersonCircle } from "react-icons/bs";
+import dp from '../assets/person2.png'
 
 
 
@@ -33,19 +35,19 @@ const SideBar = () => {
             </button>
           </Link>}
 
-          <Link to="/issued-books">
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " style={{backgroundColor : sidebarCustomize ? "#303179" : "#ed7966" }}>
+          {!sidebarCustomize && <Link to="/issued-books">
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " >
               {" "}
               <MdTaskAlt className="sidemd" /> Issued Books
             </button>
-          </Link>
+          </Link>}
 
-          {!sidebarCustomize && <Link to="/all-books">
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2">
+           <Link to={!sidebarCustomize ? "/all-books" : "/student-allbooks"}>
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2" style={{backgroundColor : sidebarCustomize ? "#303179" : "#ed7966" }}>
               {" "}
               <MdMenuBook className="sidemd" /> All Books
             </button>
-          </Link>}
+          </Link>
 
           {!sidebarCustomize && <Link to="/students">
             <button className="sidebuttons  d-flex gap-md-2  ps-md-3  p-md-2">
@@ -55,6 +57,20 @@ const SideBar = () => {
           </Link>}
 
         </div>
+
+        <div>
+        <div className="bottomdiv  mx-lg-3 ">
+        
+          <div className="d-flex flex-wrap  gap-lg-3 pt-3" >
+          <img src={dp} className = "person-sidebar "/>
+          <p className="m-0 mt-2 flex-wrap ">Mayor Smith</p>
+          </div>
+          <div className="m-0 ms-lg-4  "> mayorsmith@gmail.com</div>
+         
+        </div>
+        </div>
+
+
       </div>
 
    
@@ -64,10 +80,4 @@ const SideBar = () => {
 
 export default SideBar;
 
-// <div className="bottomdiv d-flex  gap-md-2  pt-3 mx-3">
-// <BsPersonCircle className="align-md-self-center" size={30}/>
-//   <div className="" >
-//   <p className="m-0">Mayor Smith</p>
-//   <p className="m-0">mayorsmith@gmail.com</p>
-//   </div>
-// </div>
+

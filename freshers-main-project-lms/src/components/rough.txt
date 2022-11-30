@@ -466,3 +466,52 @@ color: #09174A;
         
         })
         )
+
+
+        // const issuetemp = issuestate
+
+
+
+
+
+
+// const issuetemp = issuestate
+// const issuetemparr = issuestate.map((issueobj) => {
+ 
+//  const temp = 
+//  {
+
+//   Issueid: issueobj.Issueid,
+//   issuebookname : "",
+//   issuestudentname : "",
+//   issuedate: issueobj.issuedate,
+//   duedate: issueobj.duedate,
+//   isreturn: issueobj.isreturn,
+//   isissue: issueobj.isissue,       
+// }
+
+// bookData.map((bookobj)=>{
+//   if(bookobj.bookid === issueobj.issuebookid){
+//     temp.issuebookname = bookobj.title
+//   }
+// })
+
+
+// studentdata.map((studentobj)=>{
+//   console.log(studentobj.id,"hh")
+//   console.log(issueobj.issuestudentid,"ll")
+//   if(studentobj.id == issueobj.issuestudentid){
+//     console.log("hello")
+//     temp.issuestudentname = studentobj.name
+//   }
+// })
+
+      
+// return temp
+          
+ 
+// })
+// console.log(issuetemparr,"abc")
+
+
+// issuetemparr = {issuetemparr}

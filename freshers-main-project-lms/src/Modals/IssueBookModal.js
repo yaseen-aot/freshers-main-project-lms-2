@@ -79,6 +79,12 @@ const IssueBookModal = ({ show, setShow }) => {
     const setday = splitval[2];
     const setval = setmonth + "-" + setday + "-" + setyear;
 
+    //////
+    
+
+
+    ////////
+
     setIssueduedate(setval);
     console.log(issueduedate, "hooi");
 
@@ -211,7 +217,7 @@ const IssueBookModal = ({ show, setShow }) => {
                 type="date"
                 onChange={dueDateFunc}
                 // ref={DuedateInput}
-                // readOnly
+                //  readOnly
               />
             </Form.Group>
           </Form>

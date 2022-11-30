@@ -1,20 +1,20 @@
 import SideBar from "../components/Sidebar";
-import MyBooksContainer from "../components/MyBooksContainer";
+import StudentAllBooksContainer from "../components/StudentAllBooksContainer";
 import '../css/StudentPage.css'
 
 
-const MyBooks = (studentidget) => {
+const StudentAllBooks = () => {
     return ( 
-        <div className="mybooks-page d-flex gap-md-4  ">
+        <div className="studentallbooks-page d-flex gap-md-4  ">
       <div className="sidebar-div col-3 col-md-2 sticky-top">
         <SideBar />
       </div>
 
       <div className=" col-9  ">
-        <MyBooksContainer studentidget = {studentidget} />
+      <StudentAllBooksContainer/>
       </div>
     </div>
      );
 }
  
-export default MyBooks;
+export default StudentAllBooks;
