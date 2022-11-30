@@ -144,7 +144,7 @@ function App() {
                         submitForm={submitForm}
                         admindetails={admindetails}
                         setStudentIdGet = {setStudentIdGet}
-                        
+                        studentidget = {studentidget}
                       />
                     ) : (
                       <IssueMain />

@@ -11,7 +11,7 @@ import { allBooksContext } from "../App";
 import { sidebarCustomizeContext } from "../App";
 import { useNavigate } from "react-router";
 
-const Login = ({ submitForm, admindetails,setStudentIdGet }) => {
+const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
   const [sidebarCustomize,setSidebarCustomize]= useContext(sidebarCustomizeContext)
@@ -82,6 +82,7 @@ const Login = ({ submitForm, admindetails,setStudentIdGet }) => {
         
         setStudentIdGet(data.id)
        console.log(data.id,"rww") 
+      //  console.log(studentidget,"rw")
       
 
        }
@@ -131,6 +132,7 @@ const Login = ({ submitForm, admindetails,setStudentIdGet }) => {
   };
 
   return (
+
     <div className="loginmain ms-3 mt-3 ">
       <div className="pt-3 ps-2">
         <LogoComponent />
