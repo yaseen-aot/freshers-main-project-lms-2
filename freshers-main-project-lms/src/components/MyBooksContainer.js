@@ -6,6 +6,11 @@ import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
 import { useState } from "react";
+import MyBooksList from "./MyBooksList";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+
 
 const MyBooksContainer = ({studentidget}) => {
   console.log(studentidget,"idd")
@@ -13,6 +18,7 @@ const MyBooksContainer = ({studentidget}) => {
   const [bookData, setBookData] = useContext(allBooksContext);
   const [issuestate, setIssuestate] = useContext(issuebooksContext);
   const [tempmybooks,setTempMyBooks] = useState([])
+  const [myBooksSearchState,setMyBooksSearchState] = useState('')
 
   useEffect(() =>{
     studentdata.map((studentobj) => {
@@ -50,9 +56,16 @@ const MyBooksContainer = ({studentidget}) => {
     })
 
   },[studentdata,issuestate,bookData])
- 
- 
+
 console.log(tempmybooks,"tt")
+
+const myBooksSearchFunc = (e) => {
+  const value =  e.target.value;
+  console.log(value,"ss")
+  setMyBooksSearchState(value)
+}
+
+
 
     return ( 
         
@@ -67,6 +80,7 @@ console.log(tempmybooks,"tt")
             <input
               className="inputsearch"
               type="text"
+              onChange={myBooksSearchFunc}
               placeholder="Search by book title or author"
             
             />
@@ -93,11 +107,28 @@ console.log(tempmybooks,"tt")
 
  </div>
 
- <div className=" d-flex gap-md-5 mt-3  border-bottom ps-md-2">
-    <div className="mybooks-filter pb-3">Issued Books (6)</div>
-    <div className="mybooks-filter pb-3">Pending to return (4)</div>
-    <div className="mybooks-filter pb-3">Returned Books (2)</div>
- </div>
+
+<div className="tabmybooks">
+<Tabs 
+      defaultActiveKey="profile"
+      id="fill-tab-example"
+      className="m-0 d-flex gap-md-5 mt-3  border-bottom "
+      fill
+    >
+      <Tab eventKey="home" title="Home" className="p-0">
+        
+      </Tab>
+      <Tab eventKey="profile" title="Profile" className="p-0">
+        
+      </Tab>
+     
+      <Tab eventKey="contact" title="Contact" className="p-0" >
+       
+      </Tab>
+    </Tabs>
+    </div>
+
+
 
  <div className="student-form-container container  text-center mt-5 pt-3 pb-5">
  <div className="student-form-field row py-3">
@@ -111,18 +142,24 @@ console.log(tempmybooks,"tt")
 
  
 {
-  tempmybooks.map((temp) => {
+  tempmybooks ?.filter((data) => {
+      if (myBooksSearchState === "") {
+        return data;
+      } else if (
+        data.bookname.toLowerCase().includes(myBooksSearchState.toLowerCase())
+      ) {
+        return data;
+      } else if (
+        data.bookauthor.toLowerCase().includes(myBooksSearchState.toLowerCase())
+      ) {
+        return data;
+      }
+    })
+    .map((temp) => {
     if (temp.issuestudentid == studentidget){
 
       return(
-        <div className="student-form-field row py-2" >
-        <div className="col student-form-data flex-wrap">{temp.bookname}</div>
-        <div className="col student-form-data flex-wrap">{temp.issuestudentid}</div>
-        <div className="col student-form-data">{temp.issuedate}</div>
-        <div className="col student-form-data">{temp.duedate}</div>
-        <div className="col student-form-data">{temp.isreturndate }</div>
-        <div className="col student-form-data ">-</div>
-      </div>
+       <MyBooksList temp = {temp}/>
       )
     }
     

@@ -66,6 +66,18 @@ const IssueBookModal = ({ show, setShow }) => {
     const setval = setmonth + "-" + setday + "-" + +setyear;
 
     setIssuedateissue(setval);
+
+///////
+const date = new Date(setval);
+const dateCopy = new Date(date.getTime());
+dateCopy.setDate(dateCopy.getDate() + 7);
+console.log(dateCopy);
+console.log(date);
+///////
+ 
+
+
+
   };
 
   const dueDateFunc = (event) => {

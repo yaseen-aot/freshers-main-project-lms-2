@@ -34,9 +34,9 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
    
   // }
 
-  const sideBarCustomizefalse = () => {
-    setSidebarCustomize(false)
-  }
+  // const sideBarCustomizefalse = () => {
+  //   setSidebarCustomize(false)
+  // }
 
   const studentClick = () => {
     setStudentpage(true);
@@ -45,7 +45,7 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
 
   const adminClick = () => {
     setStudentpage(false);
-    console.log(studentpage);
+   
   };
 
   const checkMatch = () => {
@@ -55,7 +55,7 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
       values.password === admindetails.password
     ) {
       console.log("Logged In");
-      sideBarCustomizefalse()
+      setSidebarCustomize(false)
       submitForm();
     } else {
       console.log("Do not match");
@@ -75,8 +75,8 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
        if(data.position === "student")
        {
         // sideBarCustomizetrue ()
-        // setSidebarCustomize(true)
-        localStorage.setItem("sidebarcustom",true)
+        setSidebarCustomize(true)
+       
       
         navigate("/mybooks")
         

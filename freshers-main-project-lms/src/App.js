@@ -58,41 +58,41 @@ const localStorageIssueBooks = () => {
   }
 };
 
-const sidebarcustomFunc = () =>{
- return localStorage.getItem('sidebarcustom')
-}
+
 
 function App() {
 
+  // const getStudentLogin = ()=>{
+  //   return localStorage.getItem("studentLogin")
+  // }
+  // const [studentBoolean, setstudentBoolean] = useState(getStudentLogin());
+
+  // useEffect(() => { 
+  //localStorage.setItem("studentLogin", studentBoolean)
+  // },[studentBoolean])
+
+ 
+  const sidebarcustomFunc = () =>{
+    return localStorage.getItem("sidebarcustom")
+   }
   
-  const [sidebarCustomize,setSidebarCustomize]= useState(sidebarcustomFunc())
+  const [sidebarCustomize,setSidebarCustomize]= useState(sidebarcustomFunc());
+
+  useEffect(() => {
+    localStorage.setItem("sidebarcustom",sidebarCustomize)
+    
+  }, [sidebarCustomize])
+
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   // const [studentLogin,setStudentLogin] = useState(false)
   const [studentdata, setStudentdata] = useState(localStorageStudent());
 
-  // {id: 1669012016763, name: 'sinto pp', email: 'sinto@134', password: 'sinto', position: 'student'},
-
-  // {id: 1669012044600, name: 'gg', email: 'ddd', password: 'gg', position: 'student'}
-  // {
-
-  //     id : 11,
-  //     name: "g33gg",
-  //     email: "fvf",
-  //     password : "hggg" ,
-  //     position : 'student'
-
-  // }
 
   const [bookData, setBookData] = useState(localStorageAllBooks());
 
-  // {bookid: 'AC4mPEVI8zz4cE0TN1adN', title: 'rfrefrgfterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining : 3},
-  // {bookid: 'rrrfrN', title: 'fterg', author: 'tvgv', language: 'Malayalam', totalcopies: 6,remaining :3},
-
   const [issuestate, setIssuestate] = useState(localStorageIssueBooks());
 
- 
-
-  
   const [studentidget,setStudentIdGet] = useState('')
 
   // useEffect(() =>{
@@ -106,7 +106,7 @@ function App() {
     localStorage.setItem("studentdata", JSON.stringify(studentdata));
     localStorage.setItem("bookData", JSON.stringify(bookData));
     localStorage.setItem("issuestate", JSON.stringify(issuestate));
-  
+    
   }, [studentdata, bookData, issuestate]);
 
   const submitForm = () => {

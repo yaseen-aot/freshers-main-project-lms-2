@@ -34,7 +34,7 @@ const IssueReturn = ({
         setBookData(RemainingIncrease);
         const newdate = new Date();
         const newdateformat =
-          newdate.getDate() +
+        newdate.getDate()  +
           "-" +
           newdate.getMonth() +
           "-" +

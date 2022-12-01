@@ -515,3 +515,37 @@ color: #09174A;
 
 
 // issuetemparr = {issuetemparr}
+
+
+
+
+function FillExample() {
+  return (
+    <Tabs
+      defaultActiveKey="profile"
+      id="fill-tab-example"
+      className="mb-3"
+      fill
+    >
+      <Tab eventKey="home" title="Home">
+        <Sonnet />
+      </Tab>
+      <Tab eventKey="profile" title="Profile">
+        <Sonnet />
+      </Tab>
+     
+      <Tab eventKey="contact" title="Contact" >
+        <Sonnet />
+      </Tab>
+    </Tabs>
+  );
+}
+
+export default FillExample;
+
+
+//  <div className=" d-flex gap-md-5 mt-3  border-bottom ps-md-2">
+//     <div className="mybooks-filter pb-3">Issued Books (6)</div>
+//     <div className="mybooks-filter pb-3">Pending to return (4)</div>
+//     <div className="mybooks-filter pb-3">Returned Books (2)</div>
+//  </div>
