@@ -160,6 +160,7 @@ function App() {
                 <Route path="/students/:id" element={<StudentProfile />} />
                 <Route path="/mybooks" element = {<MyBooks studentidget = {studentidget} />}/>
                 <Route path="/student-allbooks" element = {<StudentAllBooks/>}/>
+                
               </Routes>
             </Router>
           </div>

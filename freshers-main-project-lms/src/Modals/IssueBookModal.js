@@ -56,7 +56,7 @@ const IssueBookModal = ({ show, setShow }) => {
 
   const issueDateFunc = (event) => {
     const val = event.target.value;
-    console.log(val);
+    console.log(val,"ff");
     setIssuedatetwo(val);
 
     const splitval = val.split("-");
@@ -65,6 +65,7 @@ const IssueBookModal = ({ show, setShow }) => {
     const setday = splitval[2];
     const setval = setmonth + "-" + setday + "-" + +setyear;
 
+    console.log(setval,"sdvh")
     setIssuedateissue(setval);
 
 ///////
@@ -73,6 +74,27 @@ const dateCopy = new Date(date.getTime());
 dateCopy.setDate(dateCopy.getDate() + 7);
 console.log(dateCopy);
 console.log(date);
+console.log(dateCopy.getDate(),"kk")
+console.log(dateCopy.getMonth()+1,"kk")
+console.log(dateCopy.getFullYear(),"kk")
+var datedue =  dateCopy.getFullYear()+ "-" + (dateCopy.getMonth()+1) + "-" + dateCopy.getDate()
+console.log(datedue,"ffh")
+DuedateInput.current.value = datedue
+/////
+
+setDuedatetwo(datedue);
+
+const splitdueval = datedue.split("-");
+const setdueyear = splitdueval[0];
+const setduemonth = splitdueval[1];
+const setdueday = splitdueval[2];
+const setdueval = setduemonth + "-" + setdueday + "-" + setdueyear;
+
+console.log(setdueval,"sdv")
+
+setIssueduedate(setdueval);
+console.log(issueduedate, "hooi");
+
 ///////
  
 
@@ -80,37 +102,7 @@ console.log(date);
 
   };
 
-  const dueDateFunc = (event) => {
-    const val = event.target.value;
-    console.log(val, "valuedue");
-    setDuedatetwo(val);
 
-    const splitval = val.split("-");
-    const setyear = splitval[0];
-    const setmonth = splitval[1];
-    const setday = splitval[2];
-    const setval = setmonth + "-" + setday + "-" + setyear;
-
-    //////
-    
-
-
-    ////////
-
-    setIssueduedate(setval);
-    console.log(issueduedate, "hooi");
-
-    //  console.log('sa')
-    //  const val = new Date(issuedateissue)
-    //  console.log(val,'hh')
-
-    // setIssueduedate(val.getDate() + 7);
-    // console.log(issueduedate);
-    // //  const setval = val.getDate + 7
-    // //  console.log(setval,'yy')
-
-    //  DuedateInput.current.value = "rrr"
-  };
 
   const handleClose = () => setShow(false);
 
@@ -227,9 +219,9 @@ console.log(date);
               <Form.Control
               className="issueduedatemodal p-2"
                 type="date"
-                onChange={dueDateFunc}
-                // ref={DuedateInput}
-                //  readOnly
+                // onChange={dueDateFunc}
+                 ref={DuedateInput}
+                  // readOnly
               />
             </Form.Group>
           </Form>

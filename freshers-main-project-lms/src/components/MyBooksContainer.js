@@ -9,17 +9,25 @@ import { useState } from "react";
 import MyBooksList from "./MyBooksList";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import MyBooksListHeader from "./MyBooksListHeader";
+import { useNavigate } from "react-router";
+
 
 
 
 const MyBooksContainer = ({studentidget}) => {
-  console.log(studentidget,"idd")
+
+  const pendingnavigate = useNavigate();
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
   const [issuestate, setIssuestate] = useContext(issuebooksContext);
   const [tempmybooks,setTempMyBooks] = useState([])
   const [myBooksSearchState,setMyBooksSearchState] = useState('')
 
+  const [mybooksissued,setMybooksissued] = useState(true)
+  const [mybooksreturned,setMybooksreturned] = useState(false)
+   const [mybookspending,setMybookspending] = useState(false)
+  
   useEffect(() =>{
     studentdata.map((studentobj) => {
 
@@ -67,12 +75,23 @@ const myBooksSearchFunc = (e) => {
 
 const issuedTabFunc = () => {
   console.log("aa")
+  setMybooksissued(true)
+  setMybooksreturned(false)
+  setMybookspending(false)
+
 }
 const pendingTabFunc = () => {
-  console.log("aa")
+  console.log("bb")
+  setMybooksissued(false)
+  setMybooksreturned(false)
+  setMybookspending(true)
+  
 }
 const returnedTabFunc = () => {
-  console.log("aa")
+  console.log("cc")
+  setMybooksissued(false)
+  setMybooksreturned(true)
+  setMybookspending(false)
 }
 
 
@@ -118,77 +137,23 @@ const returnedTabFunc = () => {
 
  </div>
 
-
-<div className="tabmybooks">
-<Tabs 
-      defaultActiveKey="profile"
-      id="fill-tab-example"
-      className="m-0 d-flex gap-md-5 mt-3  border-bottom "
-      fill
-    >
-      <Tab eventKey="home" title="Issued Books (6)" className="p-0" onClick={issuedTabFunc}>
-        
-      </Tab>
-      <Tab eventKey="profile" title="Pending to return (4)" className="p-0" onClick={pendingTabFunc}>
-        
-      </Tab>
-     
-      <Tab eventKey="contact" title="Returned Books (2)" className="p-0" onClick={returnedTabFunc}>
-       
-      </Tab>
-    </Tabs>
-    </div>
+   <div className=" d-flex gap-md-5 mt-3  border-bottom ps-md-2">
+     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksissued ? "4px solid #0C39C7" : "none",}} onClick={issuedTabFunc}>Issued Books (6)</div>
+     <div className="mybooks-filter pb-3" style={{borderBottom:  mybookspending ? "4px solid #0C39C7" : "none",}} onClick={() =>{ pendingTabFunc()}}>Pending to return (4)</div>
+     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksreturned ? "4px solid #0C39C7" : "none",}} onClick={returnedTabFunc}>Returned Books (2)</div>
+  </div>
 
 
 
- <div className="student-form-container container  text-center mt-5 pt-3 pb-5">
- <div className="student-form-field row py-3">
-   <div className="col student-form-title">Book Title</div>
-   <div className="col student-form-title">Author</div>
-   <div className="col student-form-title">Issue Date</div>
-   <div className="col student-form-title">Due Date</div>
-   <div className="col student-form-title">Return Date</div>
-   <div className="col student-form-title">Fine(Rs.10 per day)</div>
- </div>
+
+   { console.log(tempmybooks,"fff")}
+    <MyBooksListHeader studentidget = {studentidget}
+       myBooksSearchState = {myBooksSearchState}
+     tempmybooks = {tempmybooks}
+     mybooksissued = {mybooksissued}
+      mybooksreturned = {mybooksreturned}/>
 
  
-{
-  tempmybooks.filter((fil)=> fil.isreturn !== false)
-  // .filter((fil)=> fil.isreturn == false)
-  
-  ?.filter((data) => {
-      if (myBooksSearchState === "") {
-        return data;
-      } else if (
-        data.bookname.toLowerCase().includes(myBooksSearchState.toLowerCase())
-      ) {
-        return data;
-      } else if (
-        data.bookauthor.toLowerCase().includes(myBooksSearchState.toLowerCase())
-      ) {
-        return data;
-      }
-    })
-    // .filter((fil)=> fil.isreturn !== false)
-    // .filter((fil)=> fil.isreturn == false)
-    .map((temp) => {
-    if (temp.issuestudentid == studentidget){
-      
-      return(
-       <MyBooksList temp = {temp}/>
-      )
-    }
-    
-    
-      
-
-})
-  
-}
-
-
- </div>
-
 
         </div>
      );

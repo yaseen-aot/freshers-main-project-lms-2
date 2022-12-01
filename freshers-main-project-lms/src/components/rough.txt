@@ -549,3 +549,84 @@ export default FillExample;
 //     <div className="mybooks-filter pb-3">Pending to return (4)</div>
 //     <div className="mybooks-filter pb-3">Returned Books (2)</div>
 //  </div>
+
+
+//duedate fun
+  const dueDateFunc = (event) => {
+    const val = event.target.value;
+    console.log(val, "valuedue");
+    setDuedatetwo(val);
+
+    const splitval = val.split("-");
+    const setyear = splitval[0];
+    const setmonth = splitval[1];
+    const setday = splitval[2];
+    const setval = setmonth + "-" + setday + "-" + setyear;
+
+  
+
+    setIssueduedate(setval);
+    console.log(issueduedate, "hooi");
+
+  };
+
+
+  <div className="tabmybooks">
+<div 
+      defaultActiveKey="profile"
+      id="fill-tab-example"
+      className="m-0 d-flex gap-md-5 mt-3  border-bottom "
+      fill
+    >
+      <div eventKey="home" title="Issued Books (6)" className="p-0" >
+      Issued Books (6)
+      </div>
+      <div eventKey="profile" title="Pending to return (4)" className="p-0" >
+      Pending to return (4)
+      </div>
+     
+      <div eventKey="contact" title="Returned Books (2)" className="p-0" >
+      Returned Books (2)
+      {/*<MyBooksListHeader studentidget = {studentidget}
+      // myBooksSearchState = {myBooksSearchState}
+    // tempmybooks = {tempmybooks}/>*/}
+      </div>
+    </div>
+    </div>
+
+    #fill-tab-example-tab-home , #fill-tab-example-tab-profile, #fill-tab-example-tab-contact{
+    padding-inline: 0px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #09174A;
+    opacity: 0.6;
+
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #09174A !important;
+    background-color: #F5F5F5 !important;
+     border-color: #F5F5F5 !important;
+     border-bottom: 2px solid #0C39C7 !important;
+     opacity: 1 !important;
+}
+
+.tabmybooks{
+    width: 100%;
+   border-bottom: 1px solid #E3E3E3;
+}
+
+#root > div > div > div.col-9 > div > div.tabmybooks > ul{
+    width: 55% !important;
+    border-bottom: none !important;
+   
+}
+
+@media only screen and (max-width: 768px) {
+    #root > div > div > div.col-9 > div > div.tabmybooks > ul{
+        width: 100%;
+    }
+  }
+  
