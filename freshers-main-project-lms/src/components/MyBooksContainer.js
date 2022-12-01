@@ -65,6 +65,17 @@ const myBooksSearchFunc = (e) => {
   setMyBooksSearchState(value)
 }
 
+const issuedTabFunc = () => {
+  console.log("aa")
+}
+const pendingTabFunc = () => {
+  console.log("aa")
+}
+const returnedTabFunc = () => {
+  console.log("aa")
+}
+
+
 
 
     return ( 
@@ -115,14 +126,14 @@ const myBooksSearchFunc = (e) => {
       className="m-0 d-flex gap-md-5 mt-3  border-bottom "
       fill
     >
-      <Tab eventKey="home" title="Home" className="p-0">
+      <Tab eventKey="home" title="Issued Books (6)" className="p-0" onClick={issuedTabFunc}>
         
       </Tab>
-      <Tab eventKey="profile" title="Profile" className="p-0">
+      <Tab eventKey="profile" title="Pending to return (4)" className="p-0" onClick={pendingTabFunc}>
         
       </Tab>
      
-      <Tab eventKey="contact" title="Contact" className="p-0" >
+      <Tab eventKey="contact" title="Returned Books (2)" className="p-0" onClick={returnedTabFunc}>
        
       </Tab>
     </Tabs>
@@ -142,7 +153,10 @@ const myBooksSearchFunc = (e) => {
 
  
 {
-  tempmybooks ?.filter((data) => {
+  tempmybooks.filter((fil)=> fil.isreturn !== false)
+  // .filter((fil)=> fil.isreturn == false)
+  
+  ?.filter((data) => {
       if (myBooksSearchState === "") {
         return data;
       } else if (
@@ -155,13 +169,16 @@ const myBooksSearchFunc = (e) => {
         return data;
       }
     })
+    // .filter((fil)=> fil.isreturn !== false)
+    // .filter((fil)=> fil.isreturn == false)
     .map((temp) => {
     if (temp.issuestudentid == studentidget){
-
+      
       return(
        <MyBooksList temp = {temp}/>
       )
     }
+    
     
       
 
