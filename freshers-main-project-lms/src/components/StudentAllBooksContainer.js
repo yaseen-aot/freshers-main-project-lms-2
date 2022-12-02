@@ -1,9 +1,13 @@
 import { AiOutlineSearch } from "react-icons/ai";
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../css/StudentPage.css'
+import { AiOutlineEye } from "react-icons/ai";
+import { useContext } from "react";
+import { allBooksContext } from "../App";
 
 
 const StudentAllBooksContainer = () => {
+  const [bookData, setBookData] = useContext(allBooksContext);
     return ( 
         
         <div className="container-student-page ">
@@ -18,7 +22,7 @@ const StudentAllBooksContainer = () => {
               className="inputsearch"
               type="text"
               placeholder="Search by book title or author"
-             value={""}
+            //  value={""}
             />
           </div>
           <div>
@@ -30,12 +34,12 @@ const StudentAllBooksContainer = () => {
         <p className="sort-para mt-2 m-0 ">Sort By :</p>
         <Dropdown className=" dropdown-student d-inline  ">
         <Dropdown.Toggle id="dropdown-autoclose-true ">
-         <span className="pe-5 ps-1">Issue Date</span>
+         <span className="pe-5 ps-1">Book Title</span>
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#">Issue Date</Dropdown.Item>
-          <Dropdown.Item href="#">Due Date</Dropdown.Item>
+          <Dropdown.Item href="#">Book Title</Dropdown.Item>
+          <Dropdown.Item href="#">Author</Dropdown.Item>
           
         </Dropdown.Menu>
       </Dropdown>
@@ -49,20 +53,25 @@ const StudentAllBooksContainer = () => {
  <div className="student-form-field row py-3">
    <div className="col student-form-title">Book Title</div>
    <div className="col student-form-title">Author</div>
-   <div className="col student-form-title">Issue Date</div>
-   <div className="col student-form-title">Due Date</div>
-   <div className="col student-form-title">Return Date</div>
-   <div className="col student-form-title">Fine(Rs.10 per day)</div>
+   <div className="col student-form-title"> Language</div>
+   <div className="col student-form-title"> Total Copies</div>
+   <div className="col student-form-title"> Remaining</div>
+   <div className="col student-form-title">Actions</div>
  </div>
 
+ {bookData.map((bookobj)=> {
+
+ 
  <div className="student-form-field row py-2" >
     <div className="col student-form-data flex-wrap">ff</div>
     <div className="col student-form-data flex-wrap">sd</div>
     <div className="col student-form-data">ss</div>
     <div className="col student-form-data">ss</div>
     <div className="col student-form-data">ss</div>
-    <div className="col student-form-data ">ss</div>
+    <div className="col student-form-data "><AiOutlineEye className="student-eye"/></div>
 </div>
+} )
+}
 
 
  </div>

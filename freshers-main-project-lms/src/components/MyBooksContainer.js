@@ -124,12 +124,12 @@ const returnedTabFunc = () => {
         <p className="sort-para mt-2 m-0 ">Sort By :</p>
         <Dropdown className=" dropdown-mybooks d-inline  ">
         <Dropdown.Toggle id="dropdown-autoclose-true ">
-         <span className="pe-5 ps-1">Issue Date</span>
+         <span className="pe-5 ps-1">Newest</span>
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#">Issue Date</Dropdown.Item>
-          <Dropdown.Item href="#">Due Date</Dropdown.Item>
+          <Dropdown.Item href="#">Newest</Dropdown.Item>
+          <Dropdown.Item href="#">Oldest</Dropdown.Item>
           
         </Dropdown.Menu>
       </Dropdown>
