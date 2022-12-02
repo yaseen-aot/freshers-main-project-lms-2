@@ -6,9 +6,6 @@ import { studentContext } from "../App";
 import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
 import { useState } from "react";
-import MyBooksList from "./MyBooksList";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
 import MyBooksListHeader from "./MyBooksListHeader";
 import { useNavigate } from "react-router";
 
@@ -27,6 +24,7 @@ const MyBooksContainer = ({studentidget}) => {
   const [mybooksissued,setMybooksissued] = useState(true)
   const [mybooksreturned,setMybooksreturned] = useState(false)
    const [mybookspending,setMybookspending] = useState(false)
+   const [sortMyBooks,setSortMyBooks] =useState(0)
   
   useEffect(() =>{
     studentdata.map((studentobj) => {
@@ -94,6 +92,33 @@ const returnedTabFunc = () => {
   setMybookspending(false)
 }
 
+const sortNewest = () => {
+  setSortMyBooks(1)
+}
+const sortOldest = () => {
+  setSortMyBooks(2)
+}
+
+if(sortMyBooks == 1){
+  
+
+  function sortFunction(a,b){  
+      var dateA = new Date(a.issuedate)
+      var dateB = new Date(b.issuedate)
+      return dateA < dateB ? 1 : -1;  
+  }; 
+  tempmybooks.sort(sortFunction);
+}
+
+if(sortMyBooks == 2){
+
+  
+  tempmybooks.sort(function(a, b) {
+      var c = new Date(a.issuedate);
+      var d = new Date(b.issuedate);
+      return c-d;
+  });
+}
 
 
 
@@ -128,8 +153,8 @@ const returnedTabFunc = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#">Newest</Dropdown.Item>
-          <Dropdown.Item href="#">Oldest</Dropdown.Item>
+          <Dropdown.Item onClick={sortNewest}>Newest</Dropdown.Item>
+          <Dropdown.Item onClick={sortOldest} href="#">Oldest</Dropdown.Item>
           
         </Dropdown.Menu>
       </Dropdown>
@@ -151,7 +176,8 @@ const returnedTabFunc = () => {
        myBooksSearchState = {myBooksSearchState}
      tempmybooks = {tempmybooks}
      mybooksissued = {mybooksissued}
-      mybooksreturned = {mybooksreturned}/>
+      mybooksreturned = {mybooksreturned}
+      sortMyBooks = {sortMyBooks}/>
 
  
 

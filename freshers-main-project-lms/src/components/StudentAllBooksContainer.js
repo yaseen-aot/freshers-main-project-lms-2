@@ -11,11 +11,40 @@ import { useState } from "react";
 const StudentAllBooksContainer = () => {
   const [bookData, setBookData] = useContext(allBooksContext);
   const [studentAllBooksSearchState,setStudentAllBooksSearchState] = useState('')
+  const [studentAllbooksSortState,setStudentAllbooksSortState] = useState(0)
 
   const studentAllBooksSearch = (e) => {
     const value = e.target.value;
     console.log(value,"SSS")
     setStudentAllBooksSearchState(value)
+  }
+  const sortTitle = () =>{
+    setStudentAllbooksSortState(1)
+  }
+  const sortAuthor = () =>{
+    setStudentAllbooksSortState(2)
+  }
+
+  if(studentAllbooksSortState == 1){
+      
+    bookData.sort((a, b) => {
+      console.log(a.title)
+      console.log("1")
+      console.log(b.title)
+      return  a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1;;
+  });
+
+  }
+
+  if(studentAllbooksSortState == 2){
+      
+    bookData.sort((a, b) => {
+      console.log(a.author)
+      console.log("1")
+      console.log(b.author)
+      return  a.author.toLowerCase() < b.author.toLowerCase() ? -1 : 1;;
+  });
+
   }
 
 
@@ -36,7 +65,7 @@ const StudentAllBooksContainer = () => {
               type="text"
               placeholder="Search by book title or author"
               onChange = {studentAllBooksSearch}
-            //  value={""}
+            
             
             />
           </div>
@@ -53,8 +82,8 @@ const StudentAllBooksContainer = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href="#">Book Title</Dropdown.Item>
-          <Dropdown.Item href="#">Author</Dropdown.Item>
+          <Dropdown.Item onClick={sortTitle}>Book Title</Dropdown.Item>
+          <Dropdown.Item onClick={sortAuthor}>Author</Dropdown.Item>
           
         </Dropdown.Menu>
       </Dropdown>
@@ -91,6 +120,8 @@ const StudentAllBooksContainer = () => {
   
   
   .map((bookobj)=> {
+
+   
 
  return(
  <div className="student-form-field row py-2" >

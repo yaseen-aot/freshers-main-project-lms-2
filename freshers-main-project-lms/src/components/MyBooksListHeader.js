@@ -1,6 +1,6 @@
 import MyBooksList from "./MyBooksList";
 
-const MyBooksListHeader = ({tempmybooks,studentidget,myBooksSearchState, mybooksissued,mybooksreturned}) => {
+const MyBooksListHeader = ({tempmybooks,studentidget,myBooksSearchState, mybooksissued,mybooksreturned,sortMyBooks}) => {
 
     console.log(tempmybooks,"f")
     
@@ -48,6 +48,8 @@ const MyBooksListHeader = ({tempmybooks,studentidget,myBooksSearchState, mybooks
             <MyBooksList temp = {temp}/>
            )
       }
+
+      
     
     
     
