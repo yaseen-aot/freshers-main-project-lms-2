@@ -4,10 +4,23 @@ import '../css/StudentPage.css'
 import { AiOutlineEye } from "react-icons/ai";
 import { useContext } from "react";
 import { allBooksContext } from "../App";
+import { useState } from "react";
+
 
 
 const StudentAllBooksContainer = () => {
   const [bookData, setBookData] = useContext(allBooksContext);
+  const [studentAllBooksSearchState,setStudentAllBooksSearchState] = useState('')
+
+  const studentAllBooksSearch = (e) => {
+    const value = e.target.value;
+    console.log(value,"SSS")
+    setStudentAllBooksSearchState(value)
+  }
+
+
+
+
     return ( 
         
         <div className="container-student-page ">
@@ -22,7 +35,9 @@ const StudentAllBooksContainer = () => {
               className="inputsearch"
               type="text"
               placeholder="Search by book title or author"
+              onChange = {studentAllBooksSearch}
             //  value={""}
+            
             />
           </div>
           <div>
@@ -59,17 +74,34 @@ const StudentAllBooksContainer = () => {
    <div className="col student-form-title">Actions</div>
  </div>
 
- {bookData.map((bookobj)=> {
+ {bookData
+  ?.filter((data) => {
+  if (studentAllBooksSearchState === "") {
+    return data;
+  } else if (
+    data.title.toLowerCase().includes(studentAllBooksSearchState.toLowerCase())
+  ) {
+    return data;
+  } else if (
+    data.author.toLowerCase().includes(studentAllBooksSearchState.toLowerCase())
+  ) {
+    return data;
+  }
+})
+  
+  
+  .map((bookobj)=> {
 
- 
+ return(
  <div className="student-form-field row py-2" >
-    <div className="col student-form-data flex-wrap">ff</div>
-    <div className="col student-form-data flex-wrap">sd</div>
-    <div className="col student-form-data">ss</div>
-    <div className="col student-form-data">ss</div>
-    <div className="col student-form-data">ss</div>
+    <div className="col student-form-data flex-wrap">{bookobj.title}</div>
+    <div className="col student-form-data flex-wrap">{bookobj.author}</div>
+    <div className="col student-form-data">{bookobj.language}</div>
+    <div className="col student-form-data">{bookobj.totalcopies}</div>
+    <div className="col student-form-data">{bookobj.remaining}</div>
     <div className="col student-form-data "><AiOutlineEye className="student-eye"/></div>
 </div>
+ )
 } )
 }
 
