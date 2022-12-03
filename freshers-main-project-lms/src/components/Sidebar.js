@@ -4,21 +4,30 @@ import { MdTaskAlt } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import "../css/SideBar.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { sidebarCustomizeContext } from "../App";
 import { BsPersonCircle } from "react-icons/bs";
 import dp from '../assets/person2.png'
 
 
 
-const SideBar = () => {
+const SideBar = ({student}) => {
 
-  const [sidebarCustomize,setSidebarCustomize]= useContext(sidebarCustomizeContext)
-  console.log(sidebarCustomize,"sidebar")
+  
+ 
+  const [studentpageactive,setStudentpageactive] = useState(false)
+
+  const mybooksactive = () => {
+    setStudentpageactive(false)
+  }
+
+  const studentissuedactive = () => {
+    setStudentpageactive(true)
+  }
 
 
   return (
-    <div className="SideBar" style={{backgroundColor : sidebarCustomize ? "#303179": "#ed7966"}}>
+    <div className="SideBar" style={{backgroundColor : student ? "#303179": "#ed7966"}}>
       <div className="">
         <div className="loginhead d-flex gap-3 pt-4 ps-4 flex-wrap">
           <img className="whitelogo" src={whiteLogo} alt="logo" />
@@ -27,29 +36,31 @@ const SideBar = () => {
 
         <div  className ="sidebtn gap-4 ms-md-1"   >
 
-       {sidebarCustomize && <Link to="/mybooks">
+       {student && <Link to="/mybooks">
   
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " style={{backgroundColor : sidebarCustomize ? "#303179" : "#ed7966"}}>
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " style={{backgroundColor :  student ? "#303179" : "#ed7966", opacity: !studentpageactive ? "0.12": "1"}}
+            onClick ={mybooksactive}>
               {" "}
               <MdTaskAlt className="sidemd" /> My Books
             </button>
           </Link>}
 
-          {!sidebarCustomize && <Link to="/issued-books">
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " >
+          {!student && <Link to="/issued-books">
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 "  >
               {" "}
               <MdTaskAlt className="sidemd" /> Issued Books
             </button>
           </Link>}
 
-           <Link to={!sidebarCustomize ? "/all-books" : "/student-allbooks"}>
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2" style={{backgroundColor : sidebarCustomize ? "#303179" : "#ed7966" }}>
+           <Link to={!student ? "/all-books" : "/student-allbooks"}>
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2" onClick ={studentissuedactive}
+             style={{backgroundColor : student ? "#303179" : "#ed7966" , opacity: studentpageactive ? "0.12": "1" }}>
               {" "}
               <MdMenuBook className="sidemd" /> All Books
             </button>
           </Link>
 
-          {!sidebarCustomize && <Link to="/students">
+          {!student && <Link to="/students">
             <button className="sidebuttons  d-flex gap-md-2  ps-md-3  p-md-2">
               {" "}
               <MdOutlinePeopleAlt className="sidemd" /> Students

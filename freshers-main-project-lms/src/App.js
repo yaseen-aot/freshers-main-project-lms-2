@@ -158,7 +158,7 @@ function App() {
                 <Route path="/all-books" element={<AllMain />} />
                 <Route path="/students" element={<Student />} />
                 <Route path="/students/:id" element={<StudentProfile />} />
-                <Route path="/mybooks" element = {<MyBooks studentidget = {studentidget} />}/>
+                <Route path="/mybooks" element = {<MyBooks studentidget = {studentidget} student = {true} />}/>
                 <Route path="/student-allbooks" element = {<StudentAllBooks/>}/>
                 
               </Routes>

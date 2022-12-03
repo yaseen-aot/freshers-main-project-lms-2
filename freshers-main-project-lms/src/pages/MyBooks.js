@@ -3,11 +3,11 @@ import MyBooksContainer from "../components/MyBooksContainer";
 import '../css/StudentPage.css'
 
 
-const MyBooks = ({studentidget}) => {
+const MyBooks = ({student,studentidget}) => {
     return ( 
         <div className="mybooks-page d-flex gap-md-4  ">
       <div className="sidebar-div col-3 col-md-2 sticky-top">
-        <SideBar />
+        <SideBar student = {student} />
       </div>
 
       <div className=" col-9  ">

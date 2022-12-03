@@ -5,7 +5,7 @@ const AllMain = () => {
   return (
     <div className="AllMain-main d-flex gap-md-4 ">
       <div className="sidebar-div col-3 col-md-2 sticky-top">
-        <SideBar />
+        <SideBar student = {false}/>
       </div>
 
       <div className="col-9">
