@@ -22,7 +22,7 @@ const Profilecard = () => {
   const [count, setcount] = useState(0);
   const [remaininingCount,setRemainingCount] = useState(0)
   const [profileSearch,setProfileSearch] = useState('')
-  const [totalFineCalc,setTotalFineCalc] = useState(0)
+  // const [totalFineCalc,setTotalFineCalc] = useState(0)
   const  [profilefineTotal,setProfileFineTotal] = useState(0)
   
   
@@ -124,9 +124,9 @@ const Profilecard = () => {
     //  totalFineCalc = totalFineCalc + diffDays ;
       
       
-      finetotal = finetotal + diffDays
-      finecal = finetotal * 10
-      let newCount = diffDays + profilefineTotal
+      // finetotal = finetotal + diffDays
+      // finecal = finetotal * 10
+      // let newCount = diffDays + profilefineTotal
       // setProfileFineTotal(newCount);
     return  diffDays;
       
@@ -134,9 +134,9 @@ const Profilecard = () => {
       if (date3 > date2) {
       var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
 
-      finetotal = finetotal + diffDays
-      finecal = finetotal * 10
-      let newCount = diffDays + profilefineTotal
+      //finetotal = finetotal + diffDays
+      //finecal = finetotal * 10
+      // let newCount = diffDays + profilefineTotal
       // setProfileFineTotal(newCount);
     return  diffDays;
     }
@@ -157,15 +157,19 @@ const Profilecard = () => {
   
   }
  
- 
+  let totalcount  = 0
   const finesubmit = (count) =>{
-    
-   let totalcount = profilefineTotal + count 
+    // console.log(profilefineTotal,"re ")
+    console.log(count,"rrrcount")
+    totalcount = totalcount + count 
+ 
+    console.log(totalcount,"rrrtotal")
     setProfileFineTotal(totalcount)
-    console.log(totalcount,"red")
+    console.log(profilefineTotal,"rrrstatetotal")
    
   }
-   console.log(profilefineTotal,"re ")
+  
+   
 
   return (
     <Fragment>
@@ -202,7 +206,7 @@ const Profilecard = () => {
 
                   <span className="d-flex justify-content-between flex-wrap">
                     <p className="cardrightdata">Total Fine</p>
-                    <p className="cardrightvalues">Rs{profilefineTotal * 10}</p>
+                    <p className="cardrightvalues">Rs {  profilefineTotal * 5 }</p>
                   </span>
                 </div>
               </div>
