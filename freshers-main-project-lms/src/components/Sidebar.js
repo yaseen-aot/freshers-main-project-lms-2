@@ -5,8 +5,6 @@ import { MdMenuBook } from "react-icons/md";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import "../css/SideBar.css";
 import { useContext, useState } from "react";
-import { sidebarCustomizeContext } from "../App";
-import { BsPersonCircle } from "react-icons/bs";
 import dp from '../assets/person2.png'
 
 
@@ -15,14 +13,18 @@ const SideBar = ({student}) => {
 
   
  
-  const [studentpageactive,setStudentpageactive] = useState(false)
+  const [studentpagemybooks,setStudentpagemybooks] = useState(true)
+  const [studentpageallbooks,setStudentpageallbooks] = useState(false)
+
 
   const mybooksactive = () => {
-    setStudentpageactive(false)
+    setStudentpagemybooks(false)
+    setStudentpageallbooks(true)
   }
 
-  const studentissuedactive = () => {
-    setStudentpageactive(true)
+  const studentallactive = () => {
+    setStudentpagemybooks(true)
+    setStudentpageallbooks(false)
   }
 
 
@@ -38,7 +40,7 @@ const SideBar = ({student}) => {
 
        {student && <Link to="/mybooks">
   
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " style={{backgroundColor :  student ? "#303179" : "#ed7966", opacity: !studentpageactive ? "0.12": "1"}}
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3 p-md-2 " style={{backgroundColor :  student ? "#303179" : "#ed7966" }}
             onClick ={mybooksactive}>
               {" "}
               <MdTaskAlt className="sidemd" /> My Books
@@ -53,8 +55,8 @@ const SideBar = ({student}) => {
           </Link>}
 
            <Link to={!student ? "/all-books" : "/student-allbooks"}>
-            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2" onClick ={studentissuedactive}
-             style={{backgroundColor : student ? "#303179" : "#ed7966" , opacity: studentpageactive ? "0.12": "1" }}>
+            <button className="sidebuttons  d-flex gap-md-2 ps-md-3  p-md-2" onClick ={studentallactive}
+             style={{backgroundColor : student ? "#303179" : "#ed7966"  }}>
               {" "}
               <MdMenuBook className="sidemd" /> All Books
             </button>

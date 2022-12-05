@@ -119,7 +119,7 @@ console.log(issueduedate, "hooi");
       duedate: issueduedate,
       isreturn: false,
       isissue: true,
-      
+      isreturndate : ""
     };
     //  console.log(issueduedate,issuedateissue,"se")
     console.log(setarray, "setarray");

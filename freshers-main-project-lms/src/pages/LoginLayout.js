@@ -14,7 +14,7 @@ import { useNavigate } from "react-router";
 const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
-  const [sidebarCustomize,setSidebarCustomize]= useContext(sidebarCustomizeContext)
+  
  
 
   const navigate = useNavigate();
@@ -55,7 +55,6 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
       values.password === admindetails.password
     ) {
       console.log("Logged In");
-      setSidebarCustomize(false)
       submitForm();
     } else {
       console.log("Do not match");
@@ -74,8 +73,8 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
        console.log("student logged")
        if(data.position === "student")
        {
-        // sideBarCustomizetrue ()
-        setSidebarCustomize(true)
+        
+       
        
       
         navigate("/mybooks")

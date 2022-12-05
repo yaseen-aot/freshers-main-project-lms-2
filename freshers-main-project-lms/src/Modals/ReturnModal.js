@@ -50,21 +50,7 @@ const IssueReturn = ({
     console.log(issuestate, "uuuuhh");
   };
 
-  // const RemainingIncreaseFunc = () =>{
-
-  //   setBookData(bookData?.map((bookobj) => {
-
-  //     console.log(bookobj.remaining,"tttt")
-
-  //     if(bookobj?.bookid === issueidbook ){
-  //        return {...bookobj,remaining : bookobj.remaining + 1}
-  //     }
-  //     return bookobj;
-
-  //   })
-  //   )
-
-  // }
+ 
 
   return (
     <Fragment>
@@ -99,11 +85,4 @@ const IssueReturn = ({
 
 export default IssueReturn;
 
-// const newdate =  new Date()
-// const newday = newdate.getDate()
-// const newmonth = newdate.getMonth()
-// const newyear = newdate.getFullYear()
 
-//       console.log(newday,newmonth,newyear,"jjj")
-
-//       console.log(  newdate.getDate()+'-'+newdate.getMonth()+'-'+ newdate.getFullYear())

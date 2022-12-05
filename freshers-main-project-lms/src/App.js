@@ -62,43 +62,26 @@ const localStorageIssueBooks = () => {
 
 function App() {
 
-  // const getStudentLogin = ()=>{
-  //   return localStorage.getItem("studentLogin")
-  // }
-  // const [studentBoolean, setstudentBoolean] = useState(getStudentLogin());
+  const StudentLoginId = () => {
+   return localStorage.getItem("studentloginid");
+  }
 
-  // useEffect(() => { 
-  //localStorage.setItem("studentLogin", studentBoolean)
-  // },[studentBoolean])
-
- 
-  const sidebarcustomFunc = () =>{
-    return localStorage.getItem("sidebarcustom")
-   }
   
-  const [sidebarCustomize,setSidebarCustomize]= useState(sidebarcustomFunc());
-
-  useEffect(() => {
-    localStorage.setItem("sidebarcustom",sidebarCustomize)
-    
-  }, [sidebarCustomize])
 
 
   const [formSubmitted, setFormSubmitted] = useState(false);
-  // const [studentLogin,setStudentLogin] = useState(false)
   const [studentdata, setStudentdata] = useState(localStorageStudent());
-
-
   const [bookData, setBookData] = useState(localStorageAllBooks());
-
   const [issuestate, setIssuestate] = useState(localStorageIssueBooks());
+  const [studentidget,setStudentIdGet] = useState(StudentLoginId())
 
-  const [studentidget,setStudentIdGet] = useState('')
+  
+  useEffect(() => {
+    
+    localStorage.setItem("studentloginid",studentidget);
+    
+  }, [studentidget])
 
-  // useEffect(() =>{
-  //   const data = window.localStorage.getItem('sidebarcustom');
-  //   if(data !== null) setSidebarCustomize(JSON.parse(data))
-  // }, [])
 
 
   useEffect(() => {
@@ -113,14 +96,6 @@ function App() {
     setFormSubmitted(true);
   };
 
-  // const studentSubmit = () => {
-  //   setStudentLogin(true)
-  //   console.log(studentLogin)
-  // } 
-
-  
-
-
   const admindetails = {
     email: "yasin@2003",
     password: "12345",
@@ -128,7 +103,7 @@ function App() {
 
 
   return (
-    <sidebarCustomizeContext.Provider value={[sidebarCustomize,setSidebarCustomize]}>
+   
     <issuebooksContext.Provider value={[issuestate, setIssuestate]}>
       <allBooksContext.Provider value={[bookData, setBookData]}>
         <studentContext.Provider value={[studentdata, setStudentdata]}>
@@ -167,11 +142,8 @@ function App() {
         </studentContext.Provider>
       </allBooksContext.Provider>
     </issuebooksContext.Provider>
-    </sidebarCustomizeContext.Provider>
+ 
   );
 }
 
 export default App;
-// <div className='App-div-first d-flex gap-md-5 '>
-// localStorage.setItem("sidebarcustom",JSON.stringify(sidebarCustomize))
-// sidebarCustomize
