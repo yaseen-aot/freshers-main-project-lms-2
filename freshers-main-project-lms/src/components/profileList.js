@@ -31,7 +31,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
     var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
     
-
+    if(issueobj.isreturn == false){
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       setProfileDayDiff(diffDays);
@@ -41,7 +41,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
       finecal = finetotal * 10
      
       
-    }else{
+    }}else{
       if (date3 > date2) {
         var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
         setProfileDayDiff(diffDays);

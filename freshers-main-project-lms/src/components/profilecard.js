@@ -36,11 +36,18 @@ const Profilecard = () => {
     var Duemonth = currentDueDate.getMonth() + 1;
     var Duedate = currentDueDate.getDate();
     var Dueyear = currentDueDate.getFullYear();
+
+    var currentreturndate = new Date(issueobj?.tempreturndate);
+    console.log(currentreturndate)
+    var returnmonth = currentreturndate.getMonth()+1;
+    var returndate = currentreturndate.getDate();
+    var returnyear = currentreturndate.getFullYear();
    
     var date1 = new Date();
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+    var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
     
-
+    if(issueobj.isreturn == false){
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       var count = totalFineCalc + diffDays
@@ -48,11 +55,14 @@ const Profilecard = () => {
      
       
     //  totalFineCalc = totalFineCalc + diffDays ;
-      
-      
-      
-   
     } 
+  }else{
+    if (date3 > date2) {
+      var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
+      var count = totalFineCalc + diffDays
+      return setTotalFineCalc(count);
+    }
+  }
     })
   }, []);
  
@@ -76,7 +86,10 @@ const Profilecard = () => {
     setRemainingCount(remaining)
   }, [issuestate, id]);
 
+  
 
+  let finetotal = 0
+  let finecal = 0
 
   useEffect(() => {
    let count = issuestate.map((issueobj)=>{
@@ -89,8 +102,7 @@ const Profilecard = () => {
     const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
 
 
-    let finetotal = 0
-    let finecal = 0
+    
 
     var date1 = new Date();
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
@@ -159,7 +171,7 @@ const Profilecard = () => {
 
                   <span className="d-flex justify-content-between flex-wrap">
                     <p className="cardrightdata">Total Fine</p>
-                    <p className="cardrightvalues">Rs {profilefineTotal}</p>
+                    <p className="cardrightvalues">Rs{profilefineTotal}</p>
                   </span>
                 </div>
               </div>

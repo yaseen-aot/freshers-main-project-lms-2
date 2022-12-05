@@ -7,14 +7,14 @@ import { allBooksContext } from "../App";
 import { issuebooksContext } from "../App";
 import { useState } from "react";
 import MyBooksListHeader from "./MyBooksListHeader";
-import { useNavigate } from "react-router";
+
 
 
 
 
 const MyBooksContainer = ({studentidget}) => {
 
-  const pendingnavigate = useNavigate();
+ 
   const [studentdata, setStudentdata] = useContext(studentContext);
   const [bookData, setBookData] = useContext(allBooksContext);
   const [issuestate, setIssuestate] = useContext(issuebooksContext);
@@ -64,6 +64,11 @@ const MyBooksContainer = ({studentidget}) => {
   },[studentdata,issuestate,bookData])
 
 console.log(tempmybooks,"tt")
+
+const countissued = tempmybooks?.filter(count => count.issuestudentid == studentidget && count.isissue == true).length
+const countreturned = tempmybooks?.filter(count => count.issuestudentid == studentidget && count.isreturn == true).length
+const countpending = tempmybooks?.filter(count => count.issuestudentid == studentidget && count.isreturn == false).length
+
 
 const myBooksSearchFunc = (e) => {
   const value =  e.target.value;
@@ -159,9 +164,9 @@ if(sortMyBooks == 2){
  </div>
 
    <div className=" d-flex gap-md-5 mt-3  border-bottom ps-md-2">
-     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksissued ? "4px solid #0C39C7" : "none",}} onClick={issuedTabFunc}>Issued Books (6)</div>
-     <div className="mybooks-filter pb-3" style={{borderBottom:  mybookspending ? "4px solid #0C39C7" : "none",}} onClick={() =>{ pendingTabFunc()}}>Pending to return (4)</div>
-     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksreturned ? "4px solid #0C39C7" : "none",}} onClick={returnedTabFunc}>Returned Books (2)</div>
+     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksissued ? "4px solid #0C39C7" : "none",}} onClick={issuedTabFunc}>Issued Books ({countissued})</div>
+     <div className="mybooks-filter pb-3" style={{borderBottom:  mybookspending ? "4px solid #0C39C7" : "none",}} onClick={() =>{ pendingTabFunc()}}>Pending to return ({countpending})</div>
+     <div className="mybooks-filter pb-3" style={{borderBottom: mybooksreturned ? "4px solid #0C39C7" : "none",}} onClick={returnedTabFunc}>Returned Books ({countreturned})</div>
   </div>
 
 

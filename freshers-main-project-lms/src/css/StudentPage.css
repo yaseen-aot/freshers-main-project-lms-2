@@ -73,6 +73,7 @@ font-size: 14px;
 line-height: 17px;
 color: #09174A;
 opacity: 0.6;
+cursor: pointer;
 }
 .mybooks-page{
     min-height: 95vh;
