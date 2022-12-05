@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { allBooksContext } from "../App";
 import "../css/studentprofile.css";
 
-const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) => {
+const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc,finesubmit }) => {
   const [bookData, setBookData] = useContext(allBooksContext);
 
   const [profileDayDiff, setProfileDayDiff] = useState(null);
@@ -16,7 +16,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
   const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
   
   var currentreturndate = new Date(issueobj?.tempreturndate);
-  console.log(currentreturndate)
+ 
   var returnmonth = currentreturndate.getMonth()+1;
   var returndate = currentreturndate.getDate();
   var returnyear = currentreturndate.getFullYear();
@@ -24,6 +24,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
   
 
   useEffect(() => {
+    
     let finetotal = 0
     let finecal = 0
 
@@ -35,16 +36,18 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       setProfileDayDiff(diffDays);
+      finesubmit(diffDays)
 
-     totalFineCalc = totalFineCalc + diffDays ;
-      finetotal = finetotal + diffDays
-      finecal = finetotal * 10
+    //  totalFineCalc = totalFineCalc + diffDays ;
+    //   finetotal = finetotal + diffDays
+    //   finecal = finetotal * 10
      
-      
+    console.log("welcome")
     }}else{
       if (date3 > date2) {
         var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
         setProfileDayDiff(diffDays);
+        finesubmit(diffDays)
         console.log("hai")
       }
    

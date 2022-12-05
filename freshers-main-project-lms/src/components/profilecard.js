@@ -23,48 +23,48 @@ const Profilecard = () => {
   const [remaininingCount,setRemainingCount] = useState(0)
   const [profileSearch,setProfileSearch] = useState('')
   const [totalFineCalc,setTotalFineCalc] = useState(0)
-  const  [profilefineTotal,setProfileFineTotal] = useState('')
+  const  [profilefineTotal,setProfileFineTotal] = useState(0)
   
   
 
   
-  useEffect(() => {
-    issuestate.map((issueobj) => {
+  // useEffect(() => {
+  //   issuestate.map((issueobj) => {
 
     
-    var currentDueDate = new Date(issueobj?.duedate);
-    var Duemonth = currentDueDate.getMonth() + 1;
-    var Duedate = currentDueDate.getDate();
-    var Dueyear = currentDueDate.getFullYear();
+  //   var currentDueDate = new Date(issueobj?.duedate);
+  //   var Duemonth = currentDueDate.getMonth() + 1;
+  //   var Duedate = currentDueDate.getDate();
+  //   var Dueyear = currentDueDate.getFullYear();
 
-    var currentreturndate = new Date(issueobj?.tempreturndate);
-    console.log(currentreturndate)
-    var returnmonth = currentreturndate.getMonth()+1;
-    var returndate = currentreturndate.getDate();
-    var returnyear = currentreturndate.getFullYear();
+  //   var currentreturndate = new Date(issueobj?.tempreturndate);
+  //   console.log(currentreturndate)
+  //   var returnmonth = currentreturndate.getMonth()+1;
+  //   var returndate = currentreturndate.getDate();
+  //   var returnyear = currentreturndate.getFullYear();
    
-    var date1 = new Date();
-    var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
-    var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
+  //   var date1 = new Date();
+  //   var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+  //   var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
     
-    if(issueobj.isreturn == false){
-    if (date1 > date2) {
-      var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
-      var count = totalFineCalc + diffDays
-     return setTotalFineCalc(count);
+  //   if(issueobj.isreturn == false){
+  //   if (date1 > date2) {
+  //     var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
+  //     var count = totalFineCalc + diffDays
+  //    return setTotalFineCalc(count);
      
       
-    //  totalFineCalc = totalFineCalc + diffDays ;
-    } 
-  }else{
-    if (date3 > date2) {
-      var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
-      var count = totalFineCalc + diffDays
-      return setTotalFineCalc(count);
-    }
-  }
-    })
-  }, []);
+  //   //  totalFineCalc = totalFineCalc + diffDays ;
+  //   } 
+  // }else{
+  //   if (date3 > date2) {
+  //     var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
+  //     var count = totalFineCalc + diffDays
+  //     return setTotalFineCalc(count);
+  //   }
+  // }
+  //   })
+  // }, []);
  
 
 
@@ -90,6 +90,7 @@ const Profilecard = () => {
 
   let finetotal = 0
   let finecal = 0
+  let newCount = 0
 
   useEffect(() => {
    let count = issuestate.map((issueobj)=>{
@@ -101,13 +102,21 @@ const Profilecard = () => {
     var Dueyear = currentDueDate.getFullYear();
     const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
 
+    var currentreturndate = new Date(issueobj?.tempreturndate);
+    console.log(currentreturndate)
+    var returnmonth = currentreturndate.getMonth()+1;
+    var returndate = currentreturndate.getDate();
+    var returnyear = currentreturndate.getFullYear();
+
+
 
     
 
     var date1 = new Date();
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+    var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
     
-
+    if(issueobj.isreturn == false){
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
      
@@ -118,11 +127,23 @@ const Profilecard = () => {
       finetotal = finetotal + diffDays
       finecal = finetotal * 10
       let newCount = diffDays + profilefineTotal
-      setProfileFineTotal(newCount);
+      // setProfileFineTotal(newCount);
     return  diffDays;
       
+    }}else{
+      if (date3 > date2) {
+      var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
+
+      finetotal = finetotal + diffDays
+      finecal = finetotal * 10
+      let newCount = diffDays + profilefineTotal
+      // setProfileFineTotal(newCount);
+    return  diffDays;
     }
-  })
+      
+    }
+  }
+  )
 
 
   }, [issuestate]);
@@ -135,6 +156,16 @@ const Profilecard = () => {
     setProfileSearch(value)
   
   }
+ 
+ 
+  const finesubmit = (count) =>{
+    
+   let totalcount = profilefineTotal + count 
+    setProfileFineTotal(totalcount)
+    console.log(totalcount,"red")
+   
+  }
+   console.log(profilefineTotal,"re ")
 
   return (
     <Fragment>
@@ -171,7 +202,7 @@ const Profilecard = () => {
 
                   <span className="d-flex justify-content-between flex-wrap">
                     <p className="cardrightdata">Total Fine</p>
-                    <p className="cardrightvalues">Rs{profilefineTotal}</p>
+                    <p className="cardrightvalues">Rs{profilefineTotal * 10}</p>
                   </span>
                 </div>
               </div>
@@ -217,6 +248,7 @@ const Profilecard = () => {
               return <ProfileList issueobj={issueobj} profileSearch = {profileSearch} 
               // setTotalFineCalc = {setTotalFineCalc}
               // totalFineCalc = {totalFineCalc}
+              finesubmit = {finesubmit}
               />;
 
             }
