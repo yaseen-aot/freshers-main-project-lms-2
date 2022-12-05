@@ -45,18 +45,18 @@ const IssueBookModal = ({ show, setShow }) => {
   const IssuebookStateFunc = (event) => {
     const val = event.target.value;
     setissueidbook(val);
-    console.log(issueidbook);
+  
   };
 
   const IssuestudentStateFunc = (event) => {
     const val = event.target.value;
     setissueidstudent(val);
-    console.log(issueidstudent);
+   
   };
 
   const issueDateFunc = (event) => {
     const val = event.target.value;
-    console.log(val,"ff");
+   
     setIssuedatetwo(val);
 
     const splitval = val.split("-");
@@ -65,7 +65,7 @@ const IssueBookModal = ({ show, setShow }) => {
     const setday = splitval[2];
     const setval = setmonth + "-" + setday + "-" + +setyear;
 
-    console.log(setval,"sdvh")
+    
     setIssuedateissue(setval);
 
 ///////
@@ -119,10 +119,11 @@ console.log(issueduedate, "hooi");
       duedate: issueduedate,
       isreturn: false,
       isissue: true,
-      isreturndate : ""
+      isreturndate : "",
+      tempreturndate : ""
     };
-    //  console.log(issueduedate,issuedateissue,"se")
-    console.log(setarray, "setarray");
+   
+    
     setIssuestate([...issuestate, setarray]);
     handleClose()
     setissueidbook("")

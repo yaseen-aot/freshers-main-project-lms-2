@@ -32,7 +32,7 @@ const IssuedPage = () => {
   const issueSearchTextFunc = (e) => {
     const value = e.target.value
     setIssueSearchText(value)
-    console.log(value)
+
   }
 
 

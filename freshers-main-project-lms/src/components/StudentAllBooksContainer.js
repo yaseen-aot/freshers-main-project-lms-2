@@ -15,7 +15,6 @@ const StudentAllBooksContainer = () => {
 
   const studentAllBooksSearch = (e) => {
     const value = e.target.value;
-    console.log(value,"SSS")
     setStudentAllBooksSearchState(value)
   }
   const sortTitle = () =>{
@@ -28,9 +27,6 @@ const StudentAllBooksContainer = () => {
   if(studentAllbooksSortState == 1){
       
     bookData.sort((a, b) => {
-      console.log(a.title)
-      console.log("1")
-      console.log(b.title)
       return  a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1;;
   });
 
@@ -39,9 +35,6 @@ const StudentAllBooksContainer = () => {
   if(studentAllbooksSortState == 2){
       
     bookData.sort((a, b) => {
-      console.log(a.author)
-      console.log("1")
-      console.log(b.author)
       return  a.author.toLowerCase() < b.author.toLowerCase() ? -1 : 1;;
   });
 
@@ -54,7 +47,7 @@ const StudentAllBooksContainer = () => {
         
         <div className="container-student-page ">
 
-        <p className="container-student-page-header pt-5">My Books</p>
+        <p className="container-student-page-header pt-5">All Books</p>
         <hr />
 
 <div className="search-sort-div  d-flex flex-wrap pb-3 ">

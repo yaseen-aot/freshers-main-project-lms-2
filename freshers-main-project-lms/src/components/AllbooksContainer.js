@@ -20,7 +20,7 @@ const AllBooks = () => {
   const allBooksSearchFunction = (event) => {
     const value = event.target.value;
     setAllbookssearchdata(value);
-    console.log(Allbookssearchdata);
+   
   };
 
   return (

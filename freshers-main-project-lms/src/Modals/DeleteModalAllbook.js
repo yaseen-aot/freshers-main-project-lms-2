@@ -16,7 +16,7 @@ const DeleteModalAllbooks = ({
   const handleClose = () => setShowbookDelete(false);
 
   const bookDeleteFunc = (bookid) => {
-    console.log(bookid);
+   
     setBookData(bookData.filter((item) => bookid != item.bookid));
   };
 

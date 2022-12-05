@@ -63,7 +63,7 @@ const localStorageIssueBooks = () => {
 function App() {
 
   const StudentLoginId = () => {
-   return localStorage.getItem("studentloginid");
+   return sessionStorage.getItem("studentloginid");
   }
 
   
@@ -78,7 +78,7 @@ function App() {
   
   useEffect(() => {
     
-    localStorage.setItem("studentloginid",studentidget);
+    sessionStorage.setItem("studentloginid",studentidget);
     
   }, [studentidget])
 

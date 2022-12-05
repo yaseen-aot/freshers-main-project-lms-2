@@ -29,17 +29,15 @@ const Studentmain = () => {
 
   const studentEditNameget = (data) => {
     // setStudenteditName(data)
-    console.log(studenteditName, "mm");
   };
 
   const studentEditEmailget = (data) => {
     // setStudenteditEmail(data)
-    console.log(studenteditEmail, "mm");
   };
 
   const studentEditPasswordget = (data) => {
     // setStudenteditPassword(data)
-    console.log(studenteditPassword, "mm");
+   
   };
   const studentResetEditFunc = () => {
     setSelectedstudent(null);
@@ -55,12 +53,10 @@ const Studentmain = () => {
   const studentsearchFunction = (event) => {
     const value = event.target.value;
     setStudentsearchdata(value);
-    console.log(studentsearchdata);
   };
 
   const studentkeyget = (id) => {
     setGetkeyoneye(id);
-    console.log(getkeyoneye, "huh");
   };
 
   return (

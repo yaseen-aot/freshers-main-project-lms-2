@@ -44,7 +44,6 @@ const Profilecard = () => {
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       var count = totalFineCalc + diffDays
-      console.log(count,"ddd")
      return setTotalFineCalc(count);
      
       
@@ -99,7 +98,7 @@ const Profilecard = () => {
 
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
-      console.log(profilefineTotal,"okayy")
+     
       
     //  totalFineCalc = totalFineCalc + diffDays ;
       
@@ -112,17 +111,17 @@ const Profilecard = () => {
       
     }
   })
-  console.log(count,"okayyw")
+
 
   }, [issuestate]);
 
-  console.log(profilefineTotal,"okay")
+  
 
 
   const profileSearchFunc = (e) => {
     const value = e.target.value
     setProfileSearch(value)
-    console.log(profileSearch)
+  
   }
 
   return (
@@ -160,7 +159,7 @@ const Profilecard = () => {
 
                   <span className="d-flex justify-content-between flex-wrap">
                     <p className="cardrightdata">Total Fine</p>
-                    <p className="cardrightvalues">Rs.70</p>
+                    <p className="cardrightvalues">Rs {profilefineTotal}</p>
                   </span>
                 </div>
               </div>

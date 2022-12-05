@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useContext } from "react";
 import { studentContext } from "../App";
 import { allBooksContext } from "../App";
-import { sidebarCustomizeContext } from "../App";
 import { useNavigate } from "react-router";
 
 const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
@@ -30,13 +29,6 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
   const [studentpage, setStudentpage] = useState(false);
 
 
-  // const sideBarCustomizetrue = () => {
-   
-  // }
-
-  // const sideBarCustomizefalse = () => {
-  //   setSidebarCustomize(false)
-  // }
 
   const studentClick = () => {
     setStudentpage(true);
@@ -49,7 +41,7 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
   };
 
   const checkMatch = () => {
-    console.log(values);
+    
     if (
       values.email === admindetails.email &&
       values.password === admindetails.password
@@ -64,25 +56,15 @@ const Login = ({ submitForm, admindetails,setStudentIdGet,studentidget }) => {
   const studentMatch = () =>{
     console.log(values)
     studentdata.map((data) => {
-      // console.log(values.email)
-      // console.log(values.password)
-      // console.log(data.email)
-      // console.log(data.password)
+   
 
       if (values.email === data.email && values.password === data.password){
        console.log("student logged")
        if(data.position === "student")
        {
-        
-       
-       
-      
         navigate("/mybooks")
         
         setStudentIdGet(data.id)
-       console.log(data.id,"rww") 
-      //  console.log(studentidget,"rw")
-      
 
        }
      

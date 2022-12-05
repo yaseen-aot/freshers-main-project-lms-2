@@ -29,11 +29,11 @@ const MyBooksContainer = ({studentidget}) => {
   useEffect(() =>{
     studentdata.map((studentobj) => {
 
-      console.log(studentidget,"ffe")
+    
       
       if(studentidget == studentobj.id )
       {
-        console.log(studentobj.id,"ffef")
+       
         const mybookstemparr = issuestate.map((issueobj) => {
    
        
@@ -67,26 +67,22 @@ console.log(tempmybooks,"tt")
 
 const myBooksSearchFunc = (e) => {
   const value =  e.target.value;
-  console.log(value,"ss")
   setMyBooksSearchState(value)
 }
 
 const issuedTabFunc = () => {
-  console.log("aa")
   setMybooksissued(true)
   setMybooksreturned(false)
   setMybookspending(false)
 
 }
 const pendingTabFunc = () => {
-  console.log("bb")
   setMybooksissued(false)
   setMybooksreturned(false)
   setMybookspending(true)
   
 }
 const returnedTabFunc = () => {
-  console.log("cc")
   setMybooksissued(false)
   setMybooksreturned(true)
   setMybookspending(false)
@@ -171,7 +167,7 @@ if(sortMyBooks == 2){
 
 
 
-   { console.log(tempmybooks,"fff")}
+  
     <MyBooksListHeader studentidget = {studentidget}
        myBooksSearchState = {myBooksSearchState}
      tempmybooks = {tempmybooks}

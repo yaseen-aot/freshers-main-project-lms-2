@@ -82,7 +82,6 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
       bookremainingCopies !== ""
     ) {
       if(remain.current.value <= total.current.value){
-      console.log("button clicked");
 
       const setdata = {
         bookid: nanoid(),
@@ -93,7 +92,6 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
         remaining: bookremainingCopies,
       };
       setBookData([...bookData, setdata]);
-      console.log(bookData);
       handleCloseBook()
       setBookTitle("")
       setBookAuthor("")
@@ -118,13 +116,9 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
       bookremainingCopies !== ""
     ) {
       if(remain.current.value <= total.current.value){
-      console.log("editbook button clicked");
-      console.log(bookData);
 
-      console.log(selectedAllbooks.bookid, "gggg");
       setBookData((bookData) =>
         bookData.map((obj) => {
-          console.log(obj.bookid, selectedAllbooks.bookid);
           if (obj.bookid === selectedAllbooks.bookid) {
             return {
               ...obj,
@@ -140,7 +134,6 @@ const AddBookModal = ({ setShowAddBook, showAddBook, selectedAllbooks }) => {
           return obj;
         })
       );
-      console.log(bookData);
       handleCloseBook();
       }else{
         allbooksnotify("remaining cannot be greater than total")

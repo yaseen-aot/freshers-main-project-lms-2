@@ -33,15 +33,26 @@ const IssueReturn = ({
         });
         setBookData(RemainingIncrease);
         const newdate = new Date();
+      const  newmonth =  newdate.getMonth() + 1
         const newdateformat =
         newdate.getDate()  +
           "-" +
-          newdate.getMonth() +
+          newmonth + 
           "-" +
           newdate.getFullYear();
         console.log(newdateformat, "gbtt");
 
-        return { ...issueobj, isreturn: true, isreturndate: newdateformat };
+        const tempdateformat =
+        newmonth +
+          "-" +
+          newdate.getDate()    +
+          "-" +
+          newdate.getFullYear();
+        console.log(newdateformat, "gbtt");
+
+
+
+        return { ...issueobj, isreturn: true, isreturndate: newdateformat , tempreturndate : tempdateformat};
       }
 
       return issueobj;

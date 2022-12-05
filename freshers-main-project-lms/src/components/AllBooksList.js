@@ -16,43 +16,19 @@ const AllBooksList = ({
 
   const [showbookDelete, setShowbookDelete] = useState(false);
 
-  // const [AllbookseditTitle,setAllbookseditTitle] = useState('')
-  // const [AllbookseditAuthor,setAllbookseditAuthor] = useState('')
-  // const [AllbookseditLanguage,setAllbookseditLanguage] = useState('')
-  // const [AllbookseditTotalcopies,setAllbookseditTotalcopies] = useState('')
-  // const [AllbookseditRemaining,setAllbookseditRemaining] = useState('')
 
   const AllbookEditFunc = (selected) => {
     setSelectedAllbooks(selected);
-    const value = console.log();
+    
   };
 
-  // const AllbooksEditTitleget = (data) => {
-  //     setAllbookseditTitle(data)
-  //     console.log(AllbookseditTitle,"ddmm")
-  // }
-  // const AllbooksEditAuthorget = (data) => {
-  //     setAllbookseditAuthor(data)
-  //     console.log(AllbookseditAuthor,"ddmm")
-  // }
-  // const AllbooksEditLanguageget = (data) => {
-  //     setAllbookseditLanguage(data)
-  //     console.log(AllbookseditLanguage,"ddmm")
-  // }
-  // const AllbooksEditTotalcopiesget = (data) => {
-  //     setAllbookseditTotalcopies(data)
-  //     console.log(AllbookseditTotalcopies,"ddmm")
-  // }
-  // const AllbooksEditRemainingget = (data) => {
-  //     setAllbookseditRemaining(data)
-  //     console.log(AllbookseditRemaining,"ddmm")
-  // }
+ 
 
   const handleShowDeleteBook = () => setShowbookDelete(true);
 
   const allBookGetkey = (deletebook) => {
     setAllbookkeyelement(deletebook);
-    console.log(allbookkeyelement, "d");
+   
   };
 
   return (

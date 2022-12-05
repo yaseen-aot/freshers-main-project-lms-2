@@ -17,29 +17,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
   const [studentPassword, setStudentPassword] = useState("");
   const [studentPasswordTwo, setStudentPasswordTwo] = useState("");
 
-  // const [studentNameEditModal,setStudentNameEditModal] = useState('')
-  // const [studentEmailEditModal,setStudentEmailEditModal] = useState('')
-  // const [studentPasswordEditModal,setStudentPasswordEditModal] = useState('')
-  // const [studentPasswordTwoEditModal,setStudentPasswordTwoEditModal] = useState('')
 
-  // const studentNameEditFunc = (event) => {
-  // const value = event.target.value
-  // setStudentNameEditModal(value)
-  // console.log(studentNameEditModal,"jj")
-
-  // }
-
-  // const  studentEmailEditFunc = () => {
-
-  // }
-
-  // const studentPasswordEditFunc = () => {
-
-  // }
-
-  // const studentPasswordTwoEditFunc = () => {
-
-  // }
 
   useEffect(() => {
     setStudentName(selectedstudent?.name);
@@ -53,7 +31,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
   const StudentNameFunction = (event) => {
     const value = event.target.value;
     setStudentName(value);
-    console.log(studentName);
+   
   };
 
   const notify = (text) => {
@@ -85,23 +63,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
     });
   }
 
-  // const StudentEmailFunction = (event) =>{
-  //     const value =  event.target.value
-  //     // setStudentEmail(value)
-  //     console.log(studentEmail)
-  //  }
 
-  //  const StudentPasswordFunction = (event) =>{
-  //     const value =  event.target.value
-  //     // setStudentPassword(value)
-  //     console.log(studentPassword)
-  //  }
-
-  //  const StudentPasswordTwoFunction = (event) =>{
-  //     const value =  event.target.value
-  //     // setStudentPasswordTwo(value)
-  //     console.log(studentPasswordTwo)
-  //  }
 
   const handleAddStudent = () => {
     if (
@@ -111,14 +73,11 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
       studentPasswordTwo !== ""
     ) {
       if (studentPassword === studentPasswordTwo  ) {
-        console.log(studentPassword.length)
+       
         if(studentPassword.length > 4 && studentPassword.length < 11 ){
-        console.log("button clicked");
+       
         const newid = new Date().getTime();
-        console.log(newid);
-        console.log(studentName);
-        console.log(studentEmail);
-        console.log();
+       
         const setdata = {
           id: newid,
           name: studentName,
@@ -128,7 +87,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
         };
 
         setStudentdata([...studentdata, setdata]);
-        console.log(studentdata);
+       
 
         setShow(false);
         setStudentName("");
@@ -156,9 +115,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
     ) {
       if (studentPassword === studentPasswordTwo) {
         if(studentPassword.length > 4 && studentPassword.length < 11 ){
-        console.log("edit button clicked");
-        console.log(studentdata);
-        console.log("hai");
+       
 
         setStudentdata((studentdata) =>
           studentdata.map((obj) => {
@@ -174,7 +131,7 @@ const AddStudentModal = ({ show, setShow, selectedstudent }) => {
             return obj;
           })
         );
-        console.log(studentdata);
+       
         handleCloseStudent();
       }else{
         notify("password should be greater than 4 characters")

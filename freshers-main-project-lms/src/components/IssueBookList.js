@@ -74,7 +74,7 @@ const IssueBookList = ({ issueobj, returnGetkey, handleReturnShow,issueSearchTex
 
   },[issueSearchText,bookData,studentdata])
 
-  console.log(issuesearchState,"hello")
+ 
 
 
   return (

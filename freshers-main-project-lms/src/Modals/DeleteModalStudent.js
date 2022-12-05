@@ -10,7 +10,7 @@ const DeleteModalStudent = ({ showDelete, setShowDelete, getkeyElement }) => {
   const handleClose = () => setShowDelete(false);
 
   const studentDeleteFunc = (deleteid) => {
-    console.log(deleteid);
+  
     setStudentdata(studentdata.filter((item) => deleteid != item.id));
   };
 

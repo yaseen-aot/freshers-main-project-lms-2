@@ -7,7 +7,7 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
   const [bookData, setBookData] = useContext(allBooksContext);
 
   const [profileDayDiff, setProfileDayDiff] = useState(null);
-  const [finestore,setFineStore] = useState(0)
+  
 
   var currentDueDate = new Date(issueobj?.duedate);
   var Duemonth = currentDueDate.getMonth() + 1;
@@ -15,7 +15,11 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
   var Dueyear = currentDueDate.getFullYear();
   const dueddatedisplay = Duedate + "-" + Duemonth + "-" + Dueyear;
   
-
+  var currentreturndate = new Date(issueobj?.tempreturndate);
+  console.log(currentreturndate)
+  var returnmonth = currentreturndate.getMonth()+1;
+  var returndate = currentreturndate.getDate();
+  var returnyear = currentreturndate.getFullYear();
 
   
 
@@ -25,19 +29,26 @@ const ProfileList = ({ issueobj,profileSearch,setTotalFineCalc,totalFineCalc }) 
 
     var date1 = new Date();
     var date2 = new Date(Duemonth + "-" + Duedate + "-" + Dueyear);
+    var date3 = new Date(returnmonth + "-" + returndate + "-" + returnyear );
     
 
     if (date1 > date2) {
       var diffDays = parseInt((date1 - date2) / (1000 * 60 * 60 * 24), 10);
       setProfileDayDiff(diffDays);
+
      totalFineCalc = totalFineCalc + diffDays ;
-      
-      
       finetotal = finetotal + diffDays
-      console.log(totalFineCalc,"r")
       finecal = finetotal * 10
-      console.log(finetotal,'jjj')
+     
       
+    }else{
+      if (date3 > date2) {
+        var diffDays = parseInt((date3 - date2) / (1000 * 60 * 60 * 24), 10);
+        setProfileDayDiff(diffDays);
+        console.log("hai")
+      }
+   
+
     }
   }, [issueobj]);
 
